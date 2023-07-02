@@ -12,7 +12,9 @@ CREATE TABLE customers (
   id SERIAL PRIMARY KEY NOT NULL,
   customer_name VARCHAR(255) NOT NULL,
   customer_email VARCHAR(255) NOT NULL,
-  customer_address VARCHAR(255) NOT NULL,
+  customer_street_address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  postal_code VARCHAR(255) NOT NULL,
   phone VARCHAR(255) NOT NULL
   );
 
@@ -28,7 +30,7 @@ CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY NOT NULL,
   orders_id INTEGER NOT NULL REFERENCES order(id) ON DELETE CASCADE,
   email VARCHAR(255) NOT NULL,
-  street_address VARCHAR(255) NOT NULL,
+  restaurant_street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
   phone VARCHAR(255) NOT NULL
