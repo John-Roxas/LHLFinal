@@ -38,6 +38,7 @@ CREATE TABLE restaurants (
 
 CREATE TABLE food_items (
   id SERIAL PRIMARY KEY NOT NULL,
+  picture VARCHAR(255) NOT NULL,
   food_name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   price DECIMAL NOT NULL,
