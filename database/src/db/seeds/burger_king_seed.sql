@@ -1,7 +1,7 @@
 -- Burger King Restaurant Info
 
 INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone) 
-VALUES ('theking@burgerking.com', '4820 Kingsway Bk #14160', 'Burnaby, BC', 'V5H4P1', '6044335181');
+VALUES ('theking@burgerking.com', '4820 Kingsway Bk #14160', 'Burnaby, BC', 'V5H 4P1', '6044335181');
 
 -- Burger King food items
 
