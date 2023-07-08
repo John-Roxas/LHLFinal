@@ -1,5 +1,5 @@
 INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone) 
-VALUES ("coco@gmail.com", "230-4700 Kingsway", "Burnaby, BC", "V5H 4N2");
+VALUES ("coco@gmail.com", "230-4700 Kingsway", "Burnaby, BC", "V5H 4N2", "604 423 9400");
 
 INSERT INTO food_items (picture, food_name, description, price)
 VALUES ("https://tb-static.uber.com/prod/image-proc/processed_images/94cccb898035dc13077c5cd6b1ab4d71/b4facf495c22df52f3ca635379ebe613.jpeg", "Pearl Milk Tea", "CoCo milk tea with sweet chewy tapioca", 6.72);
