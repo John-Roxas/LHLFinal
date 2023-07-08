@@ -1,7 +1,7 @@
 -- A&W Restaurant Info
 
 INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone) 
-VALUES ('contact@aw.com', '610 6th St ', 'ew Westminster, BC', 'V3L 3C2', '6045223723');
+VALUES ('contact@aw.com', '610 6th St ', 'New Westminster, BC', 'V3L 3C2', '6045223723');
 
 -- A&W food items
 
