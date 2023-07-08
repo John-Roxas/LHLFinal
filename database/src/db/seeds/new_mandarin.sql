@@ -1,7 +1,7 @@
 -- New Mandarin Seafood Restaurant Info --
 
 INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone) 
-VALUES ('https://newmandarin.ca/', '4650 Gladstone St', 'Vancouver, BC', '6WVQ+55', '6043369388');
+VALUES ('info@newmandarin.com', '4650 Gladstone St', 'Vancouver, BC', 'V5N 5A2', '6043369388');
 
 -- Burger King food items
 
