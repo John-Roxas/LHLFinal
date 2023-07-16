@@ -25,7 +25,7 @@ CREATE TABLE orders (
   drivers_id INTEGER NOT NULL REFERENCES driver(id) ON DELETE CASCADE,
   restaurants_id INTEGER NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
 );
-
+//TODO ADD categories to all seed data
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY NOT NULL,
   orders_id INTEGER NOT NULL REFERENCES order(id) ON DELETE CASCADE,
@@ -33,7 +33,8 @@ CREATE TABLE restaurants (
   restaurant_street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL
+  phone VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE food_items (
