@@ -1,0 +1,16 @@
+.NavBar {
+  position: fixed;
+  bottom: 0;
+  width: 400px;
+  border-top: 3px solid black;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.NavButton {
+  padding: 14px 28px;
+  font-size: 30px;
+  background-color: white;
+  border: none;
+}
