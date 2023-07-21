@@ -18,7 +18,7 @@ CREATE TABLE customers (
   phone VARCHAR(255) NOT NULL
   );
 
--- //TODO ADD categories to all seed data
+
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY NOT NULL,
   -- orders_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE, <<= This is not necessary. Please confirm
