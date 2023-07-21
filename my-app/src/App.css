@@ -16,3 +16,15 @@
   margin-left: 38%;
 }
 
+.btn {
+  min-width: 110px;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: var(--theme);
+  color: white;
+}
+
+.btn:hover{
+  background: var(--white);
+  color: var(--black);
+}

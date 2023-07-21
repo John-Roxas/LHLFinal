@@ -1,0 +1,6 @@
+.restaurant-list {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5em;
+  grid-template-rows: min-content;
+}
