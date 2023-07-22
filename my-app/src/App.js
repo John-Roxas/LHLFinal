@@ -10,35 +10,36 @@ import axios from "axios";
 
 function App() {
   const apiURLS = {
-    GET_RESTAURANTS: "api/restaurants",
-    GET_FOOD_ITEMS: "api/food_items",
+    GET_RESTAURANTS: "http://localhost:8080/api/restaurants",
+    GET_FOOD_ITEMS: "http://localhost:8080/api/food_items",
+    GET_VISIT: "http://localhost:8080/restaurants/1",
   };
   const [state, setState] = useState({
     restaurant: [],
+    foodList: [],
   });
-  // const [restaurantsList, setrestaurantList] = useState([]);
 
   //Code for multiple axios request
   // useEffect(() => {
-  //   Promise.all([axios.get(apiURLS.GET_RESTAURANTS)]).then((all) => {
-  //     setState((prev) => ({
-  //       ...prev,
-  //       restaurants: all[0].data,
-  //     }));
-  //   });
+  //   Promise.all([axios.get(apiURLS.GET_RESTAURANTS)])
+  //     .then((all) => {
+  //       setState((prev) => ({
+  //         ...prev,
+  //         restaurants: all[0].data,
+  //       }));
+  //     })
+  //     .catch((err) => console.log(err));
   // }, [apiURLS.GET_RESTAURANTS]);
 
   //test single axios request
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/${apiURLS.GET_RESTAURANTS}`)
-      .then((response) => {
-        console.log(response.data);
-        setState((prev) => ({
-          ...prev,
-          restaurant: response.data,
-        }));
-      });
+    axios.get(apiURLS.GET_RESTAURANTS).then((response) => {
+      console.log(response.data);
+      setState((prev) => ({
+        ...prev,
+        restaurant: response.data,
+      }));
+    });
   }, [apiURLS.GET_RESTAURANTS]);
 
   return (
