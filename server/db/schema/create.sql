@@ -21,7 +21,6 @@ CREATE TABLE customers (
 
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY NOT NULL,
-  -- orders_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE, <<= This is not necessary. Please confirm
   restaurant_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   restaurant_street_address VARCHAR(255) NOT NULL,
@@ -42,7 +41,6 @@ CREATE TABLE food_items (
 
 CREATE TABLE cart_food_lists (
   id SERIAL PRIMARY KEY NOT NULL,
-  -- carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
 );
 
@@ -54,7 +52,6 @@ CREATE TABLE carts (
 
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY NOT NULL,
-  -- orders_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   driver_name VARCHAR(255) NOT NULL,
   driver_phone VARCHAR(255) NOT NULL
 );
