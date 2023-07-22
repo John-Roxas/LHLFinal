@@ -1,7 +1,7 @@
 -- -- CoCos Bubble Tea Info --
 
 INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone, category)
-VALUES ('coco@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '604 423 9400', 'Drinks');
+VALUES ('coco@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '6044239400', 'Drinks');
 
 -- -- CoCos Bubble Tea items
 
