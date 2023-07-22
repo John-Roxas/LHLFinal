@@ -9,6 +9,8 @@ function App() {
   };
 
   const [restaurantsList, setrestaurantList] = useState([]);
+
+  //Code for multiple axios request
   // useEffect(() => {
   //   Promise.all([axios.get(apiURLS.GET_RESTAURANTS)]).then((all) => {
   //     setState((prev) => ({
@@ -18,16 +20,13 @@ function App() {
   //   });
   // }, [apiURLS.GET_RESTAURANTS]);
 
+  //test single axios request
   useEffect(() => {
     axios
       .get(`http://localhost:8080${apiURLS.GET_RESTAURANTS}`)
       .then((response) => {
         console.log(response.data);
         setrestaurantList(response.data);
-        // setState((prev) => ({
-        //   ...prev,
-        //   restaurants: response.data,
-        // }));
       });
   }, []);
 
