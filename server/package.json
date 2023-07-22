@@ -13,7 +13,9 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "chalk": "^2.4.2",
+    "cors": "^2.8.5",
     "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
