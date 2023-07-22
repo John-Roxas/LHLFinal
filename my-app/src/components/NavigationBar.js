@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faHouse,
   faMagnifyingGlass,
@@ -11,18 +12,26 @@ import "./NavigationBar.css";
 function NavigationBar() {
   return (
     <div className="NavBar">
-      <button className="NavButton">
-        <FontAwesomeIcon icon={faHouse} />
-      </button>
-      <button className="NavButton">
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </button>
-      <button className="NavButton">
-        <FontAwesomeIcon icon={faCartShopping} />
-      </button>
-      <button className="NavButton">
-        <FontAwesomeIcon icon={faUser} />
-      </button>
+      <Link to="/">
+        <button className="NavButton">
+          <FontAwesomeIcon icon={faHouse} />
+        </button>
+      </Link>
+      <Link>
+        <button className="NavButton">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </Link>
+      <Link to="/cart">
+        <button className="NavButton">
+          <FontAwesomeIcon icon={faCartShopping} />
+        </button>
+      </Link>
+      <Link to="/profile">
+        <button className="NavButton">
+          <FontAwesomeIcon icon={faUser} />
+        </button>
+      </Link>
     </div>
   );
 }

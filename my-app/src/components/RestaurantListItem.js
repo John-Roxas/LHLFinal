@@ -1,15 +1,21 @@
+import { Link } from "react-router-dom";
+
 export default function RestaurantListItem(props) {
   return (
     <article>
       <a>
-        {/* use props.id to create href link*/}
         <h1>
           <span>{props.name}</span>
         </h1>
-        <button class="btn" type="submit">
-          Visit
-        </button>
+        <Link
+          to={`/restaurant/${props.id}`}
+          state={{ name: props.name, food: props.food }}
+        >
+          <button class="btn" type="submit">
+            Visit
+          </button>
+        </Link>
       </a>
-    </article> 
-  )
+    </article>
+  );
 }

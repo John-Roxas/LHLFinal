@@ -1,16 +1,24 @@
-import logo from "./logo.svg";
 import "./App.css";
-import SearchBar from "./components/SearchBar";
-import NavigationBar from "./components/NavigationBar";
-import RestaurantList from "./components/RestaurantList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
+import NoPage from "./pages/NoPage";
+import Restaurant from "./pages/Restaurant";
 
 function App() {
   return (
-    <div className="App">
-      <SearchBar />
-      <RestaurantList />
-      <NavigationBar />
-    </div>
+    <main>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/restaurant/:id" element={<Restaurant />} />
+          <Route path="*" element={<NoPage />} />
+        </Routes>
+      </BrowserRouter>
+    </main>
   );
 }
 

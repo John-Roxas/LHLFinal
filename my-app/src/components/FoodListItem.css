@@ -1,0 +1,23 @@
+.foodContainer {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.foodInfo {
+  margin-right: 20px;
+}
+
+.foodCount, button {
+  background: #eeeeee;
+  font-size: 15px;
+  padding: 0 5px;
+}
+
+button {
+  border: none;
+}
+
+.plusButton {
+  border-radius: 25px;
+}

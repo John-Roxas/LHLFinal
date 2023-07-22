@@ -14,3 +14,7 @@
   background-color: white;
   border: none;
 }
+
+.NavButton:hover {
+  cursor: pointer;
+}
