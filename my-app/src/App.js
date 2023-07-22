@@ -1,11 +1,12 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import RestaurantList from "./components/RestaurantList";
 
 function App() {
   const apiURLS = {
-    GET_RESTAURANTS: "/api/restaurants",
-    GET_FOOD_ITEMS: "/api/food_items",
+    GET_RESTAURANTS: "api/restaurants",
+    GET_FOOD_ITEMS: "api/food_items",
   };
 
   const [restaurantsList, setrestaurantList] = useState([]);
@@ -23,7 +24,7 @@ function App() {
   //test single axios request
   useEffect(() => {
     axios
-      .get(`http://localhost:8080${apiURLS.GET_RESTAURANTS}`)
+      .get(`http://localhost:8080/${apiURLS.GET_RESTAURANTS}`)
       .then((response) => {
         console.log(response.data);
         setrestaurantList(response.data);
@@ -34,10 +35,17 @@ function App() {
     <div className="App">
       <h1>Hello!</h1>
       <h2>List of Restaurants</h2>
+
+      {/* <RestaurantList
+        key={restaurantsList.id}
+        name={restaurantsList.name}
+        email={restaurantsList.email}
+        category={restaurantsList.category}
+      /> */}
       {restaurantsList.map((props) => {
         return (
           <li>
-            Restaurant email: {props.email} | Restaurant City: {props.city}
+            Restaurant: {props.restaurant_name} | Restaurant City: {props.city}
           </li>
         );
       })}
