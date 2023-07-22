@@ -11,7 +11,7 @@ export default function RestaurantListItem(props) {
           to={`/restaurant/${props.id}`}
           state={{ name: props.name, food: props.food }}
         >
-          <button class="btn" type="submit">
+          <button class="btn" type="submit" onClick={console.log(1)}>
             Visit
           </button>
         </Link>
