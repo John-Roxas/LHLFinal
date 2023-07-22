@@ -4,3 +4,11 @@
   gap: 1.5em;
   grid-template-rows: min-content;
 }
+
+/* .restaurant-container {
+  margin-top: 25px;
+  width: 400px;
+  height: 550px;
+  border: 3px dotted black;
+  text-align: center;
+} */

@@ -11,24 +11,24 @@ import "./NavigationBar.css";
 
 function NavigationBar() {
   return (
-    <div className="NavBar">
+    <div className="nav-bar">
       <Link to="/">
-        <button className="NavButton">
+        <button className="nav-button">
           <FontAwesomeIcon icon={faHouse} />
         </button>
       </Link>
-      <Link>
-        <button className="NavButton">
+      <Link to="/">
+        <button className="nav-button">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </Link>
       <Link to="/cart">
-        <button className="NavButton">
+        <button className="nav-button">
           <FontAwesomeIcon icon={faCartShopping} />
         </button>
       </Link>
       <Link to="/profile">
-        <button className="NavButton">
+        <button className="nav-button">
           <FontAwesomeIcon icon={faUser} />
         </button>
       </Link>

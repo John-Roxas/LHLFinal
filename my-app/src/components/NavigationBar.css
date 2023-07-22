@@ -1,4 +1,4 @@
-.NavBar {
+.nav-bar {
   position: fixed;
   bottom: 0;
   width: 400px;
@@ -8,13 +8,13 @@
   justify-content: space-between;
 }
 
-.NavButton {
+.nav-button {
   padding: 14px 28px;
   font-size: 30px;
   background-color: white;
   border: none;
 }
 
-.NavButton:hover {
+.nav-button:hover {
   cursor: pointer;
 }

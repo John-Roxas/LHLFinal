@@ -10,7 +10,7 @@ function Restaurant() {
   return (
     <div className="App">
       <SearchBar />
-      <div>
+      <div className="restaurant-foods-container">
         <h2>{name}</h2>
         <FoodList item={name} food={food} />
       </div>

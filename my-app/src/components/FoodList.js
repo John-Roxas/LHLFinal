@@ -1,3 +1,4 @@
+import "./FoodList.css";
 import FoodListItem from "./FoodListItem";
 
 function FoodList(props) {
@@ -6,7 +7,7 @@ function FoodList(props) {
     return <FoodListItem name={food.item} price={food.price} />;
   });
 
-  return <div>{foods}</div>;
+  return <div className="food-list-container">{foods}</div>;
 }
 
 export default FoodList;

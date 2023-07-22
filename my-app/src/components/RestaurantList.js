@@ -56,5 +56,5 @@ export default function RestaurantList() {
     );
   });
 
-  return <div>{restaurants}</div>;
+  return <div className="restaurant-container">{restaurants}</div>;
 }

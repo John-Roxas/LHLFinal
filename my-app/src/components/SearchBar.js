@@ -15,11 +15,11 @@ function SearchBar() {
   };
 
   return (
-    <div className="SearchBox">
+    <div className="search-container">
       <form className="form-field" onSubmit={onFormSubmit}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
         <input
-          className="SearchBar"
+          className="search-bar"
           name="restuarantSearch"
           type="text"
           placeholder="Food, restuarant, drinks, etc."

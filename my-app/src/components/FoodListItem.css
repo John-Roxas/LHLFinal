@@ -1,14 +1,14 @@
-.foodContainer {
+.food-container {
   display: flex;
   flex-direction: row;
   
 }
 
-.foodInfo {
+.food-info {
   margin-right: 20px;
 }
 
-.foodCount, button {
+.food-count, button {
   background: #eeeeee;
   font-size: 15px;
   padding: 0 5px;
@@ -18,6 +18,8 @@ button {
   border: none;
 }
 
-.plusButton {
-  border-radius: 25px;
+.minusButton:hover,
+.plusButton:hover{
+  cursor: pointer;  
 }
+

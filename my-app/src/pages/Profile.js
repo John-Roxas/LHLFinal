@@ -5,7 +5,7 @@ function Profile() {
   return (
     <div className="App">
       <SearchBar />
-      <h2>My Account</h2>
+      <h2 className="profile-container">My Account</h2>
       <NavigationBar />
     </div>
   );
