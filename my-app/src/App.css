@@ -36,7 +36,7 @@
   margin-top: 25px;
   width: 400px;
   height: 550px;
-  border-top: 3px dotted var(--black);
+  border-top: 3px dotted var(--black); 
   border-right: 3px dotted var(--black);
   border-left: 3px dotted var(--black);
   text-align: center;
