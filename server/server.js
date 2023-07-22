@@ -4,10 +4,16 @@ require("dotenv").config();
 // Web server config
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const morgan = require("morgan");
 const db = require("./db/connection");
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 // const cookieSession = require("cookie-session");
 // app.use(
 //   cookieSession({
@@ -21,7 +27,6 @@ const app = express();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 // app.use(morgan("dev"));
-// app.use(express.urlencoded({ extended: true }));
 // app.use(
 //   "/styles",
 //   sassMiddleware({
@@ -51,18 +56,20 @@ const app = express();
 // Separate them into separate routes files (see above).
 
 //the query
-// const theQuery = `
-//   SELECT * FROM restaurants
-//   WHERE restaurants_id = 1;
-//   `;
+const theQuery = `
+  SELECT * FROM restaurants;
+  `;
 
-const insertValue = `INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone, category)
-VALUES ('Billys@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '604 423 9400', 'malaysian');`;
+// const insertValue = `INSERT INTO restaurants (email, restaurant_street_address, city, postal_code, phone, category)
+// VALUES ('Billys@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '604 423 9400', 'malaysian');`;
+// app.use(bodyParser, bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/api/restaurants", (req, res) => {
   // res.render("index");
-  db.query(insertValue, (err, result) => {
-    res.send("Hello");
+  db.query(theQuery, (err, result) => {
+    // res.send(result);
+    console.log(result.rows);
+    res.send(result.rows);
   });
 });
 
