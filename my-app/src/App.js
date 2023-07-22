@@ -7,15 +7,16 @@ import NoPage from "./pages/NoPage";
 import Restaurant from "./pages/Restaurant";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import RestaurantList from "./components/RestaurantList";
 
 function App() {
   const apiURLS = {
     GET_RESTAURANTS: "api/restaurants",
     GET_FOOD_ITEMS: "api/food_items",
   };
-
-  const [restaurantsList, setrestaurantList] = useState([]);
+  const [state, setState] = useState({
+    restaurant: [],
+  });
+  // const [restaurantsList, setrestaurantList] = useState([]);
 
   //Code for multiple axios request
   // useEffect(() => {
@@ -33,15 +34,18 @@ function App() {
       .get(`http://localhost:8080/${apiURLS.GET_RESTAURANTS}`)
       .then((response) => {
         console.log(response.data);
-        setrestaurantList(response.data);
+        setState((prev) => ({
+          ...prev,
+          restaurant: response.data,
+        }));
       });
-  }, []);
+  }, [apiURLS.GET_RESTAURANTS]);
 
   return (
     <main>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Home restaurant={state.restaurant} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
@@ -49,24 +53,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </main>
-    // <div className="App">
-    //   <h1>Hello!</h1>
-    //   <h2>List of Restaurants</h2>
-
-    //   {/* <RestaurantList
-    //     key={restaurantsList.id}
-    //     name={restaurantsList.name}
-    //     email={restaurantsList.email}
-    //     category={restaurantsList.category}
-    //   /> */}
-    //   {restaurantsList.map((props) => {
-    //     return (
-    //       <li>
-    //         Restaurant: {props.restaurant_name} | Restaurant City: {props.city}
-    //       </li>
-    //     );
-    //   })}
-    // </div>
   );
 }
 
