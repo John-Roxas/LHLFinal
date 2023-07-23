@@ -6,22 +6,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
   position: fixed;
   top: 0;
-  width: 95%;
+  width: 100%;
   height: 60px;
-  border-radius: 30px;
-  background-color: #eeeeee;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-field {
   display: flex;
   align-items: center;
-  width: 90%;
-  /* padding: 5px; */
+  width: 95%;
+  border-radius: 30px;
+  background-color: #eeeeee;
+  padding-left: 20px;
 }
 
 .search-bar {
@@ -31,6 +30,7 @@
   border: none;
   outline: none;
   font-size: 18px;
-  padding-left: 20px;
   background-color: #eeeeee;
+  padding-left: 20px;
+  border-radius: 30px;
 }
