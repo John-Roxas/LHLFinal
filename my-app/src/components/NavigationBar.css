@@ -1,15 +1,17 @@
 .nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   bottom: 0;
-  width: 400px;
-  border-top: 3px solid black;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
+  width: 95%;
+  height: 60px;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+  /* margin-bottom: 20px; */
 }
 
 .nav-button {
-  padding: 14px 28px;
+  padding: 10px;
   font-size: 30px;
   background-color: white;
   border: none;
