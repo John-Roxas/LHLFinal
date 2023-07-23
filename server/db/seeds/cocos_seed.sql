@@ -1,7 +1,7 @@
 -- -- CoCos Bubble Tea Info --
 
-INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category)
-VALUES ('CoCos Bubble Tea', 'coco@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '6044239400', 'Drinks');
+INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
+VALUES ('CoCos Bubble Tea', 'coco@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '6044239400', 'Drinks', 'https://www.wem.ca/media/3275/coco-weblogo-color.png');
 
 -- -- CoCos Bubble Tea items
 

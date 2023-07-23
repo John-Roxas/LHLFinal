@@ -27,7 +27,8 @@ CREATE TABLE restaurants (
   city VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
   phone VARCHAR(255) NOT NULL,
-  category VARCHAR(255) NOT NULL
+  category VARCHAR(255) NOT NULL,
+  restaurant_picture VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE food_items (
