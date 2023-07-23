@@ -8,7 +8,7 @@ export default function RestaurantList(props) {
         key={restaurant.id}
         id={restaurant.id}
         name={restaurant.restaurant_name}
-        // picture={restaurant.restaurant_picture}
+        picture={restaurant.restaurant_picture}
         // food={restaurant.food}
       />
     );
