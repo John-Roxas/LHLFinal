@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./RestaurantListItem.css";
 
 export default function RestaurantListItem(props) {
   return (
@@ -10,12 +11,12 @@ export default function RestaurantListItem(props) {
           onClick={console.log("Clicked")}
         />
       </div>
-      <div>
+      <div className="restaurant-desc">
         <div>
-          <span>{props.name}</span>
+          <h1>{props.name}</h1>
         </div>
         <div>
-          <p>The description</p>
+          <p>Delivery fee</p>
         </div>
         <a>
           <Link
