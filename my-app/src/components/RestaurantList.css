@@ -1,14 +1,25 @@
-.restaurant-list {
+.restaurant-item {
   display: flex;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5em;
-  grid-template-rows: min-content;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  flex-direction: column;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 70%;
+  height: 200px;
 }
 
-/* .restaurant-container {
-  margin-top: 25px;
-  width: 400px;
-  height: 550px;
-  border: 3px dotted black;
-  text-align: center;
-} */
+.restaurant-item img {
+  width: 150px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.restaurant-item div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
