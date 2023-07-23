@@ -4,9 +4,17 @@ export default function RestaurantListItem(props) {
   return (
     <article>
       <a>
-        <h1>
+        <div>
+          <img
+            src={props.picture}
+            alt={props.name}
+            onClick={console.log("Clicked")}
+          />
+        </div>
+        <h3>
           <span>{props.name}</span>
-        </h1>
+        </h3>
+
         <Link
           to={`/restaurant/${props.id}`}
           state={{ name: props.name, food: props.food }}
