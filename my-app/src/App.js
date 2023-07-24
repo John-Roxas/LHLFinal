@@ -5,6 +5,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import NoPage from "./pages/NoPage";
 import Restaurant from "./pages/Restaurant";
+import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -46,6 +47,7 @@ function App() {
     <main>
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route index element={<Home restaurant={state.restaurant} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
