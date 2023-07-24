@@ -15,7 +15,8 @@ CREATE TABLE customers (
   customer_street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL
+  phone VARCHAR(255) NOT NULL,
+  customer_password VARCHAR(255) NOT NULL
   );
 
 
