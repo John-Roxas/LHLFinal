@@ -14,13 +14,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-// const cookieSession = require("cookie-session");
-// app.use(
-//   cookieSession({
-//     name: "session",
-//     keys: ["key1"],
-//   })
-// );
+const cookieSession = require("cookie-session");
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1"],
+  })
+);
 // app.set("view engine", "ejs");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
