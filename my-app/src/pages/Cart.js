@@ -1,13 +1,17 @@
 // import SearchBar from "../components/SearchBar";
 import NavigationBar from "../components/NavigationBar";
+import ShoppingCart from "../components/Cart";
 import "../App.css";
-
 
 function Cart() {
   return (
     <div className="App">
       {/* <SearchBar /> */}
-      <h2 className="cart-container">My Cart</h2>
+
+      <div className="cart-container">
+        <ShoppingCart />
+      </div>
+
       <NavigationBar />
     </div>
   );
