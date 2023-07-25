@@ -1,4 +1,5 @@
 // load .env data into process.env
+//Example Organization
 require("dotenv").config();
 
 // Web server config

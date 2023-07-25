@@ -1,3 +1,5 @@
+//Example Organization
+
 const getRestaurantList = function () {
   return `SELECT * FROM restaurants;`;
 };
