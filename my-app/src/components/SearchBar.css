@@ -4,7 +4,7 @@
 
 .search-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
@@ -12,15 +12,23 @@
   height: 60px;
   background-color: white;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
 }
 
 .form-field {
+  flex: 1;
   display: flex;
   align-items: center;
-  width: 95%;
   border-radius: 30px;
   background-color: #eeeeee;
   padding-left: 20px;
+  margin-right: 5px; /* Adjust the spacing between search bar and login button */
 }
 
 .search-bar {
@@ -84,6 +92,32 @@
 
 .login-form button:hover {
   background-color: var(--selected);
+  transition: background-color 0.3s ease;
+}
+
+.login-button {
+  width: 120px;
+  height: 40px;
+  background-color: var(--theme);
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  margin-left: 5px; /* Adjust the spacing between search bar and login button */
+}
+
+.login-button:hover {
+  background-color: var(--selected);
+}
+
+.login-button:focus {
+  outline: none;
 }
 
 .overlay {
@@ -110,4 +144,5 @@
 
 .close-button:hover {
   color: var(--selected);
+  transition: color 0.3s ease;
 }
