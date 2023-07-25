@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Cart.css";
 
 const ShoppingCart = () => {
   const [customerData, setCustomerData] = useState(null);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
 
+  // Need to take this from the order table
   const restaurantName = "Delicious Restaurant";
 
   // Need to replace with API call to the orders table
@@ -36,7 +38,7 @@ const ShoppingCart = () => {
   console.log(customerData);
 
   return (
-    <div>
+    <div className="section">
       <h2>Your Cart</h2>
 
       <div>
@@ -45,12 +47,12 @@ const ShoppingCart = () => {
         <p></p>
       </div>
 
-      <div>
+      <div className="section">
         <h3>Restaurant</h3>
         <p>{restaurantName}</p>
       </div>
 
-      <div>
+      <div className="section">
         <h3>Order Details</h3>
         <ul>
           {orderDetails.map((item, index) => (
@@ -61,7 +63,7 @@ const ShoppingCart = () => {
         </ul>
       </div>
 
-      <div>
+      <div className="section">
         <h3>Costs</h3>
         <p>Subtotal: ${subtotal.toFixed(2)}</p>
         <p>Tax: ${tax.toFixed(2)}</p>
