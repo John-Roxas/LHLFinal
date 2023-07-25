@@ -8,6 +8,7 @@ function AddFood(props) {
   return (
     // <form action="">
     <div>
+      <span></span>
       <div className="food-count">
         <Minus foodCounter={foodCounter} setFoodCounter={setFoodCounter} />
         <span> {foodCounter} </span>
