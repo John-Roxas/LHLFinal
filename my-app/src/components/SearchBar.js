@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css";
+import axios from "axios";
 
 function SearchBar() {
   const [restuarantSearch, setResturantSearch] = useState("");
@@ -20,8 +21,9 @@ function SearchBar() {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    console.log("Username:", username);
-    console.log("Passowrd", password);
+    axios.post("/login", { username, password }).then((res) => {
+      console.log("From app", res.data);
+    });
     closeLoginPopup();
   };
 
