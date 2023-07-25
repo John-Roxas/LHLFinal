@@ -6,7 +6,6 @@ import Login from "../components/LoginForm";
 function Index(props) {
   return (
     <div className="App">
-      <Login />
       <SearchBar />
       <RestaurantList restaurant={props.restaurant} />
       <NavigationBar />
