@@ -74,7 +74,7 @@ app.get("/api/restaurants", (req, res) => {
   });
 });
 
-app.get("/restaurant/1", (req, res) => {
+app.get("/restaurants/1", (req, res) => {
   db.query(visitRestaurant, (err, result) => {
     res.send(result.rows);
   });
