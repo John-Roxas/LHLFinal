@@ -41,9 +41,14 @@ CREATE TABLE food_items (
   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_food_lists (
+CREATE TABLE food_items_quantities (
   id SERIAL PRIMARY KEY NOT NULL,
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
+);
+
+CREATE TABLE cart_food_lists (
+  id SERIAL PRIMARY KEY NOT NULL,
+  food_items_quantities_id INTEGER NOT NULL REFERENCES food_items_quantities(id) ON DELETE CASCADE
 );
 
 CREATE TABLE carts (
