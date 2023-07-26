@@ -1,17 +1,23 @@
-const db = require("../connection");
 const express = require("express");
 const router = express.Router();
+
+const db = require("../db/connection");
 const findCustomerInfo = require("../db/queries/findCustomerInfo");
 
-router.get("/customers/:customerID", (req, res) => {
+router.get("/:customerID", (req, res) => {
   const customerID = req.params.customerID;
+  console.log(customerID)
+  const customerInfoQuery = findCustomerInfo(customerID);
 
-  findCustomerInfo
-    .findCustomerInfo(customerID)
-    .then((customer) => {
-      res.json({ customer });
+  db.query(customerInfoQuery, [customerID])
+    .then((result) => {
+
+      res.send(result.rows[0]);
     })
     .catch((err) => {
-      res.status(500).json({ error: err.message });
+      console.error(err);
+      res.sendStatus(500);
     });
 });
+
+module.exports = router;

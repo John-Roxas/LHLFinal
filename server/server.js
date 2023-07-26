@@ -35,7 +35,7 @@ app.use(cors());
 //     isSass: false, // false => scss, true => sass
 //   })
 // );
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -50,6 +50,8 @@ app.use(cors());
 // app.use("/api/widgets", widgetApiRoutes);
 // app.use("/users", usersRoutes);
 // Note: mount other resources here, using the same pattern above
+const findCustomerRoute = require('./routes/customers')
+app.use("/api/customers/", findCustomerRoute)
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -69,7 +71,7 @@ app.get("/api/restaurants", (req, res) => {
   db.query(theQuery, (err, result) => {
     // res.send(result);
     // console.log(result.rows);
-    // res.send(result.rows);
+    res.send(result.rows);
     // res.send("hello");
   });
 });
@@ -80,27 +82,6 @@ app.get("/restaurant/1", (req, res) => {
   });
 });
 
-app.get("/api/customers/:customerID", async (req, res) => {
-  console.log("RECEIVED A CALL");
-  const customerID = req.params.customerID;
-  console.log(customerID);
-
-  try {
-    const query = `SELECT * FROM customers WHERE id = $1`;
-    console.log(query);
-    const result = await db.query(query, [customerID]);
-
-    console.log(result.rows[0]);
-
-    if (result.rows.length === 1) {
-      res.send(result.rows[0]);
-    } else {
-      res.status(404).json({ error: "Customer not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

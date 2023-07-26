@@ -1,9 +1,8 @@
 const db = require("../connection");
 
-const findCustomerInfo = () => {
-  return db.query("SELECT * FROM customers;").then((data) => {
-    return data.rows;
-  });
+const findCustomerInfo = (customerId) => {
+  console.log(customerId)
+  return `SELECT * FROM customers WHERE id = $1`;
 };
 
-module.exports = { findCustomerInfo };
+module.exports =  findCustomerInfo ;
