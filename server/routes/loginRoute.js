@@ -8,30 +8,31 @@ router.post("/", (req, res) => {
   const { username, password } = req.body;
   console.log(username);
   console.log(password);
-  getCustomerLoginInfo(username, password).then((res) => {
-    if (res.customer_email === username && res.customer_password === password) {
-      console.log("Successful login");
-      req.session.customer = res.customer_name;
+  if (username.length === 0) {
+    return res.status(400).send("Please enter a username");
+  }
+  if (password.length === 0) {
+    return res.status(400).send("Please enter a password");
+  }
+  getCustomerLoginInfo(username).then((result) => {
+    if (!result) {
+      return res.status(400).send("Username does not exist");
+    }
+    if (result.customer_email === username) {
+      if (result.customer_password === password) {
+        console.log("Successful login");
+        req.session.customer = result.customer_name;
+        res.send("Login Successful");
+        console.log("cookie", req.session);
+      } else {
+        // console.log("wrong password");
+        return res.status(400).send("Invalid Password");
+      }
+    } else {
+      // console.log("wrong user");
+      return res.status(400).send("Invalid Username");
     }
   });
-
-  // console.log(getCustomerLoginInfo(username, password));
-  // using encrypted cookies
-  // userID = req.params.id;
-  // //checks whether the user ID exist within the database
-  // userQuery
-  //   .getUserWithCookieId(userID)
-  //   .then((user) => {
-  //     console.log("test", user);
-  //     if (!user) {
-  //       return res.send({ error: "No user with that ID" });
-  //     }
-  //     //If userID exist, then it sets the cookie
-  //     req.session.user_id = req.params.id;
-  //     console.log("user exist in database: ", req.session.user_id);
-  //     res.redirect("/");
-  //   })
-  //   .catch((error) => res.send(error));
 });
 
 module.exports = router;

@@ -13,12 +13,19 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace this with your frontend domain
+    credentials: true, // Enable sending cookies in CORS requests
+  })
+);
 const cookieSession = require("cookie-session");
 app.use(
   cookieSession({
     name: "session",
     keys: ["key1"],
+    sameSite: "lax", // Adjust the sameSite value based on your setup.
+    secure: false, // Set this to true if your app is served over HTTPS.
   })
 );
 // app.set("view engine", "ejs");
@@ -46,6 +53,11 @@ const loginRoute = require("./routes/loginRoute");
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/api/restaurants", restaurantListRoutes);
 app.use("/login", loginRoute);
+
+// app.get("/set-cookie", (req, res) => {
+//   res.cookie("test_cookie", "hello", { maxAge: 900000, httpOnly: true });
+//   res.send("Cookie set successfully");
+// });
 
 // Home page
 // Warning: avoid creating more routes in this file!

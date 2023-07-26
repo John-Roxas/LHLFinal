@@ -21,9 +21,16 @@ function SearchBar() {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    axios.post("/login", { username, password }).then((res) => {
-      console.log("From app", res.data);
-    });
+    axios
+      .post(
+        "http://localhost:8080/login",
+        { username, password },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("From app", res.data);
+      })
+      .catch((error) => console.log(error));
     closeLoginPopup();
   };
 

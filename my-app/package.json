@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -58,6 +59,5 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.0.23",
     "webpack": "^5.88.0"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
