@@ -10,7 +10,7 @@ import axios from "axios";
 
 function App() {
   const apiURLS = {
-    GET_RESTAURANTS: "http://localhost:8080/api/restaurants",
+    GET_RESTAURANTS: "/api/restaurants",
     GET_FOOD_ITEMS: "http://localhost:8080/api/food_items",
     GET_VISIT: "http://localhost:8080/restaurants/1",
   };
