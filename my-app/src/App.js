@@ -14,6 +14,7 @@ function App() {
     GET_RESTAURANTS: "http://localhost:8080/api/restaurants",
     GET_FOOD_ITEMS: "http://localhost:8080/api/food_items",
     GET_VISIT: "http://localhost:8080/restaurants/1",
+    SEARCH_ROOT: "http://localhost:8080/api/search"
   };
   const [state, setState] = useState({
     restaurant: [],
@@ -49,7 +50,7 @@ function App() {
         <Routes>
           <Route index element={<Home restaurant={state.restaurant} />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<Search API_ROOT={apiURLS.SEARCH_ROOT} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
           <Route path="*" element={<NoPage />} />

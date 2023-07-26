@@ -14,7 +14,7 @@ function Index(props) {
   })
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/search?mode=${mode}&term=${search}`)
+    axios.get(`${props.API_ROOT}?mode=${mode}&term=${search}`)
     .then((response) => {
       setState((prev) => ({
         ...prev,
