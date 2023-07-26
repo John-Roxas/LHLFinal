@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,11 @@ function SearchBar() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(document.cookie.includes("session="));
+  }, []);
 
   const handleLoginClick = () => {
     setShowLoginPopup(true);
@@ -29,9 +34,20 @@ function SearchBar() {
       )
       .then((res) => {
         console.log("From app", res.data);
+        setIsLoggedIn(true);
       })
       .catch((error) => console.log(error));
     closeLoginPopup();
+  };
+
+  const handleLogout = () => {
+    axios
+      .post("http://localhost:8080/logout", null, { withCredentials: true })
+      .then((res) => {
+        console.log("Logout successful");
+        setIsLoggedIn(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   const onFormSubmit = (event) => {
@@ -57,9 +73,15 @@ function SearchBar() {
           />
         </form>
         <div className="login-container">
-          <button className="login-button" onClick={handleLoginClick}>
-            Login
-          </button>
+          {isLoggedIn ? ( // Check if user is logged in
+            <button className="login-button" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <button className="login-button" onClick={handleLoginClick}>
+              Login
+            </button>
+          )}
           {showLoginPopup && (
             <>
               <div className="overlay" onClick={closeLoginPopup} />

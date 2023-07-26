@@ -48,11 +48,13 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const restaurantListRoutes = require("./routes/restaurantListRoutes");
 const loginRoute = require("./routes/loginRoute");
+const logoutRoute = require("./routes/logoutRoute");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/api/restaurants", restaurantListRoutes);
 app.use("/login", loginRoute);
+app.use("/logout", logoutRoute);
 
 // app.get("/set-cookie", (req, res) => {
 //   res.cookie("test_cookie", "hello", { maxAge: 900000, httpOnly: true });
