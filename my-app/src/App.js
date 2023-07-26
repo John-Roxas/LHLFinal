@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search"
 import NoPage from "./pages/NoPage";
 import Restaurant from "./pages/Restaurant";
 import { useEffect, useState } from "react";
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route index element={<Home restaurant={state.restaurant} />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
           <Route path="*" element={<NoPage />} />

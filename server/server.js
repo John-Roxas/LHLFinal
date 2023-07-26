@@ -14,6 +14,10 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+
+const search = require("./routes/search")
+app.use("/api/search", search)
 // const cookieSession = require("cookie-session");
 // app.use(
 //   cookieSession({
@@ -64,12 +68,16 @@ const visitRestaurant = `SELECT * FROM food_items WHERE restaurants_id = 1`;
 // const insertValue = `INSERT INTO restaurants (restaurant_name,email, restaurant_street_address, city, postal_code, phone, category)
 // VALUES ('Amazing Restaurant','DennysRestaurant@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '604 423 9400', 'malaysian');`;
 
+app.get("/api/search/", (req, res) => {
+  console.log(req.query);
+})
+
 app.get("/api/restaurants", (req, res) => {
-  // res.render("index");
+  // res.render("index");/
   db.query(theQuery, (err, result) => {
     // res.send(result);
     // console.log(result.rows);
-    // res.send(result.rows);
+    res.send(result.rows);
     // res.send("hello");
   });
 });
