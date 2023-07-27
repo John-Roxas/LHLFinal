@@ -1,24 +1,24 @@
 import "./FoodListItem.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-// import Minus from "../components/buttons/Minus";
-// import Add from "../components/buttons/Add";
 
 function FoodListItem(props) {
-  // const [foodCounter, setFoodCounter] = useState(0);
-
   return (
-    // I want to pass in the foodItemId here
-    <article className="food-container">
-      <Link
-        to={`/restaurants/${props.restaurantId}/food_items/${props.foodId}`}
-        state={{ foodId: props.foodId }}
-      >
+    <Link
+      to={`/restaurants/${props.restaurantId}/food_items/${props.foodId}`}
+      state={{ foodId: props.foodId }}
+      style={{ textDecoration: "none" }} // Had to apply this here to get rid of black underlines in h2 and p
+    >
+      <article className="food-container">
         <div className="food-info">
-          {props.name} ${props.price}
+          <div class="food-text">
+            <h2>{props.name} </h2>
+            <p>${props.price}</p>
+            <p>{props.description}</p>
+          </div>
+          <img src={props.picture} className="food-photo" />
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   );
 }
 

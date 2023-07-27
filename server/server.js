@@ -59,24 +59,35 @@ app.use(cors());
 const theQuery = `
   SELECT * FROM restaurants;
   `;
-
-const visitRestaurant = `SELECT * FROM food_items WHERE restaurants_id = 1`;
 // const insertValue = `INSERT INTO restaurants (restaurant_name,email, restaurant_street_address, city, postal_code, phone, category)
 // VALUES ('Amazing Restaurant','DennysRestaurant@gmail.com', '230-4700 Kingsway', 'Burnaby, BC', 'V5H 4N2', '604 423 9400', 'malaysian');`;
 
 app.get("/api/restaurants", (req, res) => {
-  // res.render("index");
   db.query(theQuery, (err, result) => {
-    // res.send(result);
-    // console.log(result.rows);
     res.send(result.rows);
-    // res.send("hello");
   });
 });
 
-app.get("/restaurants/1", (req, res) => {
-  db.query(visitRestaurant, (err, result) => {
+const visitRestaurant = "SELECT * FROM food_items WHERE restaurants_id = $1";
+
+app.get("/restaurants/:id", (req, res) => {
+  const restaurantId = req.params.id;
+  console.log("restaurantId:", restaurantId);
+  db.query(visitRestaurant, [restaurantId], (err, result) => {
     res.send(result.rows);
+  });
+});
+
+const visitFood =
+  "SELECT * FROM food_items WHERE restaurants_id = $1 AND id = $2";
+
+app.get("/restaurants/:id/food_items/:foodItemId", (req, res) => {
+  const restaurantId = req.params.id;
+  const foodId = req.params.foodItemId;
+  console.log("restaurant ID", restaurantId);
+  console.log("food ID", foodId);
+  db.query(visitFood, [restaurantId, foodId], (err, result) => {
+    res.json(result.rows);
   });
 });
 

@@ -10,6 +10,8 @@ function FoodList(props) {
         name={food.food_name}
         price={food.price}
         foodId={food.id}
+        picture={food.picture}
+        description={food.description}
       />
     );
   });

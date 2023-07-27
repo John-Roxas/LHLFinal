@@ -5,11 +5,7 @@ export default function RestaurantListItem(props) {
   return (
     <article className="restaurant-item">
       <div>
-        <img
-          src={props.picture}
-          alt={props.name}
-          onClick={console.log("Clicked")}
-        />
+        <img src={props.picture} alt={props.name} />
       </div>
       <div className="restaurant-desc">
         <div>
@@ -22,9 +18,13 @@ export default function RestaurantListItem(props) {
           {/* state passes information to be used in `/restaurants/${props.id}` end point */}
           <Link
             to={`/restaurants/${props.id}`}
-            state={{ restaurantId: props.id, name: props.name }}
+            state={{
+              restaurantId: props.id,
+              name: props.name,
+              picture: props.picture,
+            }}
           >
-            <button class="btn" type="submit" onClick={console.log(1)}>
+            <button class="btn" type="button">
               Visit
             </button>
           </Link>
