@@ -1,0 +1,18 @@
+.add-food-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 95%; 
+  margin: 10px auto;
+}
+
+.food-count { 
+  background-color: #eeeeee;
+  border-radius: 15px;
+  display: flex; /* Ensures the components inside are displayed in a row */
+  align-items: center; /* Centers the elements vertically */
+  height: 30px; /* You can adjust the height to your preference */
+  margin: 1vh 0;
+  width: 100px;
+  justify-content: space-between;
+}
