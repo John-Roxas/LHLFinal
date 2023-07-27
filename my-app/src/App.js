@@ -14,6 +14,9 @@ function App() {
     restaurants: [],
   });
 
+  const [cart, setCart] = useState([]);
+  // const cart = [];
+
   const apiURLS = {
     GET_RESTAURANTS: "http://localhost:8080/api/restaurants",
   };
@@ -33,12 +36,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home restaurants={state.restaurants} />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart cart={cart} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/restaurants/:id" element={<Restaurant />} />
           <Route
             path="/restaurants/:id/food_items/:foodItemId"
-            element={<AddFoodItem />}
+            element={<AddFoodItem cart={cart} />}
           />
           <Route path="*" element={<NoPage />} />
         </Routes>

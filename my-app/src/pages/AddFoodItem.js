@@ -4,15 +4,15 @@ import AddFood from "../components/AddFood";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function AddFoodItem() {
+function AddFoodItem(props) {
   const location = useLocation();
   const { foodId } = location.state;
 
   const { id, foodItemId } = useParams();
 
-  console.log("AddFootItem.js");
-  console.log(id);
-  console.log(foodItemId);
+  // console.log("AddFootItem.js");
+  // console.log(id);
+  // console.log(foodItemId);
 
   const [state, setState] = useState({
     foodInfo: [],
@@ -37,7 +37,7 @@ function AddFoodItem() {
 
   return (
     <div>
-      <AddFood foodId={foodId} foodInfo={state.foodInfo} />
+      <AddFood foodId={foodId} foodInfo={state.foodInfo} cart={props.cart} />
       <NavigationBar />
     </div>
   );

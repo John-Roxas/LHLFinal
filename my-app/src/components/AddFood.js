@@ -1,21 +1,14 @@
+// rename to a noun instead of a verb
+
 import { useState, useEffect } from "react";
-import Minus from "../components/buttons/Minus";
-import Add from "../components/buttons/Add";
-import AddToCart from "../components/buttons/AddToCart";
+import Minus from "./buttons/Minus";
+import Add from "./buttons/Add";
+import AddToCart from "./buttons/AddToCart";
+// update to only have 1 button, pass it different values based on what the use is
 import "./AddFood.css";
 
 function AddFood(props) {
   const [foodCounter, setFoodCounter] = useState(1);
-  const [formData, setFormData] = useState({
-    foodName: "",
-    price: 0,
-    quantity: 0,
-    totalPrice: 0,
-  });
-
-  useEffect(() => {
-    console.log(formData); // This will log the updated formData whenever it changes.
-  }, [formData]);
 
   // optional chaining '?' before food (ex. food?)
   // It ensures that the code won't break if the food object is null or undefined
@@ -23,14 +16,16 @@ function AddFood(props) {
   let cost = food?.price;
   let totalPrice = cost * foodCounter;
 
+  const cartItem = {
+    foodName: food?.food_name,
+    price: food?.price,
+    quantity: 1,
+  };
+
   const handleSubmit = () => {
-    setFormData((prev) => ({
-      ...prev,
-      foodName: food?.food_name,
-      price: food?.price,
-      quantity: foodCounter,
-      totalPrice: totalPrice,
-    }));
+    cartItem["quantity"] = foodCounter;
+    props.cart.push(cartItem);
+    console.log(props.cart);
   };
 
   return (
@@ -47,7 +42,7 @@ function AddFood(props) {
       {/* <AddToCart foodCounter={foodCounter} foodPrice={cost} /> */}
 
       <button onClick={handleSubmit}>
-        Add {foodCounter} to cart - ${(cost * foodCounter).toFixed(2)}
+        Add {foodCounter} to cart - ${totalPrice.toFixed(2)}
       </button>
     </div>
   );
