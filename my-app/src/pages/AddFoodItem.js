@@ -10,6 +10,10 @@ function AddFoodItem() {
 
   const { id, foodItemId } = useParams();
 
+  console.log("AddFootItem.js");
+  console.log(id);
+  console.log(foodItemId);
+
   const [state, setState] = useState({
     foodInfo: [],
   });
