@@ -4,5 +4,6 @@
   flex-direction: column;
   margin-bottom: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   width: 95%;
 }

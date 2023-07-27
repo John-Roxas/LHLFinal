@@ -3,7 +3,7 @@ import "./RestaurantListItem.css";
 
 export default function RestaurantListItem(props) {
   return (
-    <article className="restaurant-item">
+    <article className="tile-item">
       <div>
         <img
           src={props.picture}

@@ -39,7 +39,7 @@ function SearchBar() {
       .catch((error) => console.log(error));
     closeLoginPopup();
   };
-
+  //Move this to the Profile page
   const handleLogout = () => {
     axios
       .post("http://localhost:8080/logout", null, { withCredentials: true })
