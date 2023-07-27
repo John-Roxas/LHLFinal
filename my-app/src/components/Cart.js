@@ -39,39 +39,46 @@ const ShoppingCart = () => {
   console.log(customerData);
 
   return (
-    <div className="section">
-      <h2>Your Cart</h2>
+    <article className="cart-item">
+      <div className="cart-item TOP">
+        <h1>Your Cart</h1>
+      </div>
+      
 
-      <div>
-        <h3>Delivery Address</h3>
+      <div className="cart-item">
         <p>{customerData?.customer_street_address}</p>
-        <p></p>
       </div>
 
-      <div className="section">
-        <h3>Restaurant</h3>
+      <div className="cart-item">
         <p>{restaurantName}</p>
       </div>
 
-      <div className="section">
-        <h3>Order Details</h3>
-        <ul>
+      <div className="cart-item">
+        <ul className="cart-list">
           {orderDetails.map((item, index) => (
-            <li key={index}>
-              {item.itemName} x{item.quantity} - ${item.price.toFixed(2)}
-            </li>
+
+              <li key={index} className="cart-list-item">
+                <div className="cart-list-item-left">
+                  <p className="cart-list-item-left-qty">{item.quantity}× </p> <p className="cart-list-item-left-name"> {item.itemName}</p>
+                </div>
+                <div className="cart-list-item-right">
+                  <p className="cart-list-item-right-total">${item.price.toFixed(2)}</p>
+                </div>
+                 
+              </li>
+
+            
           ))}
         </ul>
       </div>
 
-      <div className="section">
-        <h3>Costs</h3>
+      <div className="cart-item">
         <p>Subtotal: ${subtotal.toFixed(2)}</p>
         <p>Tax: ${tax.toFixed(2)}</p>
         <p>Delivery Fee: ${deliveryFee.toFixed(2)}</p>
         <h4>Total: ${totalAmount.toFixed(2)}</h4>
       </div>
-    </div>
+    </article>
   );
 };
 

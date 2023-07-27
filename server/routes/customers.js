@@ -6,7 +6,7 @@ const findCustomerInfo = require("../db/queries/findCustomerInfo");
 
 router.get("/:customerID", (req, res) => {
   const customerID = req.params.customerID;
-  console.log(customerID)
+  // console.log(customerID)
   const customerInfoQuery = findCustomerInfo(customerID);
 
   db.query(customerInfoQuery, [customerID])
