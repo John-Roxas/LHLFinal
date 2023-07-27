@@ -11,12 +11,14 @@ import axios from "axios";
 function App() {
   const apiURLS = {
     GET_RESTAURANTS: "/api/restaurants",
+    GET_CUSTOMERS: "/api/customers",
     GET_FOOD_ITEMS: "http://localhost:8080/api/food_items",
     GET_VISIT: "http://localhost:8080/restaurants/1",
   };
   const [state, setState] = useState({
     restaurant: [],
     foodList: [],
+    customers: [],
   });
 
   //Code for multiple axios request
