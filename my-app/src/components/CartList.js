@@ -1,3 +1,5 @@
+// DEPRECATED CODE
+
 import CartListItem from "./CartListItem";
 
 function CartList(props) {

@@ -10,11 +10,11 @@ function Cart(props) {
       {/* <SearchBar /> */}
 
       <div className="cart-container">
-        <ShoppingCart />
+        <ShoppingCart cart={props.cart}/>
       </div>
 
       {/* <h2 className="cart-container">My Cart</h2> */}
-      <CartList cart={props.cart} />
+      {/* <CartList cart={props.cart} /> */}
       <NavigationBar />
     </div>
   );
