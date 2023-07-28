@@ -58,7 +58,8 @@ function App() {
                 restaurant={apiState.restaurant}
                 element={
                   <Login
-                    isLoggedIn={loginState.isLoggedIn}
+                    loginState={loginState}
+                    setLoginState={setLoginState}
                     handleLoginClick={handleLoginClick}
                     handleLoginSubmit={handleLoginSubmit}
                     handleLogout={handleLogout}
