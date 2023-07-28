@@ -5,11 +5,7 @@ export default function RestaurantListItem(props) {
   return (
     <article className="tile-item">
       <div>
-        <img
-          src={props.picture}
-          alt={props.name}
-          onClick={console.log("Clicked")}
-        />
+        <img src={props.picture} alt={props.name} />
       </div>
       <div className="restaurant-desc">
         <div>
@@ -23,7 +19,7 @@ export default function RestaurantListItem(props) {
             to={`/restaurant/${props.id}`}
             state={{ name: props.name, food: props.food }}
           >
-            <button class="btn" type="submit" onClick={console.log(1)}>
+            <button class="btn" type="submit">
               Visit
             </button>
           </Link>
