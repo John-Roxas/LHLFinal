@@ -7,6 +7,7 @@ const useLogin = () => {
     username: "",
     password: "",
     isLoggedIn: false,
+    customerInfo: {},
   });
 
   const handleLoginClick = () => {
@@ -32,6 +33,7 @@ const useLogin = () => {
           isLoggedIn: true,
           username: "",
           password: "",
+          customerInfo: res.data,
         }));
       })
       .catch((error) => console.log(error));
@@ -48,6 +50,7 @@ const useLogin = () => {
           isLoggedIn: false,
           username: "",
           password: "",
+          customerInfo: {},
         }));
       })
       .catch((error) => console.log(error));
