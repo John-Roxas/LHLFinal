@@ -3,63 +3,39 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "./Login.css";
+import useLogin from "../hooks/useLogin";
 
 function Login() {
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {
+    handleLoginClick,
+    closeLoginPopup,
+    handleLoginSubmit,
+    loginState,
+    setLoginState,
+    handleLogout,
+  } = useLogin();
+  //Destructing the loginState
+  const { showLoginPopup, username, password } = loginState;
 
-  useEffect(() => {
-    setIsLoggedIn(document.cookie.includes("session="));
-  }, []);
-
-  const handleLoginClick = () => {
-    setShowLoginPopup(true);
+  // This function ensures the username form field doesnt immediately submit onChange
+  const handleUsernameChange = (event) => {
+    const { value } = event.target;
+    // Update the local state for the username
+    setLoginState((prev) => ({ ...prev, username: value }));
   };
-
-  const closeLoginPopup = () => {
-    setShowLoginPopup(false);
-  };
-
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post(
-        "http://localhost:8080/login",
-        { username, password },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log("From app", res.data);
-        setIsLoggedIn(true);
-      })
-      .catch((error) => console.log(error));
-    closeLoginPopup();
-  };
-  //Move this to the Profile page
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, { withCredentials: true })
-      .then((res) => {
-        console.log("Logout successful");
-        setIsLoggedIn(false);
-      })
-      .catch((error) => console.log(error));
+  // This function ensures the password form field doesnt immediately submit onChange
+  const handlePasswordChange = (event) => {
+    const { value } = event.target;
+    // Update the local state for the password
+    setLoginState((prev) => ({ ...prev, password: value }));
   };
 
   return (
     <div>
       <div className="login-container">
-        {isLoggedIn ? ( // Check if user is logged in
-          <button className="login-button" onClick={handleLogout}>
-            Logout
-          </button>
-        ) : (
-          <button className="login-button" onClick={handleLoginClick}>
-            Login
-          </button>
-        )}
+        <button className="login-button" onClick={handleLoginClick}>
+          Login
+        </button>
         {showLoginPopup && (
           <>
             <div className="overlay" onClick={closeLoginPopup} />
@@ -69,13 +45,13 @@ function Login() {
                   type="text"
                   placeholder="Username"
                   value={username}
-                  onChange={(event) => setUsername(event.target.value)}
+                  onChange={handleUsernameChange}
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={handlePasswordChange}
                 />
                 <button type="submit">Submit</button>
               </form>
