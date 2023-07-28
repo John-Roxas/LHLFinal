@@ -7,6 +7,9 @@ import NoPage from "./pages/NoPage";
 import Restaurant from "./pages/Restaurant";
 import { useEffect, useState } from "react";
 import axios from "axios";
+//Importing login hook
+import useLogin from "./hooks/useLogin";
+import Login from "./components/Login";
 
 function App() {
   const apiURLS = {
@@ -15,40 +18,55 @@ function App() {
     GET_FOOD_ITEMS: "http://localhost:8080/api/food_items",
     GET_VISIT: "http://localhost:8080/restaurants/1",
   };
-  const [state, setState] = useState({
+
+  //Destructuring the useLogin hook
+  const {
+    loginState,
+    setLoginState,
+    handleLoginClick,
+    closeLoginPopup,
+    handleLoginSubmit,
+    handleLogout,
+  } = useLogin();
+
+  //All API states
+  const [apiState, setApiState] = useState({
     restaurant: [],
     foodList: [],
     customers: [],
   });
-
-  //Code for multiple axios request
-  // useEffect(() => {
-  //   Promise.all([axios.get(apiURLS.GET_RESTAURANTS)])
-  //     .then((all) => {
-  //       setState((prev) => ({
-  //         ...prev,
-  //         restaurants: all[0].data,
-  //       }));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [apiURLS.GET_RESTAURANTS]);
-
-  //test single axios request
+  //Axios calls here
   useEffect(() => {
-    axios.get(apiURLS.GET_RESTAURANTS).then((response) => {
-      console.log(response.data);
-      setState((prev) => ({
-        ...prev,
-        restaurant: response.data,
-      }));
-    });
+    Promise.all([axios.get(apiURLS.GET_RESTAURANTS)])
+      .then((all) => {
+        setApiState((prev) => ({
+          ...prev,
+          restaurant: all[0].data,
+        }));
+      })
+      .catch((err) => console.log(err));
   }, [apiURLS.GET_RESTAURANTS]);
 
   return (
     <main>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home restaurant={state.restaurant} />} />
+          <Route
+            index
+            element={
+              <Home
+                restaurant={apiState.restaurant}
+                element={
+                  <Login
+                    isLoggedIn={loginState.isLoggedIn}
+                    handleLoginClick={handleLoginClick}
+                    handleLoginSubmit={handleLoginSubmit}
+                    handleLogout={handleLogout}
+                  />
+                }
+              />
+            }
+          />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
