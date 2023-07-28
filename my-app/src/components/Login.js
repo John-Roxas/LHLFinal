@@ -15,7 +15,7 @@ function Login() {
     handleLogout,
   } = useLogin();
   //Destructing the loginState
-  const { showLoginPopup, username, password } = loginState;
+  const { showLoginPopup, username, password, isLoggedIn } = loginState;
 
   // This function ensures the username form field doesnt immediately submit onChange
   const handleUsernameChange = (event) => {
@@ -30,12 +30,23 @@ function Login() {
     setLoginState((prev) => ({ ...prev, password: value }));
   };
 
-  return (
-    <div>
-      <div className="login-container">
+  //Rendering login button function
+  const renderLoginButton = () => {
+    if (isLoggedIn) {
+      return null;
+    } else {
+      return (
         <button className="login-button" onClick={handleLoginClick}>
           Login
         </button>
+      );
+    }
+  };
+
+  return (
+    <div>
+      <div className="login-container">
+        {renderLoginButton()}
         {showLoginPopup && (
           <>
             <div className="overlay" onClick={closeLoginPopup} />
