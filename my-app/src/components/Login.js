@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import "./Login.css";
 import useLogin from "../hooks/useLogin";
 

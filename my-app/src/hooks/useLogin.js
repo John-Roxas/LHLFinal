@@ -9,14 +9,6 @@ const useLogin = () => {
     isLoggedIn: false,
   });
 
-  useEffect(() => {
-    // Check if the cookie session exists and set the isLoggedIn state
-    setLoginState((prev) => ({
-      ...prev,
-      isLoggedIn: document.cookie.includes("session="),
-    }));
-  }, []);
-
   const handleLoginClick = () => {
     setLoginState((prev) => ({ ...prev, showLoginPopup: true }));
   };

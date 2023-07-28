@@ -24,7 +24,6 @@ function App() {
     loginState,
     setLoginState,
     handleLoginClick,
-    closeLoginPopup,
     handleLoginSubmit,
     handleLogout,
   } = useLogin();
@@ -35,6 +34,7 @@ function App() {
     foodList: [],
     customers: [],
   });
+
   //Axios calls here
   useEffect(() => {
     Promise.all([axios.get(apiURLS.GET_RESTAURANTS)])
