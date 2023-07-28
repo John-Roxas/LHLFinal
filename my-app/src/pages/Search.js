@@ -5,36 +5,40 @@ import RestaurantList from "../components/RestaurantList";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function Index(props) {
-  const [search, setSearch] = useState("");
-  const [mode, setMode] = useState("restaurant");
+function Search(props) {
+  // Default hook for search page
   const [state, setState] = useState({
-    restaurant: [],
-    foodList: []
-  })
+    search: "",
+    mode: "restaurant",
+    restaurants: []
+  });
 
+  // Define setters for search and search mode
+  const setSearch = search => setState({...state, search});
+  const setMode = mode => setState({...state, mode});
+
+  // Monitor changes in query 
   useEffect(() => {
-    axios.get(`${props.API_ROOT}?mode=${mode}&term=${search}`)
+    axios.get(`${props.API_ROOT}?mode=${state.mode}&term=${state.search}`)
     .then((response) => {
       setState((prev) => ({
         ...prev,
-        restaurant: response.data,
+        restaurants: response.data,
       }));
     });
-  }, [search])
+  }, [state.search, state.mode])
 
   return (
     <div className="App">
       <SearchBar 
-        search={search}
+        search={state.search}
         setSearch={setSearch}
       />
       <SearchMode setMode={setMode}/>
-      Debug use: Mode {mode} Search: {search}
-      <RestaurantList restaurant={state.restaurant} />
+      <RestaurantList restaurant={state.restaurants} />
       <NavigationBar />
     </div>
   );
 }
 
-export default Index;
+export default Search;
