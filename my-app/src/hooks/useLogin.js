@@ -38,6 +38,7 @@ const useLogin = () => {
       })
       .catch((error) => console.log(error));
     closeLoginPopup();
+    console.log("After submit", loginState);
   };
   //Handles the logout function where it deleted the cookie session on the backend
   const handleLogout = () => {
