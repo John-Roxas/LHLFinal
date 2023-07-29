@@ -31,9 +31,9 @@ function AddFoodItem(props) {
       .catch((err) => console.log(err));
   }, [id, foodItemId]);
 
-  // console.log("id", id);
-  // console.log("foodItemId", foodItemId);
-  // console.log(state.foodInfo);
+  console.log("id", id);
+  console.log("foodItemId", foodItemId);
+  console.log(state.foodInfo);
 
   return (
     <div>
