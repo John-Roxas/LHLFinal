@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import AddFood from "../components/AddFood";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import "./AddFoodItem.css";
+import "./AddFoodItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
