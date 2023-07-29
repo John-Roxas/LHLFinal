@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Cart.css";
+import StripeCheckoutComponent from "./Checkout";
 // new comment
 
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
+  const [showCheckout, setShowCheckout] = useState(false);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   console.log("RECEIVED A CART");
   console.log(props.cart);
@@ -41,6 +43,10 @@ const ShoppingCart = (props) => {
       .catch((error) => console.error("Error fetching customer data:", error));
   }, [customerID]);
 
+  const handlePlaceOrder = () => {
+    setShowCheckout(true);
+  }
+
   console.log(customerData);
 
   return (
@@ -48,6 +54,20 @@ const ShoppingCart = (props) => {
       <div className="cart-item TOP">
         <h1>Your Cart</h1>
       </div>
+      {/* Conditionally render the Stripe checkout component */}
+      {showCheckout && (
+        <div className="stripe-checkout-overlay">
+          <div className="stripe-checkout-modal">
+            <StripeCheckoutComponent />
+            <button
+              className="btn btn-close"
+              onClick={() => setShowCheckout(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       
 
       <div className="cart-item">
@@ -115,7 +135,7 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       </div>
-      <button className="btn">PLACE ORDER</button>
+      <button className="btn" onClick={handlePlaceOrder}>PLACE ORDER</button>
     </article>
   );
 };
