@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
       if (result.customer_password === password) {
         console.log("Successful login");
         console.log("from login route", result);
-        req.session.customer = result.customer_name;
+        // req.session.customer = result.customer_name;
         res.send(result);
         console.log("cookie", req.session);
       } else {
