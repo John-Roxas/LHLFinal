@@ -10,6 +10,23 @@ const useLogin = () => {
     customerInfo: {},
   });
 
+  const checkCookieExistence = () => {
+    // Check if the cookie exists in session storage or cookies
+    // Replace "your_cookie_name" with the actual name of your cookie
+    const cookieValue =
+      sessionStorage.getItem("session") ||
+      document.cookie.split(";").find((c) => c.trim().startsWith("session="));
+
+    // If the cookie exists, update the login state in the React app
+    if (cookieValue) {
+      setLoginState((prev) => ({ ...prev, isLoggedIn: true }));
+    }
+  };
+
+  useEffect(() => {
+    checkCookieExistence();
+  }, []);
+
   const handleLoginClick = () => {
     setLoginState((prev) => ({ ...prev, showLoginPopup: true }));
   };
@@ -17,7 +34,8 @@ const useLogin = () => {
   const closeLoginPopup = () => {
     setLoginState((prev) => ({ ...prev, showLoginPopup: false }));
   };
-  //Handles the login button and creates cookie session on the backend
+
+  // When a user logs in successfully, set the isLoggedIn state to true and store the cookie
   const handleLoginSubmit = (event) => {
     event.preventDefault();
     axios
@@ -35,11 +53,16 @@ const useLogin = () => {
           password: "",
           customerInfo: res.data,
         }));
+
+        // Set the cookie in session storage or cookies
+        // Replace "your_cookie_name" with the actual name of your cookie
+        sessionStorage.setItem("session", loginState.username);
+        document.cookie = `session=${loginState.username}; path=/`;
       })
       .catch((error) => console.log(error));
     closeLoginPopup();
-    console.log("After submit", loginState);
   };
+
   //Handles the logout function where it deleted the cookie session on the backend
   const handleLogout = () => {
     axios
@@ -53,6 +76,11 @@ const useLogin = () => {
           password: "",
           customerInfo: {},
         }));
+        // Delete the cookie from session storage or cookies
+        // Replace "your_cookie_name" with the actual name of your cookie
+        sessionStorage.removeItem("session");
+        document.cookie =
+          "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       })
       .catch((error) => console.log(error));
   };
