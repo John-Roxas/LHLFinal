@@ -6,7 +6,7 @@ function Index(props) {
   return (
     <div className="App">
       <SearchBar />
-      <RestaurantList restaurant={props.restaurant} />
+      <RestaurantList restaurants={props.restaurants} foods={props.foods} />
       <NavigationBar />
     </div>
   );

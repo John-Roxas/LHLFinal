@@ -2,9 +2,18 @@ import "./FoodList.css";
 import FoodListItem from "./FoodListItem";
 
 function FoodList(props) {
-  const foodData = props.food;
+  const foodData = props.foods;
   const foods = foodData.map((food) => {
-    return <FoodListItem name={food.item} price={food.price} />;
+    return (
+      <FoodListItem
+        restaurantId={props.restaurantId}
+        name={food.food_name}
+        price={food.price}
+        foodId={food.id}
+        picture={food.picture}
+        description={food.description}
+      />
+    );
   });
 
   return <div className="food-list-container">{foods}</div>;
