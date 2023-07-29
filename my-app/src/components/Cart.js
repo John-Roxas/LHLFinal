@@ -5,13 +5,11 @@ import "./StripeCheckoutModal.css";
 import StripePaymentForm from "./StripePaymentForm";
 import StripeCheckout from "react-stripe-checkout";
 
-
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
-
 
   // Need to take this from the order table
   const restaurantName = "Delicious Restaurant";
@@ -47,7 +45,7 @@ const ShoppingCart = (props) => {
 
   const handlePlaceOrder = () => {
     setShowCheckout(true);
-  }
+  };
 
   // HAVEN'T WRITTEN THIS YET
   const handleToken = (token) => {
@@ -61,7 +59,6 @@ const ShoppingCart = (props) => {
       <div className="cart-item TOP">
         <h1>Your Cart</h1>
       </div>
-      
 
       <div className="cart-item">
         <p>{customerData?.customer_street_address}</p>
@@ -74,18 +71,17 @@ const ShoppingCart = (props) => {
       <div className="cart-item">
         <ul className="cart-list">
           {order.map((item, index) => (
-
-              <li key={index} className="cart-list-item">
-                <div className="cart-list-item-left">
-                  <p className="cart-list-item-left-qty">{item.quantity}×</p><p className="cart-list-item-left-name"> {item.foodName}</p>
-                </div>
-                <div className="cart-list-item-right">
-                  <p className="cart-list-item-right-total">${(item.price*item.quantity).toFixed(2)}</p>
-                </div>
-                 
-              </li>
-
-            
+            <li key={index} className="cart-list-item">
+              <div className="cart-list-item-left">
+                <p className="cart-list-item-left-qty">{item.quantity}×</p>
+                <p className="cart-list-item-left-name"> {item.foodName}</p>
+              </div>
+              <div className="cart-list-item-right">
+                <p className="cart-list-item-right-total">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+              </div>
+            </li>
           ))}
         </ul>
       </div>
@@ -130,7 +126,9 @@ const ShoppingCart = (props) => {
       </div>
       <StripeCheckout
         token={handleToken}
-        stripeKey={'pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc'}
+        stripeKey={
+          "pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc"
+        }
         name="DashDine"
         amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
         currency="CAD"
@@ -138,7 +136,7 @@ const ShoppingCart = (props) => {
         billingAddress={true}
         shippingAddress={true}
         ref={stripeRef} // Set the ref for the StripeCheckout component
-      />   
+      />
     </article>
   );
 };
