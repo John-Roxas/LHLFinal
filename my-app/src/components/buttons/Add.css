@@ -1,3 +1,11 @@
 .add-btn:hover{
   cursor: pointer;  
 }
+
+.add-btn {
+  border: none;
+  padding: 0 15px;
+  margin: 10px 0;
+  background-color: #eeeeee;
+  border-radius: 15px;
+}

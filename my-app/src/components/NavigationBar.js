@@ -17,7 +17,7 @@ function NavigationBar() {
           <FontAwesomeIcon icon={faHouse} />
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/search">
         <button className="nav-button">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>

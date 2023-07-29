@@ -1,14 +1,36 @@
+
 .food-container {
   display: flex;
-  flex-direction: row;
-  
+  align-items: center;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
 }
 
-.food-info {
-  margin-right: 20px;
+.food-photo {
+  width: 150px;
 }
 
-.food-count, button {
+.food-text {
+  text-align: left;
+  margin-right: 75px;
+}
+
+.food-info { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  margin-bottom: 10px; 
+  width: 100%;
+  height: 200px;
+}
+
+.food-text h2,
+.food-text p {
+  color: #000;
+}
+
+/* .food-count, button {
   background: #eeeeee;
   font-size: 15px;
   padding: 0 5px;
@@ -16,10 +38,4 @@
 
 button {
   border: none;
-}
-
-.minusButton:hover,
-.plusButton:hover{
-  cursor: pointer;  
-}
-
+} */

@@ -15,11 +15,18 @@ export default function RestaurantListItem(props) {
           <p>Delivery fee</p>
         </div>
         <a>
+          {/* state passes information to be used in `/restaurants/${props.id}` end point */}
           <Link
-            to={`/restaurant/${props.id}`}
-            state={{ name: props.name, food: props.food }}
+            to={`/restaurants/${props.id}`}
+            state={{
+              restaurantId: props.id,
+              name: props.name,
+              picture: props.picture,
+            }}
           >
+
             <button class="btn" type="submit">
+
               Visit
             </button>
           </Link>

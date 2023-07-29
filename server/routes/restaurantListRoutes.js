@@ -1,3 +1,4 @@
+
 //Example Organization
 
 const express = require("express");
@@ -15,6 +16,7 @@ router.get("/", (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
+
 });
 
 module.exports = router;

@@ -5,8 +5,10 @@ import RestaurantList from "../components/RestaurantList";
 function Index(props) {
   return (
     <div className="App">
-      <SearchBar />
-      <RestaurantList restaurant={props.restaurant} />
+      <a href="/search">
+        <SearchBar />
+      </a>
+      <RestaurantList restaurants={props.restaurants} foods={props.foods} />
       <NavigationBar />
     </div>
   );
