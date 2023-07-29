@@ -10,6 +10,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const PORT = process.env.PORT || 8080;
 const app = express();
+const db = require("../db/connection");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,16 +38,15 @@ app.use(morgan("dev"));
 const restaurantListRoutes = require("./routes/restaurantListRoutes");
 const loginRoute = require("./routes/loginRoute");
 const logoutRoute = require("./routes/logoutRoute");
-const findCustomerRoute = require('./routes/customers')
-const search = require("./routes/search")
+const findCustomerRoute = require("./routes/customers");
+const search = require("./routes/search");
 
 //Mount resources app.use
 app.use("/api/restaurants", restaurantListRoutes);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
-app.use("/api/customers/", findCustomerRoute)
-app.use("/api/search", search)
-
+app.use("/api/customers/", findCustomerRoute);
+app.use("/api/search", search);
 
 //Clement organize
 const visitRestaurant = require("./routes/visitRestaurantRoutes");
