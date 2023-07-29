@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./Cart.css";
-import StripeCheckoutComponent from "./Checkout";
-// new comment
+import "./StripeCheckoutModal.css";
+import StripePaymentForm from "./StripePaymentForm";
+import StripeCheckout from "react-stripe-checkout";
+
 
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
-  console.log("RECEIVED A CART");
-  console.log(props.cart);
+  const stripeRef = useRef(null);
+
 
   // Need to take this from the order table
   const restaurantName = "Delicious Restaurant";
@@ -47,27 +49,18 @@ const ShoppingCart = (props) => {
     setShowCheckout(true);
   }
 
-  console.log(customerData);
+  // HAVEN'T WRITTEN THIS YET
+  const handleToken = (token) => {
+    // Send the token to your backend for further processing
+    console.log("Stripe token:", token);
+    setShowCheckout(false); // Close the modal after processing the token
+  };
 
   return (
     <article className="cart-item">
       <div className="cart-item TOP">
         <h1>Your Cart</h1>
       </div>
-      {/* Conditionally render the Stripe checkout component */}
-      {showCheckout && (
-        <div className="stripe-checkout-overlay">
-          <div className="stripe-checkout-modal">
-            <StripeCheckoutComponent />
-            <button
-              className="btn btn-close"
-              onClick={() => setShowCheckout(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
       
 
       <div className="cart-item">
@@ -135,7 +128,17 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       </div>
-      <button className="btn" onClick={handlePlaceOrder}>PLACE ORDER</button>
+      <StripeCheckout
+        token={handleToken}
+        stripeKey={'pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc'}
+        name="DashDine"
+        amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
+        currency="CAD"
+        image="https://your-company-logo-url.png" // Replace with your company logo URL
+        billingAddress={true}
+        shippingAddress={true}
+        ref={stripeRef} // Set the ref for the StripeCheckout component
+      />   
     </article>
   );
 };
