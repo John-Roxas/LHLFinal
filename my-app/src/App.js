@@ -69,8 +69,14 @@ function App() {
             }
           />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/restaurant/:id" element={<Restaurant />} />
+          <Route
+            path="/profile"
+            element={<Profile loginState={loginState} />}
+          />
+          <Route
+            path="/restaurant/:id"
+            element={<Restaurant loginState={loginState} />}
+          />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
