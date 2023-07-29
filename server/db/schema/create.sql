@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS customers CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS restaurants CASCADE;
 DROP TABLE IF EXISTS food_items CASCADE;
+DROP TABLE IF EXISTS food_items_quantities CASCADE;
 DROP TABLE IF EXISTS cart_food_lists CASCADE;
 DROP TABLE IF EXISTS carts CASCADE;
 DROP TABLE IF EXISTS drivers CASCADE;
@@ -15,7 +16,9 @@ CREATE TABLE customers (
   customer_street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   postal_code VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL
+  phone VARCHAR(255) NOT NULL,
+  customer_password VARCHAR(255) NOT NULL,
+  customer_avatar VARCHAR(255) NOT NULL
   );
 
 
@@ -40,9 +43,14 @@ CREATE TABLE food_items (
   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_food_lists (
+CREATE TABLE food_items_quantities (
   id SERIAL PRIMARY KEY NOT NULL,
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
+);
+
+CREATE TABLE cart_food_lists (
+  id SERIAL PRIMARY KEY NOT NULL,
+  food_items_quantities_id INTEGER NOT NULL REFERENCES food_items_quantities(id) ON DELETE CASCADE
 );
 
 CREATE TABLE carts (

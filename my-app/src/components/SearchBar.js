@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css";
+import Login from "./Login";
 
 function SearchBar(props) {
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
+  const onFormSubmit = (event) => {
+    event.preventDefault();
   };
 
   return (

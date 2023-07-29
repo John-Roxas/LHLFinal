@@ -3,7 +3,7 @@ import "./RestaurantListItem.css";
 
 export default function RestaurantListItem(props) {
   return (
-    <article className="restaurant-item">
+    <article className="tile-item">
       <div>
         <img src={props.picture} alt={props.name} />
       </div>
@@ -24,7 +24,9 @@ export default function RestaurantListItem(props) {
               picture: props.picture,
             }}
           >
-            <button class="btn" type="button">
+
+            <button class="btn" type="submit">
+
               Visit
             </button>
           </Link>
