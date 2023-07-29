@@ -8,7 +8,7 @@ function Index(props) {
       <a href="/search">
         <SearchBar />
       </a>
-      <RestaurantList restaurant={props.restaurant} />
+      <RestaurantList restaurants={props.restaurants} foods={props.foods} />
       <NavigationBar />
     </div>
   );

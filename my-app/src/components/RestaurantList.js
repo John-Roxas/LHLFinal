@@ -2,7 +2,7 @@ import RestaurantListItem from "./RestaurantListItem";
 import "./RestaurantList.css";
 
 export default function RestaurantList(props) {
-  const restaurants = props.restaurant.map((restaurant) => {
+  const restaurants = props.restaurants.map((restaurant) => {
     return (
       <div className="restaurant-list">
         <RestaurantListItem
@@ -10,7 +10,7 @@ export default function RestaurantList(props) {
           id={restaurant.id}
           name={restaurant.restaurant_name}
           picture={restaurant.restaurant_picture}
-          // food={restaurant.food}
+          food={restaurant.foods}
         />
       </div>
     );

@@ -4,7 +4,7 @@ import "./Minus.css";
 
 const Minus = (props) => {
   const handlerDecrease = () => {
-    if (props.foodCounter > 0) {
+    if (props.foodCounter > 1) {
       props.setFoodCounter((prev) => prev - 1);
     }
   };
