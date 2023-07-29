@@ -20,7 +20,8 @@ function AddFoodItem(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/restaurants/${id}/food_items/${foodItemId}`)
+      .get(`http://localhost:8080/restaurant/${id}/food_items/${foodItemId}`)
+      // .get(`http://localhost:8080/restaurant/${id}/food_items/${foodItemId}`)
       .then((res) => {
         // console.log("test", res);
         setState((prev) => ({

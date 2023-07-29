@@ -41,6 +41,8 @@ const loginRoute = require("./routes/loginRoute");
 const logoutRoute = require("./routes/logoutRoute");
 const findCustomerRoute = require("./routes/customers");
 const search = require("./routes/search");
+const visitRestaurant = require("./routes/visitRestaurantRoutes");
+const getFood = require("./routes/getFoodRoutes");
 
 //Mount resources app.use
 app.use("/api/restaurants", restaurantListRoutes);
@@ -48,25 +50,8 @@ app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
 app.use("/api/customers/", findCustomerRoute);
 app.use("/api/search", search);
-
-//Clement organize
-const visitRestaurant = require("./routes/visitRestaurantRoutes");
-// const getFood = require("./routes/getFoodRoutes");
 app.use("/restaurants", visitRestaurant);
-// app.use("/restaurants", getFood);
-
-const visitFood =
-  "SELECT * FROM food_items WHERE restaurants_id = $1 AND id = $2";
-
-app.get("/restaurants/:id/food_items/:foodItemId", (req, res) => {
-  const restaurantId = req.params.id;
-  const foodId = req.params.foodItemId;
-  console.log("restaurant ID", restaurantId);
-  console.log("food ID", foodId);
-  db.query(visitFood, [restaurantId, foodId], (err, result) => {
-    res.json(result.rows);
-  });
-});
+app.use("/restaurant", getFood);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
