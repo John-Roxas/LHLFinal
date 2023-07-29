@@ -10,7 +10,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const PORT = process.env.PORT || 8080;
 const app = express();
-const db = require("../db/connection");
+
+const db = require("./db/connection");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
