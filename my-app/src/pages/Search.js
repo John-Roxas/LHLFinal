@@ -31,13 +31,12 @@ function Search(props) {
 
   return (
     <div className="App">
-      {/* <SearchBar 
+      <SearchBar 
         search={state.search}
         setSearch={setSearch}
-      /> */}
-      {`${props.API_ROOT}?mode=${state.mode}&term=${state.search}`}
+      />
       <SearchMode setMode={setMode} />
-      {/* <RestaurantList restaurant={state.restaurants} /> */}
+      <RestaurantList restaurants={state.restaurants} />
       <NavigationBar />
     </div>
   );
