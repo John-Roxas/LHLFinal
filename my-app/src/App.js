@@ -70,15 +70,10 @@ function App() {
             element={
               <Home
                 restaurants={apiState.restaurants}
-                element={
-                  <Login
-                    loginState={loginState}
-                    setLoginState={setLoginState}
-                    handleLoginClick={handleLoginClick}
-                    handleLoginSubmit={handleLoginSubmit}
-                    handleLogout={handleLogout}
-                  />
-                }
+                loginState={loginState}
+                setLoginState={setLoginState}
+                handleLoginClick={handleLoginClick}
+                handleLoginSubmit={handleLoginSubmit}
               />
             }
           />

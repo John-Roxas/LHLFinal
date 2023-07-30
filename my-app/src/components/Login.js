@@ -11,7 +11,6 @@ function Login() {
     handleLoginSubmit,
     loginState,
     setLoginState,
-    handleLogout,
   } = useLogin();
   //Destructing the loginState
   const { showLoginPopup, username, password, isLoggedIn } = loginState;

@@ -1,4 +1,3 @@
-// import SearchBar from "../components/SearchBar";
 import NavigationBar from "../components/NavigationBar";
 import useLogin from "../hooks/useLogin";
 

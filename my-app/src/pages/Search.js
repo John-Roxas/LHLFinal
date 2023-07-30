@@ -1,4 +1,4 @@
-import SearchBar from "../components/SearchBar";
+import SearchField from "../components/SearchField";
 import SearchMode from "../components/SearchMode";
 import NavigationBar from "../components/NavigationBar";
 import RestaurantList from "../components/RestaurantList";
@@ -31,13 +31,9 @@ function Search(props) {
 
   return (
     <div className="App">
-      {/* <SearchBar 
-        search={state.search}
-        setSearch={setSearch}
-      /> */}
-      {`${props.API_ROOT}?mode=${state.mode}&term=${state.search}`}
+      <SearchField search={state.search} setSearch={setSearch} />
       <SearchMode setMode={setMode} />
-      {/* <RestaurantList restaurant={state.restaurants} /> */}
+      <RestaurantList restaurants={state.restaurants} />
       <NavigationBar />
     </div>
   );

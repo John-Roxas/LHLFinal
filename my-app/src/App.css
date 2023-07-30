@@ -26,8 +26,9 @@ li {
   height: 100%;
   /* border: 1px solid var(--border); */
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  flex-direction: column;
 }
 
 .btn {
