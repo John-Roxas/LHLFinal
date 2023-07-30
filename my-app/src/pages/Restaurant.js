@@ -36,7 +36,11 @@ function Restaurant(props) {
           <img src={picture} alt={name} className="restaurant-picture" />
         </div>
         <h2>{name}</h2>
-        <FoodList restaurantId={restaurantId} foods={state.foodList} />
+        <FoodList
+          restaurantId={restaurantId}
+          foods={state.foodList}
+          restaurantName={name}
+        />
       </div>
       <NavigationBar />
     </div>
