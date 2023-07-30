@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./Login.css";
-import useLogin from "../hooks/useLogin";
 
 function Login(props) {
   const [username, setUsername] = useState("");

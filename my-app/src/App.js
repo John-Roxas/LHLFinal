@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 //Importing login hook
 import useLogin from "./hooks/useLogin";
-import Login from "./components/Login";
 
 function App() {
   const apiURLS = {
@@ -52,13 +51,6 @@ function App() {
   //John to confirm cart functionality
   const [cart, setCart] = useState([]);
 
-  // function loginInfo(username, password) {
-  //   const cred = {
-  //     username,
-  //     password,
-  //   };
-  //   console.log("from app.js", cred.username);
-  // }
   const [customerInfo, setCustomerInfo] = useState({});
   const handleUserDataResults = (data) => {
     console.log("data received from Login in App.js", data);
