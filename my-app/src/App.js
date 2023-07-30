@@ -95,7 +95,7 @@ function App() {
             element={<Restaurant loginState={loginState} />}
           />
           <Route
-            path="/restaurants/:id/food_items/:foodItemId"
+            path="/restaurant/:id/food_items/:foodItemId"
             element={<AddFoodItem cart={cart} />}
           />
           {/* confirm this is the closing elemtn for line 92 restaurant */}
