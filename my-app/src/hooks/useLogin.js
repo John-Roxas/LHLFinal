@@ -82,22 +82,22 @@ const useLogin = () => {
   }
 
   //Handles the logout function where it deleted the cookie session on the backend
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout", null, { withCredentials: true })
-      .then((res) => {
-        console.log("Logout successful");
-        // Delete the cookie from session storage or cookies
-        // Replace "your_cookie_name" with the actual name of your cookie
-        sessionStorage.removeItem("session");
-        document.cookie =
-          "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      })
-      .catch((error) => console.log(error));
-  };
+  // const handleLogout = () => {
+  //   axios
+  //     .post("http://localhost:8080/logout", null, { withCredentials: true })
+  //     .then((res) => {
+  //       console.log("Logout successful");
+  //       // Delete the cookie from session storage or cookies
+  //       // Replace "your_cookie_name" with the actual name of your cookie
+  //       sessionStorage.removeItem("session");
+  //       document.cookie =
+  //         "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
   return {
-    handleLogout,
+    // handleLogout,
     getUserData,
   };
 };
