@@ -2,7 +2,6 @@ import RestaurantListItem from "./RestaurantListItem";
 import "./RestaurantList.css";
 
 export default function RestaurantList(props) {
-  console.log(props);
   const restaurants = props.restaurants.map((restaurant) => {
     return (
       <div className="restaurant-list">

@@ -1,21 +1,84 @@
+import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/NavigationBar";
-import useLogin from "../hooks/useLogin";
+import axios from "axios";
 
-function Profile() {
-  const { handleLogout } = useLogin();
+function Profile(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!sessionStorage.getItem("session")
+  );
+
+  useEffect(() => {
+    const sessionData = sessionStorage.getItem("session");
+    setIsLoggedIn(!!sessionData);
+  }, []);
+
+  function getSessionData() {
+    const sessionDataString = sessionStorage.getItem("session");
+    console.log("From chromeDOM", sessionDataString);
+    if (sessionDataString) {
+      //converts the session cookie back to an object
+      console.log(
+        "turning string back into object in profile",
+        JSON.parse(sessionDataString)
+      );
+    } else {
+      return null;
+    }
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <>
+        <div className="App">
+          <div className="profile-container">
+            <div className="tile-item">Please login to view the profile.</div>
+          </div>
+        </div>
+        <NavigationBar />
+      </>
+    );
+  }
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("session");
+    document.cookie =
+      "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setIsLoggedIn(false);
+  };
+
+  const {
+    customer_name,
+    customer_email,
+    customer_street_address,
+    city,
+    postal_code,
+    phone,
+    customer_avatar,
+  } = props.customerInfo;
+
   return (
     <div className="App">
       <div className="profile-container">
-        <div className="tile-item">Picture</div>
-        <div className="tile-item">Customer info</div>
-        <div className="tile-item">List</div>
+        <div className="tile-item">
+          <img src={customer_avatar} alt="Avatar" />
+        </div>
+        <div className="tile-item">Name: {customer_name}</div>
+        <div className="tile-item">Email: {customer_email}</div>
+        <div className="tile-item">
+          Address: {`${customer_street_address}, ${city}, ${postal_code}`}
+        </div>
+        <div className="tile-item">Phone Number: {phone}</div>
+
+        <div className="tile-item">Order History Component</div>
+        <div className="tile-item">{getSessionData()}</div>
+
         <div className="tile-item">
           <button className="login-button" onClick={handleLogout}>
             Logout
           </button>
         </div>
       </div>
-      {/* <h2 className="profile-container"></h2> */}
+
       <NavigationBar />
     </div>
   );
