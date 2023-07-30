@@ -33,6 +33,7 @@ function Login(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.loginData(username, password);
+    setShowLoginPopup(false);
   };
   return (
     <div>
