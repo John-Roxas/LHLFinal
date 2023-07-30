@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
+import SearchField from "../components/SearchField";
 import NavigationBar from "../components/NavigationBar";
 import FoodList from "../components/FoodList";
 import "./Restaurant.css";
@@ -30,7 +30,7 @@ function Restaurant(props) {
   console.log("restaurantId", restaurantId);
   return (
     <div className="App">
-      <SearchBar />
+      <SearchField />
       <div className="restaurant-foods-container">
         <div>
           <img src={picture} alt={name} className="restaurant-picture" />

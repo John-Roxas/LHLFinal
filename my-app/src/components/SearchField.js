@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import "./SearchBar.css";
+import "./SearchField.css";
 import Login from "./Login";
 
-function SearchBar(props) {
-
+function SearchField(props) {
   const onFormSubmit = (event) => {
     event.preventDefault();
   };
 
   return (
-    <div className="search-container">
+    <div className="form-field">
       <form className="form-field" onSubmit={onFormSubmit}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
         <input
@@ -19,11 +18,13 @@ function SearchBar(props) {
           type="text"
           placeholder="Food, restaurant, drinks, etc."
           value={props.search}
-          onChange={(e) => {props.setSearch(e.target.value)}}
+          onChange={(e) => {
+            props.setSearch(e.target.value);
+          }}
         />
       </form>
     </div>
   );
 }
 
-export default SearchBar;
+export default SearchField;

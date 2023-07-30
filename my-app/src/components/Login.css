@@ -126,6 +126,11 @@
   box-sizing: border-box;
 }
 
+.login-container {
+  display: flex;
+  align-items: center;
+}
+
 /* Login Popup Styles */
 .login-popup {
   position: fixed;
@@ -198,7 +203,7 @@
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .login-button:hover {
