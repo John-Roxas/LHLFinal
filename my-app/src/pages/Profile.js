@@ -46,14 +46,30 @@ function Profile(props) {
     setIsLoggedIn(false);
   };
 
+  const {
+    customer_name,
+    customer_email,
+    customer_street_address,
+    city,
+    postal_code,
+    phone,
+    customer_avatar,
+  } = props.customerInfo;
+
   return (
     <div className="App">
       <div className="profile-container">
         <div className="tile-item">
-          <img src={props.customerInfo.customer_avatar} alt="Avatar" />
+          <img src={customer_avatar} alt="Avatar" />
         </div>
-        <div className="tile-item">{props.customerInfo.customer_name}</div>
-        <div className="tile-item">List</div>
+        <div className="tile-item">Name: {customer_name}</div>
+        <div className="tile-item">Email: {customer_email}</div>
+        <div className="tile-item">
+          Address: {`${customer_street_address}, ${city}, ${postal_code}`}
+        </div>
+        <div className="tile-item">Phone Number: {phone}</div>
+
+        <div className="tile-item">Order History Component</div>
         <div className="tile-item">{getSessionData()}</div>
 
         <div className="tile-item">
