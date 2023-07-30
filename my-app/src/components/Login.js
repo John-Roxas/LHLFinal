@@ -7,19 +7,23 @@ function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!sessionStorage.getItem("session")
+  );
 
-  //Rendering login button function
-  // const renderLoginButton = () => {
-  //   if (isLoggedIn) {
-  //     return null;
-  //   } else {
-  //     return (
-  //       <button className="login-button" onClick={handleLoginClick}>
-  //         Login
-  //       </button>
-  //     );
-  //   }
-  // };
+  const sessionData = sessionStorage.getItem("session");
+  // Rendering login button function
+  const renderLoginButton = () => {
+    if (isLoggedIn) {
+      return null;
+    } else {
+      return (
+        <button className="login-button" onClick={handleLoginClick}>
+          Login
+        </button>
+      );
+    }
+  };
 
   const handleLoginClick = () => {
     setShowLoginPopup(true);
@@ -33,13 +37,12 @@ function Login(props) {
     event.preventDefault();
     props.loginData(username, password);
     setShowLoginPopup(false);
+    setIsLoggedIn(true);
   };
   return (
     <div>
       <div className="login-container">
-        <button className="login-button" onClick={handleLoginClick}>
-          Login
-        </button>
+        {renderLoginButton()}
         {showLoginPopup && (
           <>
             <div className="overlay" onClick={closeLoginPopup} />
