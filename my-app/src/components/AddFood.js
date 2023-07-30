@@ -11,6 +11,8 @@ function AddFood(props) {
   const [foodCounter, setFoodCounter] = useState(1);
   const [modal, setModal] = useState(false);
 
+  const history = useNavigate(); // this is used to go back to previous page
+
   // optional chaining '?' before food (ex. food?)
   // It ensures that the code won't break if the food object is null or undefined
   const food = props.foodInfo[0];
@@ -31,9 +33,10 @@ function AddFood(props) {
     setModal(true);
   };
 
-  const closeModal = () => {
-    setModal(false);
-  };
+  // const closeModal = () => {
+  //   // setModal(false);
+  //   history(-1);
+  // };
 
   return (
     <div className="add-food-container">
@@ -60,7 +63,8 @@ function AddFood(props) {
               x{foodCounter} {food?.food_name}
             </h3>
             <p>Added to Cart!</p>
-            <button onClick={closeModal}>Continue Shopping</button>
+            <button onClick={() => history(-1)}>Continue Shopping</button>
+            {/* <button onClick={closeModal}>Continue Shopping</button> */}
           </div>
         </div>
       )}
