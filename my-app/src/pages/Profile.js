@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/NavigationBar";
-import useLogin from "../hooks/useLogin";
+import axios from "axios";
 
 function Profile(props) {
-  const { handleLogout } = useLogin();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!sessionStorage.getItem("session")
+  );
+
+  useEffect(() => {
+    const sessionData = sessionStorage.getItem("session");
+    setIsLoggedIn(!!sessionData);
+  }, []);
 
   function getSessionData() {
     const sessionDataString = sessionStorage.getItem("session");
@@ -19,8 +26,7 @@ function Profile(props) {
     }
   }
 
-  const sessionData = sessionStorage.getItem("session");
-  if (!sessionData) {
+  if (!isLoggedIn) {
     return (
       <>
         <div className="App">
@@ -32,7 +38,25 @@ function Profile(props) {
       </>
     );
   }
-  console.log(props.customerInfo);
+
+  const handleLogout = () => {
+    // axios
+    //   .post("http://localhost:8080/logout", null, { withCredentials: true })
+    //   .then((res) => {
+    //     console.log("Logout successful");
+    //     // Delete the cookie from session storage or cookies
+    //     // Replace "your_cookie_name" with the actual name of your cookie
+    //     sessionStorage.removeItem("session");
+    //     document.cookie =
+    //       "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    //     setIsLoggedIn(false);
+    //   })
+    //   .catch((error) => console.log(error));
+    sessionStorage.removeItem("session");
+    document.cookie =
+      "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className="App">
@@ -51,7 +75,6 @@ function Profile(props) {
         </div>
       </div>
 
-      {/* <h2 className="profile-container"></h2> */}
       <NavigationBar />
     </div>
   );
