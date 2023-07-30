@@ -27,7 +27,7 @@ function Restaurant(props) {
       .catch((err) => console.log(err));
   }, [restaurantId]);
 
-  console.log("restaurantId", restaurantId);
+  // console.log("restaurantId", restaurantId);
   return (
     <div className="App">
       <SearchBar />
@@ -36,7 +36,11 @@ function Restaurant(props) {
           <img src={picture} alt={name} className="restaurant-picture" />
         </div>
         <h2>{name}</h2>
-        <FoodList restaurantId={restaurantId} foods={state.foodList} />
+        <FoodList
+          restaurantId={restaurantId}
+          foods={state.foodList}
+          restaurantName={name} //Grabbed from useLocation() on Line 11 and 12
+        />
       </div>
       <NavigationBar />
     </div>
