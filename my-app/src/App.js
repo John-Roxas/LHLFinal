@@ -98,7 +98,7 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<Profile loginState={loginState} />}
+            element={<Profile customerInfo={customerInfo} />}
           />
           <Route
             path="/restaurants/:id"
