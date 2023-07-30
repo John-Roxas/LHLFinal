@@ -40,18 +40,6 @@ function Profile(props) {
   }
 
   const handleLogout = () => {
-    // axios
-    //   .post("http://localhost:8080/logout", null, { withCredentials: true })
-    //   .then((res) => {
-    //     console.log("Logout successful");
-    //     // Delete the cookie from session storage or cookies
-    //     // Replace "your_cookie_name" with the actual name of your cookie
-    //     sessionStorage.removeItem("session");
-    //     document.cookie =
-    //       "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    //     setIsLoggedIn(false);
-    //   })
-    //   .catch((error) => console.log(error));
     sessionStorage.removeItem("session");
     document.cookie =
       "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
