@@ -7,7 +7,7 @@ function Cart(props) {
   return (
     <div className="App">
       <div className="cart-container">
-        <ShoppingCart cart={props.cart} />
+        <ShoppingCart cart={props.cart} loginState={props.loginState}/>
       </div>
 
       {/* <h2 className="cart-container">My Cart</h2> */}

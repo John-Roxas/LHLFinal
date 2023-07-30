@@ -8,8 +8,11 @@ import StripeCheckout from "react-stripe-checkout";
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
+  console.log("CUSTOMER INFO");
+  console.log(props.loginState);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
+  
 
   // Need to take this from the order table
   const restaurantName = "Delicious Restaurant";

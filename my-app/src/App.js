@@ -29,7 +29,7 @@ function App() {
     handleLoginSubmit,
     handleLogout,
   } = useLogin();
-
+  console.log("FROM APP.JS", loginState.customerInfo);
   //All API states
   const [apiState, setApiState] = useState({
     restaurants: [],
