@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -27,7 +28,7 @@ function App() {
     setLoginState,
     handleLoginClick,
     handleLoginSubmit,
-    handleLogout,
+    getUserData,
   } = useLogin();
 
   //All API states
@@ -57,6 +58,18 @@ function App() {
   //John to confirm cart functionality
   const [cart, setCart] = useState([]);
 
+  // function loginInfo(username, password) {
+  //   const cred = {
+  //     username,
+  //     password,
+  //   };
+  //   console.log("from app.js", cred.username);
+  // }
+  const [customerInfo, setCustomerInfo] = useState({});
+  const handleUserDataResults = (data) => {
+    console.log("data received from Login in App.js", data);
+    setCustomerInfo(data);
+  };
   return (
     <main>
       <BrowserRouter>
@@ -69,6 +82,8 @@ function App() {
             index
             element={
               <Home
+                handleUserDataResults={handleUserDataResults}
+                getUserData={getUserData}
                 restaurants={apiState.restaurants}
                 loginState={loginState}
                 setLoginState={setLoginState}

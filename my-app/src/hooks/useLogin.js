@@ -63,6 +63,32 @@ const useLogin = () => {
     closeLoginPopup();
   };
 
+  function getUserData(username, password) {
+    return axios
+      .post(
+        "http://localhost:8080/login",
+        { username, password },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("from getUserData function", res.data);
+        return res.data;
+        // setLoginState((prev) => ({
+        //   ...prev,
+        //   isLoggedIn: true,
+        //   username: "",
+        //   password: "",
+        //   customerInfo: res.data,
+        // }));
+
+        // Set the cookie in session storage or cookies
+        // Replace "your_cookie_name" with the actual name of your cookie
+        // sessionStorage.setItem("session", loginState.username);
+        // document.cookie = `session=${loginState.username}; path=/`;
+      })
+      .catch((error) => console.log(error));
+  }
+
   //Handles the logout function where it deleted the cookie session on the backend
   const handleLogout = () => {
     axios
@@ -92,6 +118,7 @@ const useLogin = () => {
     closeLoginPopup,
     handleLoginSubmit,
     handleLogout,
+    getUserData,
   };
 };
 
