@@ -23,13 +23,7 @@ function App() {
   };
 
   //Destructuring the useLogin hook
-  const {
-    loginState,
-    setLoginState,
-    handleLoginClick,
-    handleLoginSubmit,
-    getUserData,
-  } = useLogin();
+  const { getUserData } = useLogin();
 
   //All API states
   const [apiState, setApiState] = useState({
@@ -85,16 +79,12 @@ function App() {
                 handleUserDataResults={handleUserDataResults}
                 getUserData={getUserData}
                 restaurants={apiState.restaurants}
-                loginState={loginState}
-                setLoginState={setLoginState}
-                handleLoginClick={handleLoginClick}
-                handleLoginSubmit={handleLoginSubmit}
               />
             }
           />
           <Route
             path="/cart"
-            element={<Cart cart={cart} loginState={loginState} />}
+            element={<Cart cart={cart} customerInfo={customerInfo} />}
           />
           <Route
             path="/profile"
@@ -102,7 +92,7 @@ function App() {
           />
           <Route
             path="/restaurants/:id"
-            element={<Restaurant loginState={loginState} />}
+            element={<Restaurant customerInfo={customerInfo} />}
           />
           <Route
             path="/restaurant/:id/food_items/:foodItemId"
