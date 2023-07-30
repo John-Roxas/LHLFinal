@@ -9,7 +9,7 @@ function SearchField(props) {
   };
 
   return (
-    <div className="search-container">
+    <div className="form-field">
       <form className="form-field" onSubmit={onFormSubmit}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
         <input

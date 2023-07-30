@@ -10,15 +10,11 @@ function Index(props) {
   return (
     <div className="App">
       {/* Need to confirm with denny if the href can be handled in the formfield instead of the whole search bar since my login needs to be there */}
-      <div>
-        <div>
-          <a href="/search">
-            <SearchField />
-          </a>
-        </div>
-        <div>
-          <Login />
-        </div>
+      <div className="search-container">
+        <a href="/search" className="form-field">
+          <SearchField />
+        </a>
+        <Login />
       </div>
       <RestaurantList restaurants={props.restaurants} foods={props.foods} />
       <NavigationBar />

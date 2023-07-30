@@ -31,8 +31,10 @@ function Search(props) {
 
   return (
     <div className="App">
-      <SearchField search={state.search} setSearch={setSearch} />
-      <SearchMode setMode={setMode} />
+      <div className="search-container">
+        <SearchField search={state.search} setSearch={setSearch} />
+        <SearchMode setMode={setMode} />
+      </div>
       <RestaurantList restaurants={state.restaurants} />
       <NavigationBar />
     </div>
