@@ -12,6 +12,7 @@ function FoodList(props) {
         foodId={food.id}
         picture={food.picture}
         description={food.description}
+        restaurantName={props.restaurantName}
       />
     );
   });
