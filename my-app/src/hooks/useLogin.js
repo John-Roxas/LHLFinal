@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useLogin = () => {
-  const [loginState, setLoginState] = useState({
-    showLoginPopup: false,
-    username: "",
-    password: "",
-    isLoggedIn: false,
-    customerInfo: {},
-  });
+  // const [loginState, setLoginState] = useState({
+  //   showLoginPopup: false,
+  //   username: "",
+  //   password: "",
+  //   isLoggedIn: false,
+  //   customerInfo: {},
+  // });
 
   const checkCookieExistence = () => {
     // Check if the cookie exists in session storage or cookies
@@ -19,7 +19,7 @@ const useLogin = () => {
 
     // If the cookie exists, update the login state in the React app
     if (cookieValue) {
-      setLoginState((prev) => ({ ...prev, isLoggedIn: true }));
+      // setLoginState((prev) => ({ ...prev, isLoggedIn: true }));
     }
   };
 
@@ -27,41 +27,41 @@ const useLogin = () => {
     checkCookieExistence();
   }, []);
 
-  const handleLoginClick = () => {
-    setLoginState((prev) => ({ ...prev, showLoginPopup: true }));
-  };
+  // const handleLoginClick = () => {
+  //   setLoginState((prev) => ({ ...prev, showLoginPopup: true }));
+  // };
 
-  const closeLoginPopup = () => {
-    setLoginState((prev) => ({ ...prev, showLoginPopup: false }));
-  };
+  // const closeLoginPopup = () => {
+  //   setLoginState((prev) => ({ ...prev, showLoginPopup: false }));
+  // };
 
-  // When a user logs in successfully, set the isLoggedIn state to true and store the cookie
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post(
-        "http://localhost:8080/login",
-        { username: loginState.username, password: loginState.password },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log("From app", res.data);
-        setLoginState((prev) => ({
-          ...prev,
-          isLoggedIn: true,
-          username: "",
-          password: "",
-          customerInfo: res.data,
-        }));
+  // // When a user logs in successfully, set the isLoggedIn state to true and store the cookie
+  // const handleLoginSubmit = (event) => {
+  //   event.preventDefault();
+  //   axios
+  //     .post(
+  //       "http://localhost:8080/login",
+  //       { username: loginState.username, password: loginState.password },
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       console.log("From app", res.data);
+  //       setLoginState((prev) => ({
+  //         ...prev,
+  //         isLoggedIn: true,
+  //         username: "",
+  //         password: "",
+  //         customerInfo: res.data,
+  //       }));
 
-        // Set the cookie in session storage or cookies
-        // Replace "your_cookie_name" with the actual name of your cookie
-        sessionStorage.setItem("session", loginState.username);
-        document.cookie = `session=${loginState.username}; path=/`;
-      })
-      .catch((error) => console.log(error));
-    closeLoginPopup();
-  };
+  //       // Set the cookie in session storage or cookies
+  //       // Replace "your_cookie_name" with the actual name of your cookie
+  //       sessionStorage.setItem("session", loginState.username);
+  //       document.cookie = `session=${loginState.username}; path=/`;
+  //     })
+  //     .catch((error) => console.log(error));
+  //   closeLoginPopup();
+  // };
 
   function getUserData(username, password) {
     return axios
@@ -72,19 +72,11 @@ const useLogin = () => {
       )
       .then((res) => {
         console.log("from getUserData function", res.data);
-        return res.data;
-        // setLoginState((prev) => ({
-        //   ...prev,
-        //   isLoggedIn: true,
-        //   username: "",
-        //   password: "",
-        //   customerInfo: res.data,
-        // }));
-
         // Set the cookie in session storage or cookies
         // Replace "your_cookie_name" with the actual name of your cookie
-        // sessionStorage.setItem("session", loginState.username);
-        // document.cookie = `session=${loginState.username}; path=/`;
+        sessionStorage.setItem("session", JSON.stringify(res.data));
+        document.cookie = `session=${JSON.stringify(res.data)}; path=/`;
+        return res.data;
       })
       .catch((error) => console.log(error));
   }
@@ -95,13 +87,6 @@ const useLogin = () => {
       .post("http://localhost:8080/logout", null, { withCredentials: true })
       .then((res) => {
         console.log("Logout successful");
-        setLoginState((prev) => ({
-          ...prev,
-          isLoggedIn: false,
-          username: "",
-          password: "",
-          customerInfo: {},
-        }));
         // Delete the cookie from session storage or cookies
         // Replace "your_cookie_name" with the actual name of your cookie
         sessionStorage.removeItem("session");
@@ -112,11 +97,6 @@ const useLogin = () => {
   };
 
   return {
-    loginState,
-    setLoginState,
-    handleLoginClick,
-    closeLoginPopup,
-    handleLoginSubmit,
     handleLogout,
     getUserData,
   };
