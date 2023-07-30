@@ -61,47 +61,34 @@ function App() {
     <main>
       <BrowserRouter>
         <Routes>
-
-    //confirm login button exist before deleting
-//           <Route
-//             index
-//             element={
-//               <Home
-//                 element={
-//                   <Login
-//                     loginState={loginState}
-//                     setLoginState={setLoginState}
-//                     handleLoginClick={handleLoginClick}
-//                     handleLoginSubmit={handleLoginSubmit}
-//                     handleLogout={handleLogout}
-//                   />
-//                 }
-//               />
-//             }
-//           />
-//           <Route path="/cart" element={<Cart loginState={loginState}/>} />
-//           <Route
-//             path="/profile"
-//             element={<Profile loginState={loginState} />}
-//           />
-//           <Route
-//             path="/restaurant/:id"
-//             element={<Restaurant loginState={loginState} />} 
-
-          <Route path="/search" element={<Search API_ROOT={apiURLS.SEARCH_ROOT} />} />
-          <Route index element={<Home restaurants={apiState.restaurants} 
-element={
-                  <Login
-                    loginState={loginState}
-                    setLoginState={setLoginState}
-                    handleLoginClick={handleLoginClick}
-                    handleLoginSubmit={handleLoginSubmit}
-                    handleLogout={handleLogout}
-                  />
-                } />} />
-          <Route path="/cart" element={<Cart cart={cart} loginState={loginState}/>} />
-          <Route path="/profile" element={<Profile loginState={loginState}/>} />
-          <Route path="/restaurants/:id" element={<Restaurant loginState={loginState}/>} />
+          <Route
+            path="/search"
+            element={<Search API_ROOT={apiURLS.SEARCH_ROOT} />}
+          />
+          <Route
+            index
+            element={
+              <Home
+                restaurants={apiState.restaurants}
+                loginState={loginState}
+                setLoginState={setLoginState}
+                handleLoginClick={handleLoginClick}
+                handleLoginSubmit={handleLoginSubmit}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} loginState={loginState} />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile loginState={loginState} />}
+          />
+          <Route
+            path="/restaurants/:id"
+            element={<Restaurant loginState={loginState} />}
+          />
           <Route
             path="/restaurant/:id/food_items/:foodItemId"
             element={<AddFoodItem cart={cart} />}
