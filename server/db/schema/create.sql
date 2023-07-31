@@ -55,6 +55,7 @@ CREATE TABLE carts (
   customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
   food_items_quantity INTEGER NOT NULL,
+  food_items_price DECIMAL NOT NULL,
   food_name VARCHAR(255)
 );
 

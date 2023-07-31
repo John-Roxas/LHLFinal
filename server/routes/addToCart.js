@@ -22,13 +22,13 @@ router.post("/", async (req, res) => {
 
     // Insert the cart item into the carts table in the database
     const insertQuery = `
-      INSERT INTO carts (cart_position, customers_id, food_items_id, food_items_quantity, food_name)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO carts (cart_position, customers_id, food_items_id, food_items_quantity, food_name, food_items_price)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
 
     // Replace the values array with the actual values from your data
-    const values = [cartItem.quantity, 1 /* Replace with the customers_id from your data */, 1 /* Replace with the food_items_id from your data */, cartItem.quantity, cartItem.foodName];
+    const values = [cartItem.quantity, 1 /* Replace with the customers_id from your data */, 1 /* Replace with the food_items_id from your data */, cartItem.quantity, cartItem.foodName, cartItem.price];
     const result = await db.query(insertQuery, values);
 
     res.json({ message: "Item added to cart successfully!", cartItem: result.rows[0] });
