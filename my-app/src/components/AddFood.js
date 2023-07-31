@@ -33,6 +33,7 @@ function AddFood(props) {
     console.log(props.cart);
     setModal(true);
     // testing adding to database table cart
+
     axios.post("/api/addToCart", cartItem)
     .then(response => {
       console.log(response.data);

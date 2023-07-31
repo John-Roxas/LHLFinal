@@ -48,15 +48,14 @@ CREATE TABLE food_items_quantities (
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_food_lists (
-  id SERIAL PRIMARY KEY NOT NULL,
-  food_items_quantities_id INTEGER NOT NULL REFERENCES food_items_quantities(id) ON DELETE CASCADE
-);
 
 CREATE TABLE carts (
   id SERIAL PRIMARY KEY NOT NULL,
-  customers_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  cart_food_lists_id INTEGER NOT NULL REFERENCES cart_food_lists(id) ON DELETE CASCADE
+  cart_position INTEGER NOT NULL,
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  food_items_quantity INTEGER NOT NULL,
+  food_name VARCHAR(255)
 );
 
 CREATE TABLE drivers (
