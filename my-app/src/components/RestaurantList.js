@@ -2,8 +2,8 @@ import RestaurantListItem from "./RestaurantListItem";
 import "./RestaurantList.css";
 
 export default function RestaurantList(props) {
-  console.log(props);
   const restaurants = props.restaurants.map((restaurant) => {
+    const address = `${restaurant.restaurant_street_address} ${restaurant.city}`;
     return (
       <div className="restaurant-list">
         <RestaurantListItem
@@ -12,6 +12,7 @@ export default function RestaurantList(props) {
           name={restaurant.restaurant_name}
           picture={restaurant.restaurant_picture}
           food={restaurant.foods}
+          address={address} // NEW LINE
         />
       </div>
     );

@@ -10,6 +10,7 @@ export default function RestaurantListItem(props) {
         restaurantId: props.id,
         name: props.name,
         picture: props.picture,
+        address: props.address, // NEW LINE
       }}
       style={{ textDecoration: "none" }}
     >

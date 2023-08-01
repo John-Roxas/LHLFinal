@@ -7,6 +7,7 @@ import Search from "./pages/Search";
 import NoPage from "./pages/NoPage";
 import Restaurant from "./pages/Restaurant";
 import AddFoodItem from "./pages/AddFoodItem";
+import Map from "./pages/Map";
 import { useEffect, useState } from "react";
 import axios from "axios";
 //Importing login hook
@@ -93,6 +94,7 @@ function App() {
             path="/restaurant/:id/food_items/:foodItemId"
             element={<AddFoodItem cart={cart} />}
           />
+          <Route path="/map" element={<Map />} />
           {/* confirm this is the closing elemtn for line 92 restaurant */}
           route
           <Route path="*" element={<NoPage />} />
