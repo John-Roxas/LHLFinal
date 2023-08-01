@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -12,7 +13,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 //Importing login hook
 import useLogin from "./hooks/useLogin";
-import Login from "./components/Login";
 
 function App() {
   const apiURLS = {
@@ -23,13 +23,7 @@ function App() {
   };
 
   //Destructuring the useLogin hook
-  const {
-    loginState,
-    setLoginState,
-    handleLoginClick,
-    handleLoginSubmit,
-    handleLogout,
-  } = useLogin();
+  const { getUserData } = useLogin();
 
   //All API states
   const [apiState, setApiState] = useState({
@@ -58,6 +52,11 @@ function App() {
   //John to confirm cart functionality
   const [cart, setCart] = useState([]);
 
+  const [customerInfo, setCustomerInfo] = useState({});
+  const handleUserDataResults = (data) => {
+    console.log("data received from Login in App.js", data);
+    setCustomerInfo(data);
+  };
   return (
     <main>
       <BrowserRouter>
@@ -70,25 +69,23 @@ function App() {
             index
             element={
               <Home
+                handleUserDataResults={handleUserDataResults}
+                getUserData={getUserData}
                 restaurants={apiState.restaurants}
-                loginState={loginState}
-                setLoginState={setLoginState}
-                handleLoginClick={handleLoginClick}
-                handleLoginSubmit={handleLoginSubmit}
               />
             }
           />
           <Route
             path="/cart"
-            element={<Cart cart={cart} loginState={loginState} />}
+            element={<Cart cart={cart} customerInfo={customerInfo} />}
           />
           <Route
             path="/profile"
-            element={<Profile loginState={loginState} />}
+            element={<Profile customerInfo={customerInfo} />}
           />
           <Route
             path="/restaurants/:id"
-            element={<Restaurant loginState={loginState} />}
+            element={<Restaurant customerInfo={customerInfo} />}
           />
           <Route
             path="/restaurant/:id/food_items/:foodItemId"

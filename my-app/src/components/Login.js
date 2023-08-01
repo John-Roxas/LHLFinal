@@ -1,34 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./Login.css";
-import useLogin from "../hooks/useLogin";
 
-function Login() {
-  const {
-    handleLoginClick,
-    closeLoginPopup,
-    handleLoginSubmit,
-    loginState,
-    setLoginState,
-  } = useLogin();
-  //Destructing the loginState
-  const { showLoginPopup, username, password, isLoggedIn } = loginState;
+function Login(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!sessionStorage.getItem("session")
+  );
 
-  // This function ensures the username form field doesnt immediately submit onChange
-  const handleUsernameChange = (event) => {
-    const { value } = event.target;
-    // Update the local state for the username
-    setLoginState((prev) => ({ ...prev, username: value }));
-  };
-  // This function ensures the password form field doesnt immediately submit onChange
-  const handlePasswordChange = (event) => {
-    const { value } = event.target;
-    // Update the local state for the password
-    setLoginState((prev) => ({ ...prev, password: value }));
-  };
-
-  //Rendering login button function
+  const sessionData = sessionStorage.getItem("session");
+  // Rendering login button function
   const renderLoginButton = () => {
     if (isLoggedIn) {
       return null;
@@ -41,6 +25,20 @@ function Login() {
     }
   };
 
+  const handleLoginClick = () => {
+    setShowLoginPopup(true);
+  };
+
+  const closeLoginPopup = () => {
+    setShowLoginPopup(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.loginData(username, password);
+    setShowLoginPopup(false);
+    setIsLoggedIn(true);
+  };
   return (
     <div>
       <div className="login-container">
@@ -49,18 +47,18 @@ function Login() {
           <>
             <div className="overlay" onClick={closeLoginPopup} />
             <div className="login-popup">
-              <form className="login-form" onSubmit={handleLoginSubmit}>
+              <form className="login-form" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
-                  onChange={handleUsernameChange}
+                  onChange={(event) => setUsername(event.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
                 <button type="submit">Submit</button>
               </form>
