@@ -2,6 +2,6 @@
 /* using leaflet there is a class automatically called leaflet-container */
 .leaflet-container { 
   margin-top: 5vh;
-  height: 75vh;
+  height: 50vh;
   border-radius: 30px;
 }

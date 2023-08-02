@@ -9,7 +9,7 @@ import "./Restaurant.css";
 function Restaurant(props) {
   // These two take information passed from /src/components/RestaurantListItem
   const location = useLocation();
-  const { restaurantId, name, picture, address } = location.state;
+  const { restaurantId, name, picture, address, postalCode } = location.state;
 
   const [state, setState] = useState({
     foodList: [],
@@ -35,7 +35,15 @@ function Restaurant(props) {
         <div>
           <img src={picture} alt={name} className="restaurant-picture" />
         </div>
-        <Link to={"/map"} state={{ restaurantAddress: address }}>
+        <Link
+          to={"/map"}
+          // these are passed to pages/Map.js
+          state={{
+            restaurantAddress: address,
+            restaurantPostalCode: postalCode,
+          }}
+          style={{ textDecoration: "none" }}
+        >
           <h2>{name}</h2>
           <p>{address}</p>
         </Link>

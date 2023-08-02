@@ -91,9 +91,8 @@ function App() {
             path="/restaurant/:id/food_items/:foodItemId"
             element={<AddFoodItem cart={cart} />}
           />
-          <Route path="/map" element={<Map />} />
+          <Route path="/map" element={<Map customerInfo={customerInfo} />} />
           {/* confirm this is the closing elemtn for line 92 restaurant */}
-          route
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
