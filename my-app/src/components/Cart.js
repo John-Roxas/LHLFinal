@@ -41,6 +41,7 @@ const ShoppingCart = (props) => {
   const handlePaymentSuccess = (paymentIntent) => {
     // Handle the payment success here.
     console.log("Payment succeeded! Payment Intent:", paymentIntent);
+    console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
   };
 
   // Fetch the customer's data and cart items from the backend server using axios

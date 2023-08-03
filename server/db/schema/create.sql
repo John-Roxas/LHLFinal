@@ -77,12 +77,10 @@ CREATE TABLE orders (
   cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
   date TIMESTAMP,
   customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-  drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
+  drivers_id INTEGER REFERENCES drivers(id) ON DELETE SET NULL,
   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
-  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  food_items_quantity INTEGER NOT NULL,
-  food_items_price DECIMAL NOT NULL,
-  food_name VARCHAR(255)
+  status VARCHAR(50) NOT NULL,
+  total_amount DECIMAL NOT NULL
 );
 
 -- //TODO Need to confirm how to setup the FK for the sender ID
