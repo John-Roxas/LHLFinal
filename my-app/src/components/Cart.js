@@ -9,27 +9,26 @@ const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cartData, setCartData] = useState([]); // Store cart items fetched from the backend
-  console.log("CUSTOMER INFO");
-  console.log(props.loginState);
-  const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
-  const stripeRef = useRef(null);
 
-  
+  const {
+    customer_name,
+    id,
+    customer_email,
+    customer_street_address,
+    city,
+    postal_code,
+    phone,
+    customer_avatar,
+  } = props.customerInfo;
+
+  const customerID = id; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
+  const stripeRef = useRef(null);
 
   // Need to take this from the order table
   const restaurantName = "Delicious Restaurant";
 
-  // Need to replace with API call to the orders table
-  // const orderDetails = [
-  //   { itemName: "Item 1", quantity: 2, price: 5.99 },
-  //   { itemName: "Item 2", quantity: 1, price: 3.49 },
-  // ];
-
   // calculate subtotal. Separate hook?
-  let order = cartData;
-  console.log("CALCULATING SUBTOTAL");
-  console.log(order);
-  const subtotal = order.reduce(
+  const subtotal = cartData.reduce(
     (total, item) => total + item.food_items_price * item.food_items_quantity,
     0
   );
@@ -44,22 +43,21 @@ const ShoppingCart = (props) => {
     console.log("Payment succeeded! Payment Intent:", paymentIntent);
   };
 
-  // Fetch the customer's data from the back-end server using axios
+  // Fetch the customer's data and cart items from the backend server using axios
   useEffect(() => {
     axios
       .get(`/api/customers/${customerID}`)
       .then((response) => setCustomerData(response.data))
-      // .then((response) => console.log(response.data))
       .catch((error) => console.error("Error fetching customer data:", error));
-     axios
-      .get(`/api/findCart`) // Replace with the API endpoint to fetch cart items
-      .then((response) => setCartData(response.data))
+
+    axios
+      .get(`/api/findCart?customerId=${customerID}`)
+      .then((response) => {
+        // Assuming the backend returns an array of cart items, set the cartData state accordingly
+        setCartData(response.data);
+      })
       .catch((error) => console.error("Error fetching cart data:", error));
   }, [customerID]);
-
-  const handlePlaceOrder = () => {
-    setShowCheckout(true);
-  };
 
   // HAVEN'T WRITTEN THIS YET
   const handleToken = (token) => {
@@ -75,7 +73,7 @@ const ShoppingCart = (props) => {
       </div>
 
       <div className="cart-item">
-        <p>{customerData?.customer_street_address}</p>
+        <p>{customer_street_address}</p>
       </div>
 
       <div className="cart-item">
@@ -84,7 +82,7 @@ const ShoppingCart = (props) => {
 
       <div className="cart-item">
         <ul className="cart-list">
-          {order.map((item, index) => (
+          {cartData.map((item, index) => (
             <li key={index} className="cart-list-item">
               <div className="cart-list-item-left">
                 <p className="cart-list-item-left-qty">{item.food_items_quantity}×</p>
@@ -138,20 +136,6 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       </div>
-      {/* <StripeCheckout
-        token={handleToken}
-        stripeKey={
-          "pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc"
-        }
-        name="DashDine"
-        amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
-        currency="CAD"
-        image="https://your-company-logo-url.png" // Replace with your company logo URL
-        billingAddress={true}
-        shippingAddress={true}
-        ref={stripeRef} // Set the ref for the StripeCheckout component
-      /> */}
-
       <StripePaymentForm totalAmount={totalAmount} onPaymentSuccess={handlePaymentSuccess} />
     </article>
   );

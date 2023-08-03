@@ -7,11 +7,8 @@ function Cart(props) {
   return (
     <div className="App">
       <div className="cart-container">
-        <ShoppingCart cart={props.cart} loginState={props.loginState}/>
+        <ShoppingCart cart={props.cart} customerInfo={props.customerInfo}/>
       </div>
-
-      {/* <h2 className="cart-container">My Cart</h2> */}
-      {/* <CartList cart={props.cart} /> */}
       <NavigationBar />
     </div>
   );

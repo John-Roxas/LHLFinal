@@ -5,30 +5,57 @@ const db = require("../db/connection");
 
 // API endpoint to add items to the cart
 router.post("/", async (req, res) => {
-  const { foodName, price, quantity } = req.body;
+  const { foodName, price, quantity, customerInfo } = req.body;
 
   // Perform any validation checks you need before adding to the cart
-  if (!foodName || !price || !quantity) {
-    return res.status(400).json({ error: "Invalid data. Food name, price, and quantity are required." });
+  if (!foodName || !price || !quantity || !customerInfo) {
+    return res.status(400).json({ error: "Invalid data. Food name, price, quantity, and customer ID are required." });
   }
 
   try {
-    // Create a new cart item object
-    const cartItem = {
-      foodName,
-      price,
-      quantity,
-    };
+    // Find the food_items_id for the specified foodName
+    const foodItemQuery = `
+      SELECT id AS food_items_id FROM food_items WHERE food_name = $1;
+    `;
 
-    // Insert the cart item into the carts table in the database
+    const foodItemResult = await db.query(foodItemQuery, [foodName]);
+
+    if (foodItemResult.rows.length === 0) {
+      return res.status(400).json({ error: "Invalid food item." });
+    }
+
+    const foodItemId = foodItemResult.rows[0].food_items_id;
+
+    // Check if there's an open cart for the specific customer in the carts table
+    const openCartQuery = `
+      SELECT id FROM carts WHERE customers_id = $1 AND closed = FALSE;
+    `;
+
+    const openCartResult = await db.query(openCartQuery, [customerInfo]);
+
+    let cartId;
+    if (openCartResult.rows.length === 0) {
+      // If no open cart exists for the customer, create a new cart
+      const newCartQuery = `
+        INSERT INTO carts (cart_position, customers_id, closed)
+        VALUES (1, $1, FALSE)
+        RETURNING id;
+      `;
+
+      const newCartResult = await db.query(newCartQuery, [customerInfo]);
+      cartId = newCartResult.rows[0].id;
+    } else {
+      cartId = openCartResult.rows[0].id;
+    }
+
+    // Insert the cart item into the cart_items table in the database
     const insertQuery = `
-      INSERT INTO carts (cart_position, customers_id, food_items_id, food_items_quantity, food_name, food_items_price)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO cart_items (cart_id, food_item_id, quantity, food_name, food_item_price)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
 
-    // Replace the values array with the actual values from your data
-    const values = [cartItem.quantity, 1 /* Replace with the customers_id from your data */, 1 /* Replace with the food_items_id from your data */, cartItem.quantity, cartItem.foodName, cartItem.price];
+    const values = [cartId, foodItemId, quantity, foodName, price];
     const result = await db.query(insertQuery, values);
 
     res.json({ message: "Item added to cart successfully!", cartItem: result.rows[0] });

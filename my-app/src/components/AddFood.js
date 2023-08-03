@@ -25,6 +25,7 @@ function AddFood(props) {
     price: food?.price,
     quantity: 1,
     restaurantName: props.restaurantName,
+    customerInfo: props.customerInfo.id
   };
 
   const handleSubmit = () => {

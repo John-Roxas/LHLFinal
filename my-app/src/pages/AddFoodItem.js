@@ -42,6 +42,7 @@ function AddFoodItem(props) {
         foodInfo={state.foodInfo}
         cart={props.cart}
         restaurantName={restaurantName}
+        customerInfo={props.customerInfo}
       />
       <NavigationBar />
     </div>

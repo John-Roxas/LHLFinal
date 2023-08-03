@@ -53,11 +53,18 @@ CREATE TABLE carts (
   id SERIAL PRIMARY KEY NOT NULL,
   cart_position INTEGER NOT NULL,
   customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  food_items_quantity INTEGER NOT NULL,
-  food_items_price DECIMAL NOT NULL,
+  closed BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  food_item_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  quantity INTEGER NOT NULL,
+  food_item_price DECIMAL NOT NULL,
   food_name VARCHAR(255)
 );
+
 
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -67,10 +74,15 @@ CREATE TABLE drivers (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
   date TIMESTAMP,
-  carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
   drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
-  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
+  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  food_items_quantity INTEGER NOT NULL,
+  food_items_price DECIMAL NOT NULL,
+  food_name VARCHAR(255)
 );
 
 -- //TODO Need to confirm how to setup the FK for the sender ID
