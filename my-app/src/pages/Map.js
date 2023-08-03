@@ -22,12 +22,12 @@ function Map(props) {
         <FontAwesomeIcon icon={faArrowLeft} />
       </button>
       <div className="map-container">
-        <h2>Map</h2>
+        <h2>Routing</h2>
         <p>
-          Restaurant Address: {restaurantAddress} {restaurantPostalCode}
+          Restaurant: {restaurantAddress} {restaurantPostalCode}
         </p>
         <p>
-          Home Address: {customerAddress} {postal_code}
+          Destination: {customerAddress} {postal_code}
         </p>
         <GeoMap
           restaurantAddress={restaurantAddress}

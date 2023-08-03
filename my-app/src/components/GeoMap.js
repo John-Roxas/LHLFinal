@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useLocation } from "react-router-dom";
+import Routing from "./Routing";
 import { useEffect, useState } from "react";
 
 function GeoMap(props) {
@@ -39,42 +39,37 @@ function GeoMap(props) {
     getCoordinates(props.customerPostalCode, setEnding, setEndingLatLon);
   }, []);
 
-  const customIcon = new L.Icon({
-    iconUrl: `${process.env.PUBLIC_URL}/images/location.png`,
-    iconSize: [38, 38], // size of the icon
-  });
+  // const distance = () => {
+  //   let distance = (startingLatLon.distanceTo(endingLatLon) / 1000).toFixed(2); // Convert to kilometers
+  //   return <p>The distance between the two points are {distance}km</p>;
+  // };
 
-  const distance = () => {
-    let distance = (startingLatLon.distanceTo(endingLatLon) / 1000).toFixed(2); // Convert to kilometers
-    return <p>The distance between the two points are {distance}km</p>;
-  };
+  // const startMarker = () => {
+  //   return (
+  //     <Marker position={starting} icon={customIcon}>
+  //       <Popup>Restaurant: {props.restaurantAddress}</Popup>
+  //     </Marker>
+  //   );
+  // };
 
-  const startMarker = () => {
-    return (
-      <Marker position={starting} icon={customIcon}>
-        <Popup>Restaurant: {props.restaurantAddress}</Popup>
-      </Marker>
-    );
-  };
+  // const endMarker = () => {
+  //   return (
+  //     <Marker position={ending} icon={customIcon}>
+  //       <Popup>Home: {props.customerAddress}</Popup>
+  //     </Marker>
+  //   );
+  // };
 
-  const endMarker = () => {
-    return (
-      <Marker position={ending} icon={customIcon}>
-        <Popup>Home: {props.customerAddress}</Popup>
-      </Marker>
-    );
-  };
+  // const routing = () => {
+  //   L.Routing.control({
+  //     waypoints: [startingLatLon, endingLatLon],
+  //   });
+  // };
 
-  const routing = () => {
-    L.Routing.control({
-      waypoints: [startingLatLon, endingLatLon],
-    });
-  };
-
-  const polyLine = () => {
-    const polylineCoordinates = [startingLatLon, endingLatLon];
-    return <Polyline positions={polylineCoordinates} color="purple" />;
-  };
+  // const polyLine = () => {
+  //   const polylineCoordinates = [startingLatLon, endingLatLon];
+  //   return <Polyline positions={polylineCoordinates} color="purple" />;
+  // };
 
   if (starting.length === 0 || ending.length === 0) {
     return <p>Loading...</p>; // You can add a loading indicator or any other content here while waiting for the data.
@@ -82,18 +77,18 @@ function GeoMap(props) {
 
   return (
     <>
-      {distance()}
+      {/* {distance()} */}
       <MapContainer center={starting} zoom={16}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {startMarker()}
-        {endMarker()}
+        {/* {startMarker()}
+        {endMarker()} */}
 
-        {/* {routing()} */}
-        {polyLine()}
+        <Routing startingPoint={startingLatLon} endingPoint={endingLatLon} />
+        {/* {polyLine()} */}
       </MapContainer>
     </>
   );
