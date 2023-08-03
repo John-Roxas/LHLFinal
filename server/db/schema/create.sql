@@ -48,15 +48,19 @@ CREATE TABLE food_items_quantities (
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_food_lists (
-  id SERIAL PRIMARY KEY NOT NULL,
-  food_items_quantities_id INTEGER NOT NULL REFERENCES food_items_quantities(id) ON DELETE CASCADE
-);
-
 CREATE TABLE carts (
   id SERIAL PRIMARY KEY NOT NULL,
-  customers_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  cart_food_lists_id INTEGER NOT NULL REFERENCES cart_food_lists(id) ON DELETE CASCADE
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+  closed BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  food_item_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  quantity INTEGER NOT NULL,
+  food_item_price DECIMAL NOT NULL,
+  food_name VARCHAR(255)
 );
 
 CREATE TABLE drivers (
@@ -65,24 +69,15 @@ CREATE TABLE drivers (
   driver_phone VARCHAR(255) NOT NULL
 );
 
--- CREATE TABLE orders (
---   id SERIAL PRIMARY KEY NOT NULL,
---   date TIMESTAMP,
---   carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
---   drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
---   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
--- );
-
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  date TIMESTAMP,
   customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-  drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
+  drivers_id INTEGER REFERENCES drivers(id) ON DELETE SET NULL,
   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
-  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  food_items_quantity INTEGER NOT NULL,
-  food_items_price DECIMAL NOT NULL,
-  food_name VARCHAR(255)
+  status VARCHAR(50) NOT NULL,
+  total_amount DECIMAL NOT NULL
 );
 
 -- //TODO Need to confirm how to setup the FK for the sender ID
