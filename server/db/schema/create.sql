@@ -65,12 +65,24 @@ CREATE TABLE drivers (
   driver_phone VARCHAR(255) NOT NULL
 );
 
+-- CREATE TABLE orders (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   date TIMESTAMP,
+--   carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+--   drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
+--   restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
+-- );
+
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   date TIMESTAMP,
-  carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
   drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
-  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
+  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+  food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  food_items_quantity INTEGER NOT NULL,
+  food_items_price DECIMAL NOT NULL,
+  food_name VARCHAR(255)
 );
 
 -- //TODO Need to confirm how to setup the FK for the sender ID
