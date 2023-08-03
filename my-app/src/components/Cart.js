@@ -39,6 +39,11 @@ const ShoppingCart = (props) => {
 
   const totalAmount = subtotal + tax + deliveryFee;
 
+  const handlePaymentSuccess = (paymentIntent) => {
+    // Handle the payment success here.
+    console.log("Payment succeeded! Payment Intent:", paymentIntent);
+  };
+
   // Fetch the customer's data from the back-end server using axios
   useEffect(() => {
     axios
@@ -133,7 +138,7 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       </div>
-      <StripeCheckout
+      {/* <StripeCheckout
         token={handleToken}
         stripeKey={
           "pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc"
@@ -145,7 +150,9 @@ const ShoppingCart = (props) => {
         billingAddress={true}
         shippingAddress={true}
         ref={stripeRef} // Set the ref for the StripeCheckout component
-      />
+      /> */}
+
+      <StripePaymentForm totalAmount={totalAmount} onPaymentSuccess={handlePaymentSuccess} />
     </article>
   );
 };
