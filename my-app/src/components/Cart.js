@@ -8,10 +8,12 @@ import StripeCheckout from "react-stripe-checkout";
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [cartData, setCartData] = useState([]); // Store cart items fetched from the backend
   console.log("CUSTOMER INFO");
   console.log(props.loginState);
   const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
+
   
 
   // Need to take this from the order table
@@ -24,11 +26,11 @@ const ShoppingCart = (props) => {
   // ];
 
   // calculate subtotal. Separate hook?
-  let order = props.cart;
+  let order = cartData;
   console.log("CALCULATING SUBTOTAL");
   console.log(order);
   const subtotal = order.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.food_items_price * item.food_items_quantity,
     0
   );
   const taxRate = 0.1; // 10% tax rate
@@ -44,6 +46,10 @@ const ShoppingCart = (props) => {
       .then((response) => setCustomerData(response.data))
       // .then((response) => console.log(response.data))
       .catch((error) => console.error("Error fetching customer data:", error));
+     axios
+      .get(`/api/findCart`) // Replace with the API endpoint to fetch cart items
+      .then((response) => setCartData(response.data))
+      .catch((error) => console.error("Error fetching cart data:", error));
   }, [customerID]);
 
   const handlePlaceOrder = () => {
@@ -76,12 +82,12 @@ const ShoppingCart = (props) => {
           {order.map((item, index) => (
             <li key={index} className="cart-list-item">
               <div className="cart-list-item-left">
-                <p className="cart-list-item-left-qty">{item.quantity}×</p>
-                <p className="cart-list-item-left-name"> {item.foodName}</p>
+                <p className="cart-list-item-left-qty">{item.food_items_quantity}×</p>
+                <p className="cart-list-item-left-name"> {item.food_name}</p>
               </div>
               <div className="cart-list-item-right">
                 <p className="cart-list-item-right-total">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ${(item.food_items_price * item.food_items_quantity).toFixed(2)}
                 </p>
               </div>
             </li>
