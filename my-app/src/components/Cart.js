@@ -38,11 +38,23 @@ const ShoppingCart = (props) => {
 
   const totalAmount = subtotal + tax + deliveryFee;
 
-  const handlePaymentSuccess = (paymentIntent) => {
+  const handlePaymentSuccess = async (paymentIntent) => {
+  try {
     // Handle the payment success here.
     console.log("Payment succeeded! Payment Intent:", paymentIntent);
     console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
-  };
+
+    // Call the backend API to create an order and update the cart status
+    const response = await axios.post("/api/createOrder", {
+      cartId: cartData[0].id, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
+      customerId: customerID,
+    });
+
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error creating order and updating cart status:", error);
+  }
+};
 
   // Fetch the customer's data and cart items from the backend server using axios
   useEffect(() => {

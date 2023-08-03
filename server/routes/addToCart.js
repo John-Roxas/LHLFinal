@@ -28,24 +28,17 @@ router.post("/", async (req, res) => {
 
     // Check if there's an open cart for the specific customer in the carts table
     const openCartQuery = `
-      SELECT id FROM carts WHERE customers_id = $1 AND closed = FALSE;
+      SELECT MAX(id) AS max_cart_id FROM carts WHERE customers_id = $1;
     `;
 
     const openCartResult = await db.query(openCartQuery, [customerInfo]);
 
     let cartId;
-    if (openCartResult.rows.length === 0) {
-      // If no open cart exists for the customer, create a new cart
-      const newCartQuery = `
-        INSERT INTO carts (cart_position, customers_id, closed)
-        VALUES (1, $1, FALSE)
-        RETURNING id;
-      `;
-
-      const newCartResult = await db.query(newCartQuery, [customerInfo]);
-      cartId = newCartResult.rows[0].id;
+    if (openCartResult.rows.length === 0 || openCartResult.rows[0].max_cart_id === null) {
+      // If no open cart exists for the customer, set cartId to 1
+      cartId = 1;
     } else {
-      cartId = openCartResult.rows[0].id;
+      cartId = openCartResult.rows[0].max_cart_id + 1;
     }
 
     // Insert the cart item into the cart_items table in the database
@@ -64,5 +57,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "An error occurred while adding to cart." });
   }
 });
+
 
 module.exports = router;

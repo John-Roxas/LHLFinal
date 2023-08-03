@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   try {
     // Find the latest cart_id for the specific customer
     const cartQuery = `
-      SELECT MAX(cart_position) AS latest_cart_id FROM carts WHERE customers_id = $1;
+      SELECT MAX(id) AS latest_cart_id FROM carts WHERE customers_id = $1;
     `;
 
     const cartResult = await db.query(cartQuery, [customerId]);
@@ -25,15 +25,20 @@ router.get("/", async (req, res) => {
 
     // Fetch cart items for the specified customer and cart_id from the database
     const selectQuery = `
-      SELECT
-        ci.id AS cart_item_id,
-        ci.food_item_id,
-        ci.quantity AS food_items_quantity,
-        f.food_name,
-        f.price AS food_items_price
-      FROM cart_items ci
-      INNER JOIN food_items f ON ci.food_item_id = f.id
-      WHERE ci.cart_id = $1;
+    SELECT
+      cart_items.id AS cart_item_id,
+      cart_items.food_item_id,
+      cart_items.quantity AS food_items_quantity,
+      food_items.food_name,
+      food_items.price AS food_items_price
+    FROM
+      cart_items
+    INNER JOIN
+      food_items
+    ON
+      cart_items.food_item_id = food_items.id
+    WHERE
+      cart_items.cart_id = $1;
     `;
 
     const cartItems = await db.query(selectQuery, [cartId]);
