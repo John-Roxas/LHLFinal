@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import StripeCheckout from "react-stripe-checkout";
 
 const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setLoading] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleToken = async (token) => {
+    // You can handle the token here, but since we're not making an actual API call
+    // we can simply proceed with the payment success simulation.
     setLoading(true);
 
     // Simulate a payment intent (for test purposes)
@@ -27,12 +29,21 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* ... your form JSX ... */}
-      <button type="submit" disabled={!stripe || isLoading}>
-        {isLoading ? "Processing..." : "Pay with Card"}
-      </button>
-    </form>
+    <>
+      <CardElement options={{ style: { base: { fontSize: "16px" } } }} />
+
+      <StripeCheckout
+        token={handleToken}
+        stripeKey="pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc" // Replace with your actual Stripe publishable key
+        name="DashDine"
+        amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
+        currency="CAD"
+        image="https://your-company-logo-url.png" // Replace with your company logo URL
+        billingAddress={true}
+        shippingAddress={true}
+        disabled={!stripe || isLoading}
+      />
+    </>
   );
 };
 
