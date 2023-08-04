@@ -1,10 +1,12 @@
 import axios from "axios";
 
 const useEmail = () => {
-  function emailOrderData() {
+  function emailOrderData(order) {
     //null is where you would send the order information or maybe grab the order from the cookie session
     return axios
-      .post("http://localhost:8080/email", null, { withCredentials: true })
+      .post("http://localhost:8080/email", order, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("from emailOrderData function", res.data);
         // Set the cookie in session storage or cookies
