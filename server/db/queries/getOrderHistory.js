@@ -19,13 +19,13 @@ const getOrderHistory = function (customerID) {
   JOIN
       cart_items  ON carts.id = cart_items.cart_id
   WHERE
-      carts.customers_id = 1;
+      carts.customers_id = $1;
   `;
 
   const values = [customerID];
 
   return db
-    .query(queryString)
+    .query(queryString, values)
     .then((result) => {
       console.log(result.rows);
       if (result.rows.length === 0) {

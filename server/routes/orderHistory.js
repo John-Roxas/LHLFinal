@@ -3,10 +3,10 @@ const router = express.Router();
 const { getOrderHistory } = require("../db/queries/getOrderHistory");
 const db = require("../db/connection");
 
-router.get("/", (req, res) => {
-  const customerID = req.body;
-  console.log("customerID from req.body server", customerID);
-  getOrderHistory(customerID)
+router.post("/", (req, res) => {
+  const ID = req.body.cID;
+  console.log("customerID from req.body server", ID);
+  getOrderHistory(ID)
     .then((result) => {
       console.log("from OrderHistory route in server", result);
       res.send(result);
