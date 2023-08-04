@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import SearchField from "../components/SearchField";
 import NavigationBar from "../components/NavigationBar";
 import FoodList from "../components/FoodList";
@@ -9,7 +9,7 @@ import "./Restaurant.css";
 function Restaurant(props) {
   // These two take information passed from /src/components/RestaurantListItem
   const location = useLocation();
-  const { restaurantId, name, picture } = location.state;
+  const { restaurantId, name, picture, address, postalCode } = location.state;
 
   const [state, setState] = useState({
     foodList: [],
@@ -35,8 +35,23 @@ function Restaurant(props) {
         <div>
           <img src={picture} alt={name} className="restaurant-picture" />
         </div>
-        <h2>{name}</h2>
-        <FoodList restaurantId={restaurantId} foods={state.foodList} />
+        <Link
+          to={"/map"}
+          // these are passed to pages/Map.js
+          state={{
+            restaurantAddress: address,
+            restaurantPostalCode: postalCode,
+          }}
+          style={{ textDecoration: "none" }}
+        >
+          <h2>{name}</h2>
+          <p>{address}</p>
+        </Link>
+        <FoodList
+          restaurantId={restaurantId}
+          foods={state.foodList}
+          restaurantName={name}
+        />
       </div>
       <NavigationBar />
     </div>

@@ -1,7 +1,7 @@
 -- -- New Mandarin Seafood Restaurant Info --
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('New Mandarin Seafood Restaurant', 'info@newmandarin.com', '4650 Gladstone St', 'Vancouver, BC', 'V5N 5A2', '6043369388', 'Chinese food', 'https://newmandarin.ca/wp-content/uploads/2020/10/site_logo.png');
+VALUES ('New Mandarin Seafood Restaurant', 'info@newmandarin.com', '2206 Kingsway', 'Vancouver, BC', 'V5N 2T7', '6043369388', 'Chinese food', 'https://newmandarin.ca/wp-content/uploads/2020/10/site_logo.png');
 
 -- -- New Mandarin Seafood Restaurant food items
 

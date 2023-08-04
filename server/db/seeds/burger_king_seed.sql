@@ -1,7 +1,7 @@
 -- -- Burger King Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Burger King', 'theking@burgerking.com', '4820 Kingsway Bk #14160', 'Burnaby, BC', 'V5H 4P1', '6044335181', 'Fast food', 'https://s1.stabroeknews.com/images/2017/10/burgerking.jpg');
+VALUES ('Burger King', 'theking@burgerking.com', '4820 Kingsway', 'Burnaby, BC', 'V5H 4P1', '6044335181', 'Fast food', 'https://s1.stabroeknews.com/images/2017/10/burgerking.jpg');
 
 -- -- Burger King food items
 
