@@ -1,25 +1,38 @@
 const db = require("../connection");
 
 const getOrderHistory = function (customerID) {
+  // const queryString = `
+  // SELECT
+  //   orders.id AS order_id,
+  //   restaurants.restaurant_name,
+  //   cart_items.food_name AS cart_item_name,
+  //   cart_items.quantity AS cart_item_quantity,
+  //   cart_items.food_item_price AS cart_item_price,
+  //   cart_items.quantity * cart_items.food_item_price AS total_item_cost,
+  //   SUM(cart_items.quantity * cart_items.food_item_price) OVER(PARTITION BY orders.id) AS order_total
+  // FROM
+  //     orders
+  // JOIN
+  //     restaurants  ON orders.restaurants_id = restaurants.id
+  // JOIN
+  //     carts  ON orders.cart_id = carts.id
+  // JOIN
+  //     cart_items  ON carts.id = cart_items.cart_id
+  // WHERE
+  //     carts.customers_id = $1;
+  // `;
+
   const queryString = `
   SELECT
-    orders.id AS order_id,
-    restaurants.restaurant_name,
-    cart_items.food_name AS cart_item_name,
-    cart_items.quantity AS cart_item_quantity,
-    cart_items.food_item_price AS cart_item_price,
-    cart_items.quantity * cart_items.food_item_price AS total_item_cost,
-    SUM(cart_items.quantity * cart_items.food_item_price) OVER(PARTITION BY orders.id) AS order_total
+  restaurants.restaurant_name,
+  orders.id AS order_id,
+  orders.total_amount
   FROM
-      orders
+    orders
   JOIN
-      restaurants  ON orders.restaurants_id = restaurants.id
-  JOIN
-      carts  ON orders.cart_id = carts.id
-  JOIN
-      cart_items  ON carts.id = cart_items.cart_id
+    restaurants ON orders.restaurants_id = restaurants.id
   WHERE
-      carts.customers_id = $1;
+    orders.customers_id = $1;
   `;
 
   const values = [customerID];
