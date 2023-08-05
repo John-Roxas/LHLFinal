@@ -21,13 +21,19 @@ const ShoppingCart = (props) => {
     customer_avatar,
   } = props.customerInfo;
 
-  console.log("CUSTOMER ID IN FRONTEND IS ", id);
+  // console.log("CUSTOMER ID IN FRONTEND IS ", id);
 
   const customerID = id; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
-
+  let restaurantName
   // Need to take this from the order table
-  const restaurantName = "Delicious Restaurant";
+  if (cartData.length === 0) {
+    restaurantName = null
+  } else {
+    restaurantName = cartData[0].restaurant_name;
+  }
+   
+  console.log(cartData);
 
 
   // calculate subtotal. Separate hook?
@@ -44,8 +50,8 @@ const ShoppingCart = (props) => {
   const handlePaymentSuccess = async (paymentIntent) => {
   try {
     // Handle the payment success here.
-    console.log("Payment succeeded! Payment Intent:", paymentIntent);
-    console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
+    // console.log("Payment succeeded! Payment Intent:", paymentIntent);
+    // console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
 
     // Call the backend API to create an order and update the cart status
     const response = await axios.post("/api/addOrder", {
@@ -76,13 +82,6 @@ const ShoppingCart = (props) => {
       })
       .catch((error) => console.error("Error fetching cart data:", error));
   }, [id]);
-
-  // HAVEN'T WRITTEN THIS YET
-  const handleToken = (token) => {
-    // Send the token to your backend for further processing
-    console.log("Stripe token:", token);
-    setShowCheckout(false); // Close the modal after processing the token
-  };
 
   return (
   <article className="cart-item">
@@ -154,10 +153,12 @@ const ShoppingCart = (props) => {
         </div>
       </div>
     )}
-    <StripePaymentForm
-      totalAmount={totalAmount}
-      onPaymentSuccess={handlePaymentSuccess}
-    />
+    {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
+      <StripePaymentForm
+        totalAmount={totalAmount}
+        onPaymentSuccess={handlePaymentSuccess}
+      />
+    )}
   </article>
 );
 
