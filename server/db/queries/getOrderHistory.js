@@ -24,6 +24,7 @@ const getOrderHistory = function (customerID) {
 
   const queryString = `
   SELECT
+  restaurants.restaurant_picture,
   restaurants.restaurant_name,
   orders.id AS order_id,
   orders.total_amount
