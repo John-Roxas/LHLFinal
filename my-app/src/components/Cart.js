@@ -9,6 +9,7 @@ const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cartData, setCartData] = useState([]); // Store cart items fetched from the backend
+  const [recentOrder, setRecentOrder] = useState([]);
 
   const {
     customer_name,
@@ -33,6 +34,7 @@ const ShoppingCart = (props) => {
     restaurantName = cartData[0].restaurant_name;
   }
    
+  console.log("CART DATA HERE");
   console.log(cartData);
 
 
@@ -59,6 +61,10 @@ const ShoppingCart = (props) => {
       customerId: id,
     });
 
+    // console.log(cartId);
+
+    setRecentOrder(cartData);
+
     // console.log(response.data);
     // Clear the cartData state after successful payment
     setCartData([]);
@@ -66,6 +72,8 @@ const ShoppingCart = (props) => {
     console.error("Error creating order and updating cart status:", error);
   }
 };
+
+  // MONITOR cookie session
 
   // Fetch the customer's data and cart items from the backend server using axios
   useEffect(() => {
