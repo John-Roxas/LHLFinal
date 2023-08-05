@@ -45,7 +45,8 @@ li {
 }
 
 .restaurant-container,
-.restaurant-foods-container {
+.restaurant-foods-container,
+.login-item {
   display: flex;
   align-items: center;
   flex-direction: column;
