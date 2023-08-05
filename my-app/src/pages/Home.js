@@ -31,27 +31,29 @@ function Index(props) {
   const renderLoginItem = () => {
     if (isLoggedIn) {
       return (
-        <div className="login-item">
-          <div className="identifier">
-            <h1>Welcome back {props.customerInfo.customer_name}</h1>
-            <h3>Previously order from:</h3>
-          </div>
-          <div className="side-scroller">
-            <div className="scroll-container">
-              <ul className="scroll-items">
-                {props.orderHistory.map((order, index) => (
-                  <li key={index} className="scroll-item">
-                    <div>
-                      <img
-                        src={order.restaurant_picture}
-                        alt={order.restaurant_name}
-                        className="restaurant-picture"
-                      />
-                    </div>
-                    <p>Restaurant: {order.restaurant_name}</p>
-                  </li>
-                ))}
-              </ul>
+        <div className="tile-item">
+          <div className="login-item">
+            <div className="identifier">
+              <h1>Welcome back {props.customerInfo.customer_name}</h1>
+              <h3>Previously order from:</h3>
+            </div>
+            <div className="side-scroller">
+              <div className="scroll-container">
+                <ul className="scroll-items">
+                  {props.orderHistory.map((order, index) => (
+                    <li key={index} className="scroll-item">
+                      <div>
+                        <img
+                          src={order.restaurant_picture}
+                          alt={order.restaurant_name}
+                          className="restaurant-picture"
+                        />
+                      </div>
+                      <p>Restaurant: {order.restaurant_name}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
