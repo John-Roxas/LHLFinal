@@ -71,6 +71,7 @@ function App() {
                 handleUserDataResults={handleUserDataResults}
                 getUserData={getUserData}
                 restaurants={apiState.restaurants}
+                customerInfo={customerInfo}
               />
             }
           />
