@@ -6,6 +6,7 @@ import Add from "./buttons/Add";
 import "./AddFood.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 function AddFood(props) {
   const [foodCounter, setFoodCounter] = useState(1);
@@ -24,6 +25,7 @@ function AddFood(props) {
     price: food?.price,
     quantity: 1,
     restaurantName: props.restaurantName,
+    customerInfo: props.customerInfo.id
   };
 
   const handleSubmit = () => {
@@ -31,6 +33,15 @@ function AddFood(props) {
     props.cart.push(cartItem);
     console.log(props.cart);
     setModal(true);
+    // testing adding to database table cart
+
+    axios.post("/api/addToCart", cartItem)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   };
 
   // const closeModal = () => {

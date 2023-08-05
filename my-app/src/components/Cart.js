@@ -8,24 +8,39 @@ import StripeCheckout from "react-stripe-checkout";
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
-  const customerID = 1; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
+  const [cartData, setCartData] = useState([]); // Store cart items fetched from the backend
+  const [recentOrder, setRecentOrder] = useState([]);
+
+  const {
+    customer_name,
+    id,
+    customer_email,
+    customer_street_address,
+    city,
+    postal_code,
+    phone,
+    customer_avatar,
+  } = props.customerInfo;
+
+  // console.log("CUSTOMER ID IN FRONTEND IS ", id);
+
+  const customerID = id; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
-
+  let restaurantName
   // Need to take this from the order table
-  const restaurantName = "Delicious Restaurant";
+  if (cartData.length === 0) {
+    restaurantName = null
+  } else {
+    restaurantName = cartData[0].restaurant_name;
+  }
+   
+  console.log("CART DATA HERE");
+  console.log(cartData);
 
-  // Need to replace with API call to the orders table
-  // const orderDetails = [
-  //   { itemName: "Item 1", quantity: 2, price: 5.99 },
-  //   { itemName: "Item 2", quantity: 1, price: 3.49 },
-  // ];
 
   // calculate subtotal. Separate hook?
-  let order = props.cart;
-  console.log("CALCULATING SUBTOTAL");
-  console.log(order);
-  const subtotal = order.reduce(
-    (total, item) => total + item.price * item.quantity,
+  const subtotal = cartData.reduce(
+    (total, item) => total + item.food_items_price * item.food_items_quantity,
     0
   );
   const taxRate = 0.1; // 10% tax rate
@@ -34,58 +49,89 @@ const ShoppingCart = (props) => {
 
   const totalAmount = subtotal + tax + deliveryFee;
 
-  // Fetch the customer's data from the back-end server using axios
+  const handlePaymentSuccess = async (paymentIntent) => {
+  try {
+    // Handle the payment success here.
+    // console.log("Payment succeeded! Payment Intent:", paymentIntent);
+    // console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
+
+    // Call the backend API to create an order and update the cart status
+    const response = await axios.post("/api/addOrder", {
+      cartId: cartData[0].cartid, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
+      customerId: id,
+    });
+
+    // console.log(cartId);
+
+    setRecentOrder(cartData);
+
+    // console.log(response.data);
+    // Clear the cartData state after successful payment
+    setCartData([]);
+  } catch (error) {
+    console.error("Error creating order and updating cart status:", error);
+  }
+};
+
+  // MONITOR cookie session
+
+  // Fetch the customer's data and cart items from the backend server using axios
   useEffect(() => {
     axios
-      .get(`/api/customers/${customerID}`)
+      .get(`/api/customers/${id}`)
       .then((response) => setCustomerData(response.data))
-      // .then((response) => console.log(response.data))
       .catch((error) => console.error("Error fetching customer data:", error));
-  }, [customerID]);
 
-  const handlePlaceOrder = () => {
-    setShowCheckout(true);
-  };
-
-  // HAVEN'T WRITTEN THIS YET
-  const handleToken = (token) => {
-    // Send the token to your backend for further processing
-    console.log("Stripe token:", token);
-    setShowCheckout(false); // Close the modal after processing the token
-  };
+    axios
+      .get(`/api/findCart/${id}`)
+      .then((response) => {
+        // Assuming the backend returns an array of cart items, set the cartData state accordingly
+        setCartData(response.data);
+      })
+      .catch((error) => console.error("Error fetching cart data:", error));
+  }, [id]);
 
   return (
-    <article className="cart-item">
-      <div className="cart-item TOP">
-        <h1>Your Cart</h1>
-      </div>
+  <article className="cart-item">
+    <div className="cart-item TOP">
+      <h1>Your Cart</h1>
+    </div>
 
+    <div className="cart-item">
+      <p>{customer_street_address}</p>
+    </div>
+
+    <div className="cart-item">
+      <p>{restaurantName}</p>
+    </div>
+
+    {cartData.length === 0 ? ( // Check if the cart is empty
       <div className="cart-item">
-        <p>{customerData?.customer_street_address}</p>
+        <p>Your cart is empty. Go and grab something delicious!</p>
       </div>
-
-      <div className="cart-item">
-        <p>{restaurantName}</p>
-      </div>
-
+    ) : (
       <div className="cart-item">
         <ul className="cart-list">
-          {order.map((item, index) => (
+          {cartData.map((item, index) => (
             <li key={index} className="cart-list-item">
               <div className="cart-list-item-left">
-                <p className="cart-list-item-left-qty">{item.quantity}×</p>
-                <p className="cart-list-item-left-name"> {item.foodName}</p>
+                <p className="cart-list-item-left-qty">
+                  {item.food_items_quantity}×
+                </p>
+                <p className="cart-list-item-left-name"> {item.food_name}</p>
               </div>
               <div className="cart-list-item-right">
                 <p className="cart-list-item-right-total">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ${(item.food_items_price * item.food_items_quantity).toFixed(2)}
                 </p>
               </div>
             </li>
           ))}
         </ul>
       </div>
+    )}
 
+    {cartData.length > 0 && ( // Show the cart cost details only if the cart is not empty
       <div className="cart-item">
         <div className="cart-cost-item">
           <div className="cart-cost-line">
@@ -114,31 +160,17 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       </div>
-      <div className="cart-item">
-        <div className="cart-cost-line">
-          <div className="cart-cost-left">
-            <h4>Total:</h4>
-          </div>
-          <div className="cart-cost-right">
-            <h4>${totalAmount.toFixed(2)}</h4>
-          </div>
-        </div>
-      </div>
-      <StripeCheckout
-        token={handleToken}
-        stripeKey={
-          "pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc"
-        }
-        name="DashDine"
-        amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
-        currency="CAD"
-        image="https://your-company-logo-url.png" // Replace with your company logo URL
-        billingAddress={true}
-        shippingAddress={true}
-        ref={stripeRef} // Set the ref for the StripeCheckout component
+    )}
+    {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
+      <StripePaymentForm
+        totalAmount={totalAmount}
+        onPaymentSuccess={handlePaymentSuccess}
       />
-    </article>
-  );
+    )}
+  </article>
+);
+
+
 };
 
 export default ShoppingCart;

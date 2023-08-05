@@ -89,7 +89,7 @@ function App() {
           />
           <Route
             path="/restaurant/:id/food_items/:foodItemId"
-            element={<AddFoodItem cart={cart} />}
+            element={<AddFoodItem cart={cart} customerInfo={customerInfo}/>}
           />
           <Route path="/map" element={<Map customerInfo={customerInfo} />} />
           {/* confirm this is the closing elemtn for line 92 restaurant */}

@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS restaurants CASCADE;
 DROP TABLE IF EXISTS food_items CASCADE;
 DROP TABLE IF EXISTS food_items_quantities CASCADE;
 DROP TABLE IF EXISTS cart_food_lists CASCADE;
+DROP TABLE IF EXISTS cart_items CASCADE;
 DROP TABLE IF EXISTS carts CASCADE;
 DROP TABLE IF EXISTS drivers CASCADE;
 DROP TABLE IF EXISTS message_threads CASCADE;
@@ -48,16 +49,22 @@ CREATE TABLE food_items_quantities (
   food_items_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_food_lists (
-  id SERIAL PRIMARY KEY NOT NULL,
-  food_items_quantities_id INTEGER NOT NULL REFERENCES food_items_quantities(id) ON DELETE CASCADE
-);
 
 CREATE TABLE carts (
   id SERIAL PRIMARY KEY NOT NULL,
-  customers_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
-  cart_food_lists_id INTEGER NOT NULL REFERENCES cart_food_lists(id) ON DELETE CASCADE
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+  closed BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+  food_item_id INTEGER NOT NULL REFERENCES food_items(id) ON DELETE CASCADE,
+  quantity INTEGER NOT NULL,
+  food_item_price DECIMAL NOT NULL,
+  food_name VARCHAR(255)
+);
+
 
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -67,10 +74,13 @@ CREATE TABLE drivers (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
   date TIMESTAMP,
-  carts_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
-  drivers_id INTEGER NOT NULL REFERENCES drivers(id) ON DELETE CASCADE,
-  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
+  customers_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+  drivers_id INTEGER REFERENCES drivers(id) ON DELETE SET NULL,
+  restaurants_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+  status VARCHAR(50) NOT NULL,
+  total_amount DECIMAL NOT NULL
 );
 
 -- //TODO Need to confirm how to setup the FK for the sender ID
