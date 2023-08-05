@@ -34,11 +34,11 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
 
       <StripeCheckout
         token={handleToken}
-        stripeKey="pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc" // Replace with your actual Stripe publishable key
+        stripeKey="pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc" 
         name="DashDine"
         amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
         currency="CAD"
-        image="https://your-company-logo-url.png" // Replace with your company logo URL
+        image="https://your-company-logo-url.png"
         billingAddress={true}
         shippingAddress={true}
         disabled={!stripe || isLoading}
