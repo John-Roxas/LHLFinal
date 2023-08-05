@@ -4,6 +4,7 @@ const router = express.Router();
 const db = require("../db/connection");
 
 // API endpoint to add items to the cart
+// API endpoint to add items to the cart
 router.post("/", async (req, res) => {
   const { foodName, price, quantity, customerInfo } = req.body;
 
@@ -28,17 +29,24 @@ router.post("/", async (req, res) => {
 
     // Check if there's an open cart for the specific customer in the carts table
     const openCartQuery = `
-      SELECT MAX(id) AS max_cart_id FROM carts WHERE customers_id = $1;
+      SELECT MAX(id) AS max_cart_id FROM carts WHERE customers_id = $1 AND closed = FALSE;
     `;
 
     const openCartResult = await db.query(openCartQuery, [customerInfo]);
 
     let cartId;
     if (openCartResult.rows.length === 0 || openCartResult.rows[0].max_cart_id === null) {
-      // If no open cart exists for the customer, set cartId to 1
-      cartId = 1;
+      // If no open cart exists for the customer, create a new cart
+      const newCartQuery = `
+        INSERT INTO carts (customers_id, closed)
+        VALUES ($1, FALSE)
+        RETURNING id;
+      `;
+
+      const newCartResult = await db.query(newCartQuery, [customerInfo]);
+      cartId = newCartResult.rows[0].id;
     } else {
-      cartId = openCartResult.rows[0].max_cart_id + 1;
+      cartId = openCartResult.rows[0].max_cart_id;
     }
 
     // Insert the cart item into the cart_items table in the database
@@ -58,5 +66,5 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 module.exports = router;
+

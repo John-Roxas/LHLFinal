@@ -57,7 +57,7 @@ app.use("/restaurants", visitRestaurant);
 app.use("/restaurant", getFood);
 app.use("/api/addToCart", addToCart);
 app.use("/api/findCart", findCart);
-app.use("/addOrder", addOrder);
+app.use("/api/addOrder", addOrder);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
