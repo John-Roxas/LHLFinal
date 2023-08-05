@@ -57,6 +57,7 @@ CREATE TABLE cart_items (
   food_name VARCHAR(255)
 );
 
+
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY NOT NULL,
   driver_name VARCHAR(255) NOT NULL,

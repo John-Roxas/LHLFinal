@@ -51,6 +51,10 @@ const visitRestaurant = require("./routes/visitRestaurantRoutes");
 const getFood = require("./routes/getFoodRoutes");
 const emailRoute = require("./routes/email");
 const orderHistoryRoute = require("./routes/orderHistory");
+const addToCart = require("./routes/addToCart");
+const findCart = require("./routes/findCart");
+const addOrder = require("./routes/addOrder");
+
 
 //Mount resources app.use
 app.use("/api/restaurants", restaurantListRoutes);
@@ -62,6 +66,9 @@ app.use("/restaurants", visitRestaurant);
 app.use("/restaurant", getFood);
 app.use("/email", emailRoute);
 app.use("/orderhistory", orderHistoryRoute);
+app.use("/api/addToCart", addToCart);
+app.use("/api/findCart", findCart);
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

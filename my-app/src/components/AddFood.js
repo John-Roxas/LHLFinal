@@ -6,10 +6,13 @@ import Add from "./buttons/Add";
 import "./AddFood.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 function AddFood(props) {
   const [foodCounter, setFoodCounter] = useState(1);
   const [modal, setModal] = useState(false);
+
+  const history = useNavigate(); // this is used to go back to previous page
 
   // optional chaining '?' before food (ex. food?)
   // It ensures that the code won't break if the food object is null or undefined
@@ -21,6 +24,8 @@ function AddFood(props) {
     foodName: food?.food_name,
     price: food?.price,
     quantity: 1,
+    restaurantName: props.restaurantName,
+    customerInfo: props.customerInfo.id
   };
 
   const handleSubmit = () => {
@@ -28,11 +33,21 @@ function AddFood(props) {
     props.cart.push(cartItem);
     console.log(props.cart);
     setModal(true);
+    // testing adding to database table cart
+
+    axios.post("/api/addToCart", cartItem)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   };
 
-  const closeModal = () => {
-    setModal(false);
-  };
+  // const closeModal = () => {
+  //   // setModal(false);
+  //   history(-1);
+  // };
 
   return (
     <div className="add-food-container">
@@ -59,7 +74,8 @@ function AddFood(props) {
               x{foodCounter} {food?.food_name}
             </h3>
             <p>Added to Cart!</p>
-            <button onClick={closeModal}>Continue Shopping</button>
+            <button onClick={() => history(-1)}>Continue Shopping</button>
+            {/* <button onClick={closeModal}>Continue Shopping</button> */}
           </div>
         </div>
       )}
