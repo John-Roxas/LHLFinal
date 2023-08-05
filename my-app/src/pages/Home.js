@@ -37,6 +37,22 @@ function Index(props) {
             <h3>Previously order from:</h3>
           </div>
           <div className="side-scroller"></div>
+          <div className="tile-item">
+            <ul>
+              {props.orderHistory.map((order, index) => (
+                <li key={index}>
+                  <div>
+                    <img
+                      src={order.restaurant_picture}
+                      alt={order.restaurant_name}
+                      className="restaurant-picture"
+                    />
+                  </div>
+                  <p>Restaurant: {order.restaurant_name}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       );
     } else {
