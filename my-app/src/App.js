@@ -63,7 +63,7 @@ function App() {
   //Add getOrderHistory state
   const [orderHistory, setOrderHistory] = useState([]); // State to hold order history data
   useEffect(() => {
-    if (customerInfo) {
+    if (customerInfo.id) {
       getOrderHistoryData(customerInfo.id)
         .then((data) => {
           console.log("from useEffect data orderHistory", data);
@@ -74,6 +74,7 @@ function App() {
         });
     }
   }, [customerInfo]);
+
   return (
     <main>
       <BrowserRouter>
