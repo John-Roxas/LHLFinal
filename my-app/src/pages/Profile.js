@@ -7,13 +7,13 @@ function Profile(props) {
   //Order History hook
   const { getOrderHistoryData } = useOrderHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(
-    !!sessionStorage.getItem("session")
+    sessionStorage.getItem("session")
   );
   const [orderHistory, setOrderHistory] = useState([]); // State to hold order history data
 
   useEffect(() => {
     const sessionData = sessionStorage.getItem("session");
-    setIsLoggedIn(!!sessionData);
+    setIsLoggedIn(sessionData);
 
     // Fetch order history data when the component mounts
     if (isLoggedIn) {
