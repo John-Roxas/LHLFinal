@@ -7,10 +7,8 @@ const getRestaurants = (mode, searchTerm) => {
   // Query for searching by food item name
   if (mode == "name") {
     queryString += `
-      SELECT DISTINCT restaurants.* FROM restaurants
-      JOIN food_items ON food_items.restaurants_id = restaurants.id
-      WHERE food_name ILIKE $1
-      ORDER BY restaurants.id;
+      SELECT *, restaurants_id as restaurantId FROM food_items
+      WHERE food_name ILIKE $1;
     `
   } else if (mode == "category") {
     // Query mode for searching by category
@@ -34,3 +32,13 @@ const getRestaurants = (mode, searchTerm) => {
 };
 
 module.exports = { getRestaurants };
+
+
+/*
+  Previous query to return restaurants
+
+  SELECT DISTINCT restaurants.* FROM restaurants
+  JOIN food_items ON food_items.restaurants_id = restaurants.id
+  WHERE food_name ILIKE $1
+  ORDER BY restaurants.id;
+*/
