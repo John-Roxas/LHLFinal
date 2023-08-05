@@ -33,6 +33,12 @@ app.use(
 );
 app.use(morgan("dev"));
 
+//SendGrid API
+const API_KEY = process.env.APIKEY;
+const sgMail = require("@sendgrid/mail");
+
+sgMail.setApiKey(API_KEY);
+
 // app.use(express.static("public"));
 
 // Separated Routes for each Resource
@@ -43,9 +49,12 @@ const findCustomerRoute = require("./routes/customers");
 const search = require("./routes/search");
 const visitRestaurant = require("./routes/visitRestaurantRoutes");
 const getFood = require("./routes/getFoodRoutes");
+const emailRoute = require("./routes/email");
+const orderHistoryRoute = require("./routes/orderHistory");
 const addToCart = require("./routes/addToCart");
 const findCart = require("./routes/findCart");
 const addOrder = require("./routes/addOrder");
+
 
 //Mount resources app.use
 app.use("/api/restaurants", restaurantListRoutes);
@@ -55,9 +64,11 @@ app.use("/api/customers/", findCustomerRoute);
 app.use("/api/search", search);
 app.use("/restaurants", visitRestaurant);
 app.use("/restaurant", getFood);
+app.use("/email", emailRoute);
+app.use("/orderhistory", orderHistoryRoute);
 app.use("/api/addToCart", addToCart);
 app.use("/api/findCart", findCart);
-app.use("/api/addOrder", addOrder);
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

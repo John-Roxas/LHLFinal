@@ -8,7 +8,7 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    !!sessionStorage.getItem("session")
+    sessionStorage.getItem("session")
   );
 
   const sessionData = sessionStorage.getItem("session");

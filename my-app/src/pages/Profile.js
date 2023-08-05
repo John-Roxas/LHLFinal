@@ -1,16 +1,37 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/NavigationBar";
 import axios from "axios";
+// import useOrderHistory from "../hooks/useOrderHistory";
 
 function Profile(props) {
+  const { orderHistory } = props;
+  //Order History hook
+  // const { getOrderHistoryData } = useOrderHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(
-    !!sessionStorage.getItem("session")
+    sessionStorage.getItem("session")
   );
+  // const [orderHistory, setOrderHistory] = useState([]); // State to hold order history data
 
   useEffect(() => {
     const sessionData = sessionStorage.getItem("session");
-    setIsLoggedIn(!!sessionData);
+    setIsLoggedIn(sessionData);
+
+    // Fetch order history data when the component mounts
+    // if (isLoggedIn) {
+    //   getOrderHistoryData(props.customerInfo.id)
+    //     .then((data) => {
+    //       setOrderHistory(data); // Update the order history state
+    //     })
+    //     .catch((error) => {
+    //       console.log("Error fetching order history:", error);
+    //     });
+    // }
+    // [isLoggedIn, props.customerInfo.id]
   }, []);
+  // useEffect(() => {
+  //   const sessionData = sessionStorage.getItem("session");
+  //   setIsLoggedIn(!!sessionData);
+  // }, []);
 
   function getSessionData() {
     const sessionDataString = sessionStorage.getItem("session");
@@ -47,6 +68,7 @@ function Profile(props) {
   };
 
   const {
+    id,
     customer_name,
     customer_email,
     customer_street_address,
@@ -55,7 +77,6 @@ function Profile(props) {
     phone,
     customer_avatar,
   } = props.customerInfo;
-
   return (
     <div className="App">
       <div className="profile-container">
@@ -68,10 +89,21 @@ function Profile(props) {
           Address: {`${customer_street_address}, ${city}, ${postal_code}`}
         </div>
         <div className="tile-item">Phone Number: {phone}</div>
+        <div className="tile-item">This is the {id}</div>
 
-        <div className="tile-item">Order History Component</div>
         <div className="tile-item">{getSessionData()}</div>
-
+        <div className="tile-item">
+          <h2>Order History</h2>
+          <ul>
+            {orderHistory.map((order, index) => (
+              <li key={index} className="item-list">
+                <p>Order ID: {order.order_id}</p>
+                <p>Restaurant: {order.restaurant_name}</p>
+                <p>Order Total: {order.total_amount}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="tile-item">
           <button className="login-button" onClick={handleLogout}>
             Logout
