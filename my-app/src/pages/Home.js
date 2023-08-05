@@ -35,7 +35,7 @@ function Index(props) {
           <div className="login-item">
             <div className="identifier">
               <h1>Welcome back {props.customerInfo.customer_name}</h1>
-              <h3>Previously order from:</h3>
+              <h3>Previously ordered from:</h3>
             </div>
             <div className="side-scroller">
               <div className="scroll-container">
