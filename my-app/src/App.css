@@ -84,7 +84,7 @@ li {
   width: 100%;
 }
 
-/* Set the width and overflow property to enable horizontal scrolling */
+/* overflow property to enable horizontal scrolling */
 .side-scroller {
   overflow-x: auto;
 }
@@ -94,6 +94,8 @@ li {
   display: flex;
   flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
   padding: 20px; /* Add some padding to the container */
+  width: 100%; /* Adjust the width as needed */
+  max-width: 600px; /* Set a maximum width for larger screens */
 }
 
 /* Individual scrollable items */
@@ -102,6 +104,7 @@ li {
   list-style: none; /* Remove default list styles */
   padding: 0;
   margin: 0;
+  white-space: nowrap; /* Prevent items from wrapping */
 }
 
 /* Styling for each item */

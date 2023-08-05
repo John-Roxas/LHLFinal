@@ -40,7 +40,7 @@ function Index(props) {
             <div className="scroll-container">
               <ul className="scroll-items">
                 {props.orderHistory.map((order, index) => (
-                  <li key={index} className="scroll-items">
+                  <li key={index} className="scroll-item">
                     <div>
                       <img
                         src={order.restaurant_picture}
