@@ -31,7 +31,7 @@ function Index(props) {
   const renderLoginItem = () => {
     if (isLoggedIn) {
       return (
-        <div className="tile-item">
+        <div className="item-list">
           <div className="login-item">
             <div className="identifier">
               <h1>Welcome back {props.customerInfo.customer_name}</h1>

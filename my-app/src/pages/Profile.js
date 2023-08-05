@@ -96,7 +96,7 @@ function Profile(props) {
           <h2>Order History</h2>
           <ul>
             {orderHistory.map((order, index) => (
-              <li key={index}>
+              <li key={index} className="item-list">
                 <p>Order ID: {order.order_id}</p>
                 <p>Restaurant: {order.restaurant_name}</p>
                 <p>Order Total: {order.total_amount}</p>
