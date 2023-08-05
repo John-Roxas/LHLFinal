@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 //Importing login hook
 import useLogin from "./hooks/useLogin";
+import useOrderHistory from "./hooks/useOrderHistory";
 
 function App() {
   const apiURLS = {
@@ -56,6 +57,23 @@ function App() {
     console.log("data received from Login in App.js", data);
     setCustomerInfo(data);
   };
+
+  //Destructure useOrderHistory hook
+  const { getOrderHistoryData } = useOrderHistory();
+  //Add getOrderHistory state
+  const [orderHistory, setOrderHistory] = useState([]); // State to hold order history data
+  useEffect(() => {
+    if (customerInfo) {
+      getOrderHistoryData(customerInfo.id)
+        .then((data) => {
+          console.log("from useEffect data orderHistory", data);
+          setOrderHistory(data); // Update the order history state
+        })
+        .catch((error) => {
+          console.log("Error fetching order history:", error);
+        });
+    }
+  }, [customerInfo]);
   return (
     <main>
       <BrowserRouter>
@@ -72,6 +90,7 @@ function App() {
                 getUserData={getUserData}
                 restaurants={apiState.restaurants}
                 customerInfo={customerInfo}
+                orderHistory={orderHistory}
               />
             }
           />
@@ -81,7 +100,12 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<Profile customerInfo={customerInfo} />}
+            element={
+              <Profile
+                customerInfo={customerInfo}
+                orderHistory={orderHistory}
+              />
+            }
           />
           <Route
             path="/restaurants/:id"
