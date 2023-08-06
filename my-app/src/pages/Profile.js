@@ -5,7 +5,6 @@ import useEmail from "../hooks/useEmail";
 // import useOrderHistory from "../hooks/useOrderHistory";
 
 function Profile(props) {
-  const { emailOrderData } = useEmail();
   const { orderHistory } = props;
   //Order History hook
   // const { getOrderHistoryData } = useOrderHistory();
@@ -105,14 +104,6 @@ function Profile(props) {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="tile-item">
-          <button
-            className="login-button"
-            onClick={() => emailOrderData(props.customerInfo)}
-          >
-            Email
-          </button>
         </div>
         <div className="tile-item">
           <button className="login-button" onClick={handleLogout}>
