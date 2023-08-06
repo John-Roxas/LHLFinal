@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const sgMail = require("@sendgrid/mail");
 const db = require("../db/connection");
 
 router.post("/", (req, res) => {
@@ -9,8 +9,8 @@ router.post("/", (req, res) => {
   const message = {
     to: process.env.recipientEmail,
     from: process.env.senderEmail,
-    subject: "test",
-    text: "email.message",
+    subject: "From Food App",
+    text: JSON.stringify(email),
   };
   console.log(message);
   sgMail
