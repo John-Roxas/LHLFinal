@@ -1,38 +1,17 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/NavigationBar";
-import axios from "axios";
-import useEmail from "../hooks/useEmail";
-// import useOrderHistory from "../hooks/useOrderHistory";
 
 function Profile(props) {
   const { orderHistory } = props;
-  //Order History hook
-  // const { getOrderHistoryData } = useOrderHistory();
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     sessionStorage.getItem("session")
   );
-  // const [orderHistory, setOrderHistory] = useState([]); // State to hold order history data
 
   useEffect(() => {
     const sessionData = sessionStorage.getItem("session");
     setIsLoggedIn(sessionData);
-
-    // Fetch order history data when the component mounts
-    // if (isLoggedIn) {
-    //   getOrderHistoryData(props.customerInfo.id)
-    //     .then((data) => {
-    //       setOrderHistory(data); // Update the order history state
-    //     })
-    //     .catch((error) => {
-    //       console.log("Error fetching order history:", error);
-    //     });
-    // }
-    // [isLoggedIn, props.customerInfo.id]
   }, []);
-  // useEffect(() => {
-  //   const sessionData = sessionStorage.getItem("session");
-  //   setIsLoggedIn(!!sessionData);
-  // }, []);
 
   function getSessionData() {
     const sessionDataString = sessionStorage.getItem("session");
