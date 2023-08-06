@@ -50,6 +50,12 @@ const ShoppingCart = (props) => {
   const deliveryFee = 3.99;
 
   const totalAmount = subtotal + tax + deliveryFee;
+  const orderTotal = {
+    subtotal: subtotal,
+    tax: tax,
+    deliveryFee: deliveryFee,
+    totalAmount: totalAmount,
+  };
   const handlePaymentSuccess = async (paymentIntent) => {
     try {
       // Handle the payment success here.
@@ -168,7 +174,7 @@ const ShoppingCart = (props) => {
       <div className="tile-item">
         <button
           className="login-button"
-          onClick={() => emailOrderData(cartData, totalAmount)}
+          onClick={() => emailOrderData(cartData, orderTotal)}
         >
           Email
         </button>
