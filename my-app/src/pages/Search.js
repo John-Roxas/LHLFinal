@@ -2,6 +2,7 @@ import SearchField from "../components/SearchField";
 import SearchMode from "../components/SearchMode";
 import NavigationBar from "../components/NavigationBar";
 import RestaurantList from "../components/RestaurantList";
+import FoodList from "../components/FoodList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -10,13 +11,13 @@ function Search(props) {
   const [state, setState] = useState({
     search: "",
     mode: "restaurant",
-    restaurants: [],
+    results: [],
   });
 
   // Define setters for search and search mode
   const setSearch = (search) => setState({ ...state, search });
   const setMode = (mode) => setState({ ...state, mode });
-
+  
   // Monitor changes in query
   useEffect(() => {
     axios
@@ -24,21 +25,36 @@ function Search(props) {
       .then((response) => {
         setState((prev) => ({
           ...prev,
-          restaurants: response.data,
+          results: response.data,
         }));
       });
   }, [state.search, state.mode]);
 
-  return (
-    <div className="App">
-      <div className="search-container">
-        <SearchField search={state.search} setSearch={setSearch} />
-        <SearchMode setMode={setMode} />
+  if(state.mode === "name") {
+    return (
+      <div className="App">
+        <div className="search-container">
+          <SearchField search={state.search} setSearch={setSearch} />
+          <SearchMode setMode={setMode} />
+        </div>
+        <FoodList
+          foods={state.results}
+        />
+        <NavigationBar />
       </div>
-      <RestaurantList restaurants={state.restaurants} />
-      <NavigationBar />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="App">
+        <div className="search-container">
+          <SearchField search={state.search} setSearch={setSearch} />
+          <SearchMode setMode={setMode} />
+        </div>
+        <RestaurantList restaurants={state.results} />
+        <NavigationBar />
+      </div>
+    );
+  }
 }
 
 export default Search;

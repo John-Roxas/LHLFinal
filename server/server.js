@@ -54,6 +54,8 @@ const orderHistoryRoute = require("./routes/orderHistory");
 const addToCart = require("./routes/addToCart");
 const findCart = require("./routes/findCart");
 const addOrder = require("./routes/addOrder");
+const getRestaurant = require("./routes/getRestaurantById");
+const deleteCartItem = require("./routes/deleteCartItem")
 
 
 //Mount resources app.use
@@ -68,6 +70,9 @@ app.use("/email", emailRoute);
 app.use("/orderhistory", orderHistoryRoute);
 app.use("/api/addToCart", addToCart);
 app.use("/api/findCart", findCart);
+app.use("/api/restaurant/", getRestaurant);
+app.use("/api/addOrder", addOrder);
+app.use("/api/deleteCartItem", deleteCartItem);
 
 
 app.listen(PORT, () => {
