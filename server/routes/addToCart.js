@@ -13,6 +13,8 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Invalid data. Food name, price, quantity, and customer ID are required." });
   }
 
+  console.log(customerInfo);
+
   try {
     // Find the food_items_id for the specified foodName
     const foodItemQuery = `
@@ -37,6 +39,7 @@ router.post("/", async (req, res) => {
     let cartId;
     if (openCartResult.rows.length === 0 || openCartResult.rows[0].max_cart_id === null) {
       // If no open cart exists for the customer, create a new cart
+      console.log("CREATING NEW CART");
       const newCartQuery = `
         INSERT INTO carts (customers_id, closed)
         VALUES ($1, FALSE)
@@ -48,6 +51,8 @@ router.post("/", async (req, res) => {
     } else {
       cartId = openCartResult.rows[0].max_cart_id;
     }
+
+    console.log("CART CREATED AT ID ", cartId);
 
     // Insert the cart item into the cart_items table in the database
     const insertQuery = `
