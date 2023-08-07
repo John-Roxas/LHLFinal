@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans&display=swap");
 :root {
   --white: #fffffffc;
   --black: #000;
@@ -6,7 +7,7 @@
   --selected: #8888fc;
   --tile-spacing: 10px;
   --box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  --padding: 10px;
+  --padding: 20px;
 }
 
 body,
@@ -22,6 +23,7 @@ ol,
 li {
   margin: 0;
   padding: 0;
+  font-family: "Work Sans", sans-ferif;
 }
 
 .App {
@@ -32,6 +34,7 @@ li {
   /* justify-content: center; */
   align-items: center;
   flex-direction: column;
+  max-width: 600px;
 }
 
 .btn {
@@ -117,7 +120,7 @@ li {
   flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
   padding: 20px; /* Add some padding to the container */
   width: 100%; /* Adjust the width as needed */
-  max-width: 600px; /* Set a maximum width for larger screens */
+  max-width: 550px; /* Set a maximum width for larger screens */
 }
 
 /* Individual scrollable items */
