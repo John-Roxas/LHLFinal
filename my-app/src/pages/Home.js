@@ -3,6 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import RestaurantList from "../components/RestaurantList";
 import Login from "../components/Login";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 
 function Index(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -66,9 +67,9 @@ function Index(props) {
   return (
     <div className="App">
       <div className="search-container">
-        <a href="/search" className="form-field">
+        <Link to="/Search" className="form-field">
           <SearchField />
-        </a>
+        </Link>
         <Login loginData={loginInfo} />
       </div>
       {renderLoginItem()}
