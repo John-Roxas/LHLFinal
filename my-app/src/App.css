@@ -85,9 +85,27 @@ li {
   width: 100%;
 }
 
-/* overflow property to enable horizontal scrolling */
 .side-scroller {
   overflow-x: auto;
+  /* Hide the default scroll bar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide the scrollbar in Webkit browsers (e.g., Chrome, Safari) */
+.side-scroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Add custom styles to the scrollbar track and thumb if needed */
+.side-scroller::-webkit-scrollbar-track {
+  background: transparent; /* Set the track color */
+}
+
+.side-scroller::-webkit-scrollbar-thumb {
+  background: var(--border); /* Set the thumb color */
+  border-radius: 10px; /* Round the edges of the thumb */
 }
 
 /* Flex container for scrollable items */

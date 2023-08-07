@@ -1,7 +1,12 @@
 import axios from "axios";
 
 const useEmail = () => {
-  function emailOrderData(order) {
+  function emailOrderData(orderData, orderTotal) {
+    const order = {
+      orderData,
+      orderTotal,
+    };
+    console.log("Email button was clicked, function working");
     //null is where you would send the order information or maybe grab the order from the cookie session
     return axios
       .post("http://localhost:8080/email", order, {

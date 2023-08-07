@@ -4,12 +4,15 @@ import "./Cart.css";
 import "./StripeCheckoutModal.css";
 import StripePaymentForm from "./StripePaymentForm";
 import StripeCheckout from "react-stripe-checkout";
+import useEmail from "../hooks/useEmail";
 
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cartData, setCartData] = useState([]); // Store cart items fetched from the backend
   const [recentOrder, setRecentOrder] = useState([]);
+
+  const { emailOrderData } = useEmail();
 
   const {
     customer_name,
@@ -26,17 +29,16 @@ const ShoppingCart = (props) => {
 
   const customerID = id; // Replace with the actual customer ID (you can pass it as a prop or fetch it from the logged-in state)
   const stripeRef = useRef(null);
-  let restaurantName
+  let restaurantName;
   // Need to take this from the order table
   if (cartData.length === 0) {
-    restaurantName = null
+    restaurantName = null;
   } else {
     restaurantName = cartData[0].restaurant_name;
   }
 
   console.log("CART DATA HERE");
   console.log(cartData);
-
 
   // calculate subtotal. Separate hook?
   const subtotal = cartData.reduce(
@@ -48,6 +50,14 @@ const ShoppingCart = (props) => {
   const deliveryFee = 3.99;
 
   const totalAmount = subtotal + tax + deliveryFee;
+
+  const orderTotal = {
+    subtotal: subtotal,
+    tax: tax,
+    deliveryFee: deliveryFee,
+    totalAmount: totalAmount,
+  };
+
 
   const handleDeleteCartItem = async (cartItemId) => {
     try {
@@ -125,6 +135,7 @@ const ShoppingCart = (props) => {
             {cartData.map((item, index) => (
               <li key={index} className="cart-list-item">
                 <div className="cart-list-item-left">
+
                   <p className="cart-list-item-left-qty">{item.food_items_quantity}×</p>
                   <p className="cart-list-item-left-name">{item.food_name}</p>
                 </div>
@@ -141,7 +152,6 @@ const ShoppingCart = (props) => {
                 </div>
               </li>
             ))}
-
           </ul>
         </div>
       )}
@@ -176,6 +186,15 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       )}
+      <div className="tile-item">
+        <button
+          className="login-button"
+          onClick={() => emailOrderData(cartData, orderTotal)}
+        >
+          Email
+        </button>
+      </div>
+
       {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
         <StripePaymentForm
           totalAmount={totalAmount}
@@ -184,8 +203,6 @@ const ShoppingCart = (props) => {
       )}
     </article>
   );
-
-
 };
 
 export default ShoppingCart;
