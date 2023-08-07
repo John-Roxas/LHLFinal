@@ -6,7 +6,7 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setLoading] = useState(false);
-
+  const stripeKey = process.env.REACT_APP_STRIPE_API_KEY;
   const handleToken = async (token) => {
     // You can handle the token here, but since we're not making an actual API call
     // we can simply proceed with the payment success simulation.
@@ -34,7 +34,7 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
 
       <StripeCheckout
         token={handleToken}
-        stripeKey="pk_test_51NOYLPKNHM092Bt6x5egM24zoVt8DopST0EvM6ogZGUXoFqkWVeaT7NUyZpEbekNx7r3BDOyGo5b2Y0h0S9rR1oO00zYlQSqnc" 
+        stripeKey={stripeKey}
         name="DashDine"
         amount={totalAmount * 100} // Amount in cents (e.g., $10 => 1000 cents)
         currency="CAD"
