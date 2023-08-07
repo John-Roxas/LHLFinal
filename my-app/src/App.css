@@ -1,9 +1,12 @@
 :root {
-  --white: #fff;
+  --white: #fffffffc;
   --black: #000;
   --theme: #b2b2ff;
   --border: #2d2d2d;
   --selected: #8888fc;
+  --tile-spacing: 10px;
+  --box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  --padding: 10px;
 }
 
 body,

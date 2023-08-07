@@ -15,16 +15,18 @@ export default function RestaurantListItem(props) {
       }}
       style={{ textDecoration: "none" }}
     >
-      <article className="tile-item">
-        <div>
-          <img src={props.picture} alt={props.name} />
-        </div>
-        <div className="restaurant-desc">
+      <article>
+        <div className="tile-item">
           <div>
-            <h1>{props.name}</h1>
+            <img src={props.picture} alt={props.name} />
           </div>
-          <div>
-            <p>Delivery fee</p>
+          <div className="restaurant-desc">
+            <div>
+              <h1>{props.name}</h1>
+            </div>
+            <div>
+              <p>Delivery fee</p>
+            </div>
           </div>
         </div>
       </article>
