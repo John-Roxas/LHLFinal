@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import RestaurantList from "../components/RestaurantList";
 import Login from "../components/Login";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function Index(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(
