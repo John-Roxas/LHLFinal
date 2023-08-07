@@ -54,6 +54,7 @@ const orderHistoryRoute = require("./routes/orderHistory");
 const addToCart = require("./routes/addToCart");
 const findCart = require("./routes/findCart");
 const addOrder = require("./routes/addOrder");
+const deleteCartItem = require("./routes/deleteCartItem")
 
 
 //Mount resources app.use
@@ -69,6 +70,7 @@ app.use("/orderhistory", orderHistoryRoute);
 app.use("/api/addToCart", addToCart);
 app.use("/api/findCart", findCart);
 app.use("/api/addOrder", addOrder);
+app.use("/api/deleteCartItem", deleteCartItem);
 
 
 app.listen(PORT, () => {

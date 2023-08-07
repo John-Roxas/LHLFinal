@@ -33,7 +33,7 @@ const ShoppingCart = (props) => {
   } else {
     restaurantName = cartData[0].restaurant_name;
   }
-   
+
   console.log("CART DATA HERE");
   console.log(cartData);
 
@@ -49,29 +49,39 @@ const ShoppingCart = (props) => {
 
   const totalAmount = subtotal + tax + deliveryFee;
 
+  const handleDeleteCartItem = async (foodItemId) => {
+    try {
+      const response = await axios.delete(`/api/deleteCartItem/${foodItemId}`);
+      // After successfully deleting the item, update the cartData state to reflect the change
+      setCartData(cartData.filter(item => item.food_items_id !== foodItemId));
+    } catch (error) {
+      console.error("Error deleting cart item:", error);
+    }
+  };
+
   const handlePaymentSuccess = async (paymentIntent) => {
-  try {
-    // Handle the payment success here.
-    // console.log("Payment succeeded! Payment Intent:", paymentIntent);
-    // console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
+    try {
+      // Handle the payment success here.
+      // console.log("Payment succeeded! Payment Intent:", paymentIntent);
+      // console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
 
-    // Call the backend API to create an order and update the cart status
-    const response = await axios.post("/api/addOrder", {
-      cartId: cartData[0].cartid, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
-      customerId: id,
-    });
+      // Call the backend API to create an order and update the cart status
+      const response = await axios.post("/api/addOrder", {
+        cartId: cartData[0].cartid, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
+        customerId: id,
+      });
 
-    // console.log(cartId);
+      // console.log(cartId);
 
-    setRecentOrder(cartData);
+      setRecentOrder(cartData);
 
-    // console.log(response.data);
-    // Clear the cartData state after successful payment
-    setCartData([]);
-  } catch (error) {
-    console.error("Error creating order and updating cart status:", error);
-  }
-};
+      // console.log(response.data);
+      // Clear the cartData state after successful payment
+      setCartData([]);
+    } catch (error) {
+      console.error("Error creating order and updating cart status:", error);
+    }
+  };
 
   // MONITOR cookie session
 
@@ -92,83 +102,88 @@ const ShoppingCart = (props) => {
   }, [id]);
 
   return (
-  <article className="cart-item">
-    <div className="cart-item TOP">
-      <h1>Your Cart</h1>
-    </div>
-
-    <div className="cart-item">
-      <p>{customer_street_address}</p>
-    </div>
-
-    <div className="cart-item">
-      <p>{restaurantName}</p>
-    </div>
-
-    {cartData.length === 0 ? ( // Check if the cart is empty
-      <div className="cart-item">
-        <p>Your cart is empty. Go and grab something delicious!</p>
+    <article className="cart-item">
+      <div className="cart-item TOP">
+        <h1>Your Cart</h1>
       </div>
-    ) : (
-      <div className="cart-item">
-        <ul className="cart-list">
-          {cartData.map((item, index) => (
-            <li key={index} className="cart-list-item">
-              <div className="cart-list-item-left">
-                <p className="cart-list-item-left-qty">
-                  {item.food_items_quantity}×
-                </p>
-                <p className="cart-list-item-left-name"> {item.food_name}</p>
-              </div>
-              <div className="cart-list-item-right">
-                <p className="cart-list-item-right-total">
-                  ${(item.food_items_price * item.food_items_quantity).toFixed(2)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
 
-    {cartData.length > 0 && ( // Show the cart cost details only if the cart is not empty
       <div className="cart-item">
-        <div className="cart-cost-item">
-          <div className="cart-cost-line">
-            <div className="cart-cost-left">
-              <p>Subtotal:</p>
+        <p>{customer_street_address}</p>
+      </div>
+
+      <div className="cart-item">
+        <p>{restaurantName}</p>
+      </div>
+
+      {cartData.length === 0 ? ( // Check if the cart is empty
+        <div className="cart-item">
+          <p>Your cart is empty. Go and grab something delicious!</p>
+        </div>
+      ) : (
+        <div className="cart-item">
+          <ul className="cart-list">
+            {cartData.map((item, index) => (
+              <li key={index} className="cart-list-item">
+                <div className="cart-list-item-left">
+                  <p className="cart-list-item-left-qty">{item.food_items_quantity}×</p>
+                  <p className="cart-list-item-left-name">{item.food_name}</p>
+                </div>
+                <div className="cart-list-item-right">
+                  <p className="cart-list-item-right-total">
+                    ${(item.food_items_price * item.food_items_quantity).toFixed(2)}
+                  </p>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteCartItem(item.food_items_id)} // Call the delete function with the item's ID
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+
+          </ul>
+        </div>
+      )}
+
+      {cartData.length > 0 && ( // Show the cart cost details only if the cart is not empty
+        <div className="cart-item">
+          <div className="cart-cost-item">
+            <div className="cart-cost-line">
+              <div className="cart-cost-left">
+                <p>Subtotal:</p>
+              </div>
+              <div className="cart-cost-right">
+                <p>${subtotal.toFixed(2)}</p>
+              </div>
             </div>
-            <div className="cart-cost-right">
-              <p>${subtotal.toFixed(2)}</p>
+            <div className="cart-cost-line">
+              <div className="cart-cost-left">
+                <p>Tax:</p>
+              </div>
+              <div className="cart-cost-right">
+                <p>${tax.toFixed(2)}</p>
+              </div>
             </div>
-          </div>
-          <div className="cart-cost-line">
-            <div className="cart-cost-left">
-              <p>Tax:</p>
-            </div>
-            <div className="cart-cost-right">
-              <p>${tax.toFixed(2)}</p>
-            </div>
-          </div>
-          <div className="cart-cost-line">
-            <div className="cart-cost-left">
-              <p>Delivery Fee:</p>
-            </div>
-            <div className="cart-cost-right">
-              <p>${deliveryFee.toFixed(2)}</p>
+            <div className="cart-cost-line">
+              <div className="cart-cost-left">
+                <p>Delivery Fee:</p>
+              </div>
+              <div className="cart-cost-right">
+                <p>${deliveryFee.toFixed(2)}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )}
-    {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
-      <StripePaymentForm
-        totalAmount={totalAmount}
-        onPaymentSuccess={handlePaymentSuccess}
-      />
-    )}
-  </article>
-);
+      )}
+      {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
+        <StripePaymentForm
+          totalAmount={totalAmount}
+          onPaymentSuccess={handlePaymentSuccess}
+        />
+      )}
+    </article>
+  );
 
 
 };
