@@ -68,6 +68,7 @@ app.use("/email", emailRoute);
 app.use("/orderhistory", orderHistoryRoute);
 app.use("/api/addToCart", addToCart);
 app.use("/api/findCart", findCart);
+app.use("/api/addOrder", addOrder);
 
 
 app.listen(PORT, () => {
