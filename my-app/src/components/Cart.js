@@ -58,12 +58,11 @@ const ShoppingCart = (props) => {
     totalAmount: totalAmount,
   };
 
-
   const handleDeleteCartItem = async (cartItemId) => {
     try {
       const response = await axios.delete(`/api/deleteCartItem/${cartItemId}`);
       // After successfully deleting the item, update the cartData state to reflect the change
-      setCartData(cartData.filter(item => item.cart_item_id !== cartItemId));
+      setCartData(cartData.filter((item) => item.cart_item_id !== cartItemId));
     } catch (error) {
       console.error("Error deleting cart item:", error);
     }
@@ -74,7 +73,6 @@ const ShoppingCart = (props) => {
       // Handle the payment success here.
       // console.log("Payment succeeded! Payment Intent:", paymentIntent);
       // console.log("TONY ADD EMAIL FUNCTIONALITY HERE!");
-
       // Call the backend API to create an order and update the cart status
       const response = await axios.post("/api/addOrder", {
         cartId: cartData[0].cartid, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
@@ -87,6 +85,7 @@ const ShoppingCart = (props) => {
 
       // console.log(response.data);
       // Clear the cartData state after successful payment
+      emailOrderData(cartData, orderTotal);
       setCartData([]);
     } catch (error) {
       console.error("Error creating order and updating cart status:", error);
@@ -135,13 +134,17 @@ const ShoppingCart = (props) => {
             {cartData.map((item, index) => (
               <li key={index} className="cart-list-item">
                 <div className="cart-list-item-left">
-
-                  <p className="cart-list-item-left-qty">{item.food_items_quantity}×</p>
+                  <p className="cart-list-item-left-qty">
+                    {item.food_items_quantity}×
+                  </p>
                   <p className="cart-list-item-left-name">{item.food_name}</p>
                 </div>
                 <div className="cart-list-item-right">
                   <p className="cart-list-item-right-total">
-                    ${(item.food_items_price * item.food_items_quantity).toFixed(2)}
+                    $
+                    {(item.food_items_price * item.food_items_quantity).toFixed(
+                      2
+                    )}
                   </p>
                   <button
                     className="delete-button"
@@ -186,15 +189,6 @@ const ShoppingCart = (props) => {
           </div>
         </div>
       )}
-      <div className="tile-item">
-        <button
-          className="login-button"
-          onClick={() => emailOrderData(cartData, orderTotal)}
-        >
-          Email
-        </button>
-      </div>
-
       {cartData.length > 0 && ( // Show the StripePaymentForm only if the cart is not empty
         <StripePaymentForm
           totalAmount={totalAmount}
