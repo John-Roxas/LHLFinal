@@ -4,7 +4,6 @@ const router = express.Router();
 const db = require("../db/connection");
 
 // API endpoint to add items to the cart
-// API endpoint to add items to the cart
 router.post("/", async (req, res) => {
   const { foodName, price, quantity, customerInfo } = req.body;
 
@@ -49,17 +48,36 @@ router.post("/", async (req, res) => {
       cartId = openCartResult.rows[0].max_cart_id;
     }
 
-    // Insert the cart item into the cart_items table in the database
-    const insertQuery = `
-      INSERT INTO cart_items (cart_id, food_item_id, quantity, food_name, food_item_price)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
+    // Check if the same item already exists in the cart
+    const existingCartItemQuery = `
+      SELECT id, quantity FROM cart_items WHERE cart_id = $1 AND food_item_id = $2;
     `;
 
-    const values = [cartId, foodItemId, quantity, foodName, price];
-    const result = await db.query(insertQuery, values);
+    const existingCartItemResult = await db.query(existingCartItemQuery, [cartId, foodItemId]);
 
-    res.json({ message: "Item added to cart successfully!", cartItem: result.rows[0] });
+    if (existingCartItemResult.rows.length > 0) {
+      // Update the existing cart item's quantity
+      const existingItemId = existingCartItemResult.rows[0].id;
+      const newQuantity = existingCartItemResult.rows[0].quantity + quantity;
+
+      const updateCartItemQuery = `
+        UPDATE cart_items SET quantity = $1 WHERE id = $2;
+      `;
+
+      await db.query(updateCartItemQuery, [newQuantity, existingItemId]);
+    } else {
+      // Insert the cart item as a new item
+      const insertQuery = `
+        INSERT INTO cart_items (cart_id, food_item_id, quantity, food_name, food_item_price)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING *;
+      `;
+
+      const values = [cartId, foodItemId, quantity, foodName, price];
+      await db.query(insertQuery, values);
+    }
+
+    res.json({ message: "Item added to cart successfully!" });
   } catch (error) {
     console.error("Error adding to cart:", error);
     res.status(500).json({ error: "An error occurred while adding to cart." });
@@ -67,4 +85,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
