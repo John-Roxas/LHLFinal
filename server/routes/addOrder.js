@@ -6,7 +6,7 @@ const db = require("../db/connection");
 // API endpoint to add items to the cart
 router.post("/", async (req, res) => {
   try {
-    const { cartId, customerId } = req.body;
+    const { cartId, customerId, totalAmount } = req.body;
 
     console.log("Received request to create order for cartId:", cartId);
     console.log("Received request to create order for customerId:", customerId);
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 
     // Get cart items from the carts table based on the cartId
     const cartItemsQuery = `
-  SELECT ci.cart_id, ci.quantity AS food_items_quantity, ci.food_item_price, 
+  SELECT ci.cart_id, ci.quantity AS food_items_quantity, ci.food_item_price,
          f.id AS food_item_id, f.food_name, f.restaurants_id
   FROM cart_items ci
   JOIN food_items f ON ci.food_item_id = f.id
@@ -27,33 +27,33 @@ router.post("/", async (req, res) => {
     const cartItemsResult = await db.query(cartItemsQuery, [cartId]);
 
     // Calculate the total amount for the entire order
-const totalAmount = cartItemsResult.rows.reduce((total, cartItem) => {
-  const itemTotal = cartItem.food_items_quantity * cartItem.food_items_price;
-  return total + itemTotal;
-}, 0);
+    // const totalAmount = cartItemsResult.rows.reduce((total, cartItem) => {
+    //   const itemTotal = cartItem.food_items_quantity * cartItem.food_items_price;
+    //   return total + itemTotal;
+    // }, 0);
 
-// Insert the cart items into the orders table
-for (const cartItem of cartItemsResult.rows) {
-  const insertOrderQuery = `
+    // Insert the cart items into the orders table
+    for (const cartItem of cartItemsResult.rows) {
+      const insertOrderQuery = `
     INSERT INTO orders (cart_id, date, customers_id, drivers_id, restaurants_id, status, total_amount)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;
   `;
 
-  const values = [
-    cartId,
-    date,
-    customerId,
-    null, // Set drivers_id to NULL, or you can fetch it from somewhere if applicable
-    cartItem.restaurants_id,
-    status,
-    cartItem.food_item_price * cartItem.food_items_quantity, // Calculate the total amount for each cart item
-  ];
+      const values = [
+        cartId,
+        date,
+        customerId,
+        null, // Set drivers_id to NULL, or you can fetch it from somewhere if applicable
+        cartItem.restaurants_id,
+        status,
+        totalAmount, // orderTotal from FRONT END
+      ];
 
-  console.log("Inserting order for cart item with food_name:", cartItem.food_name);
-  await db.query(insertOrderQuery, values);
-  console.log("Order successfully inserted for cart item with food_name:", cartItem.food_name);
-}
+      console.log("Inserting order for cart item with food_name:", cartItem.food_name);
+      await db.query(insertOrderQuery, values);
+      console.log("Order successfully inserted for cart item with food_name:", cartItem.food_name);
+    }
 
 
     // Update the cart status to closed

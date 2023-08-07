@@ -6,7 +6,6 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setLoading] = useState(false);
-  const stripeKey = process.env.REACT_APP_STRIPE_API_KEY;
   const handleToken = async (token) => {
     setLoading(true);
 

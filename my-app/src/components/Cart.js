@@ -77,6 +77,7 @@ const ShoppingCart = (props) => {
       const response = await axios.post("/api/addOrder", {
         cartId: cartData[0].cartid, // Assuming cartData is an array of cart items fetched from the backend, and we use the first cart item for simplicity
         customerId: id,
+        totalAmount: totalAmount.toFixed(2),
       });
 
       // console.log(cartId);
