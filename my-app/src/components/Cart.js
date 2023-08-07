@@ -112,7 +112,7 @@ const ShoppingCart = (props) => {
   }, [id]);
 
   return (
-    <article className="cart-item">
+    <article className="item-list">
       <div className="cart-item TOP">
         <h1>Your Cart</h1>
       </div>
