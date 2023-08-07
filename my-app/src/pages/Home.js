@@ -50,7 +50,6 @@ function Index(props) {
                           className="restaurant-picture"
                         />
                       </div>
-                      <p>Restaurant: {order.restaurant_name}</p>
                     </li>
                   ))}
                 </ul>
