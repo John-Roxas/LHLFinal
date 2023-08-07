@@ -187,6 +187,14 @@ const ShoppingCart = (props) => {
                 <p>${deliveryFee.toFixed(2)}</p>
               </div>
             </div>
+            <div className="cart-cost-line">
+              <div className="cart-cost-left">
+                <p>Order Total:</p>
+              </div>
+              <div className="cart-cost-right">
+                <p>${totalAmount.toFixed(2)}</p>
+              </div>
+            </div>
           </div>
         </div>
       )}
