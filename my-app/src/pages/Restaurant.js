@@ -5,14 +5,20 @@ import SearchField from "../components/SearchField";
 import NavigationBar from "../components/NavigationBar";
 import FoodList from "../components/FoodList";
 import "./Restaurant.css";
+import { useParams } from 'react-router';
+
 
 function Restaurant(props) {
+  const params = useParams()
+
+  const restaurantId = params.id;
   // These two take information passed from /src/components/RestaurantListItem
-  const location = useLocation();
-  const { restaurantId, name, picture, address, postalCode } = location.state;
+  // const location = useLocation();
+  // const { name, picture, address, postalCode } = location.state;
 
   const [state, setState] = useState({
     foodList: [],
+    restaurantInfo: null
   });
 
   useEffect(() => {
@@ -25,32 +31,45 @@ function Restaurant(props) {
         }));
       })
       .catch((err) => console.log(err));
-  }, [restaurantId]);
 
-  // console.log("restaurantId", restaurantId);
+    axios
+      .get(`http://localhost:8080/api/restaurant/${restaurantId}`)
+      .then((res) => {
+        const response = res.data[0];
+        setState((prev) => ({
+          ...prev,
+          restaurantName: response.restaurant_name,
+          restaurantAddress: response.restaurant_street_address,
+          restaurantPostalCode: response.postal_code,
+          restaurantPicture: response.restaurant_picture
+        }));
+      })
+  }, []);
+
+
   return (
     <div className="App">
       <SearchField />
       <div className="restaurant-foods-container">
         <div>
-          <img src={picture} alt={name} className="restaurant-picture" />
+          <img src={state.restaurantPicture} alt={state.restaurantName} className="restaurant-picture" />
         </div>
         <Link
           to={"/map"}
           // these are passed to pages/Map.js
           state={{
-            restaurantAddress: address,
-            restaurantPostalCode: postalCode,
+            restaurantAddress: state.restaurantAddress,
+            restaurantPostalCode: state.restaurantPostalCode,
           }}
           style={{ textDecoration: "none" }}
         >
-          <h2>{name}</h2>
-          <p>{address}</p>
+          <h2>{state.restaurantName}</h2>
+          <p>{state.restaurantAddress}</p>
         </Link>
         <FoodList
           restaurantId={restaurantId}
           foods={state.foodList}
-          restaurantName={name}
+          restaurantName={state.restaurantName}
         />
       </div>
       <NavigationBar />
@@ -59,49 +78,3 @@ function Restaurant(props) {
 }
 
 export default Restaurant;
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-// import { useLocation } from "react-router-dom";
-// import SearchField from "../components/SearchField";
-// import NavigationBar from "../components/NavigationBar";
-// import FoodList from "../components/FoodList";
-// import "./Restaurant.css";
-
-// function Restaurant(props) {
-//   // These two take information passed from /src/components/RestaurantListItem
-//   const location = useLocation();
-//   const { restaurantId, name, picture } = location.state;
-
-//   const [state, setState] = useState({
-//     foodList: [],
-//   });
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:8080/restaurants/${restaurantId}`)
-//       .then((res) => {
-//         setState((prev) => ({
-//           ...prev,
-//           foodList: res.data,
-//         }));
-//       })
-//       .catch((err) => console.log(err));
-//   }, [restaurantId]);
-
-//   console.log("restaurantId", restaurantId);
-//   return (
-//     <div className="App">
-//       <SearchField />
-//       <div className="restaurant-foods-container">
-//         <div>
-//           <img src={picture} alt={name} className="restaurant-picture" />
-//         </div>
-//         <h2>{name}</h2>
-//         <FoodList restaurantId={restaurantId} foods={state.foodList} />
-//       </div>
-//       <NavigationBar />
-//     </div>
-//   );
-// }
-
-// export default Restaurant;

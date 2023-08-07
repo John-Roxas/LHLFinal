@@ -8,14 +8,13 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function AddFoodItem(props) {
   // obtaining these from components/FoodListItem.js
-  const location = useLocation();
-  const { foodId, restaurantName } = location.state;
 
   const { id, foodItemId } = useParams(); // use the id and foodItemId for useEffect
   const history = useNavigate(); // this is used to go back to previous page
 
   const [state, setState] = useState({
     foodInfo: [],
+    restaurantName: null
   });
 
   useEffect(() => {
@@ -26,6 +25,7 @@ function AddFoodItem(props) {
         setState((prev) => ({
           ...prev,
           foodInfo: res.data,
+          restaurantName: res.data[0].restaurantName
         }));
       })
       .catch((err) => console.log(err));
@@ -37,10 +37,10 @@ function AddFoodItem(props) {
         <FontAwesomeIcon icon={faArrowLeft} />
       </button>
       <AddFood
-        foodId={foodId}
+        foodId={foodItemId}
         foodInfo={state.foodInfo}
         cart={props.cart}
-        restaurantName={restaurantName}
+        restaurantName={state.restaurantName}
         customerInfo={props.customerInfo}
       />
       <NavigationBar />
