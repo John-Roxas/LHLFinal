@@ -3,17 +3,21 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/connection");
 
-// API endpoint to find items from the latest cart for a specific customer
-router.delete("/:foodItemId", async (req, res) => {
-  const foodItemId = req.params.foodItemId;
+// API endpoint to delete a cart item
+router.delete("/:cartItemId", async (req, res) => {
+  const cartItemId = req.params.cartItemId;
 
   try {
-    // Perform a database query to delete the cart item with the provided foodItemId
+    console.log("Deleting cart item with cartItemId:", cartItemId);
+
+    // Perform a database query to delete the cart item with the provided cartItemId
     const deleteCartItemQuery = `
       DELETE FROM cart_items WHERE id = $1;
     `;
 
-    await db.query(deleteCartItemQuery, [foodItemId]);
+    await db.query(deleteCartItemQuery, [cartItemId]);
+
+    console.log("Cart item deleted successfully.");
 
     res.status(200).json({ message: "Cart item deleted successfully." });
   } catch (error) {

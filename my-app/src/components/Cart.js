@@ -49,11 +49,11 @@ const ShoppingCart = (props) => {
 
   const totalAmount = subtotal + tax + deliveryFee;
 
-  const handleDeleteCartItem = async (foodItemId) => {
+  const handleDeleteCartItem = async (cartItemId) => {
     try {
-      const response = await axios.delete(`/api/deleteCartItem/${foodItemId}`);
+      const response = await axios.delete(`/api/deleteCartItem/${cartItemId}`);
       // After successfully deleting the item, update the cartData state to reflect the change
-      setCartData(cartData.filter(item => item.food_items_id !== foodItemId));
+      setCartData(cartData.filter(item => item.cart_item_id !== cartItemId));
     } catch (error) {
       console.error("Error deleting cart item:", error);
     }
@@ -134,7 +134,7 @@ const ShoppingCart = (props) => {
                   </p>
                   <button
                     className="delete-button"
-                    onClick={() => handleDeleteCartItem(item.food_items_id)} // Call the delete function with the item's ID
+                    onClick={() => handleDeleteCartItem(item.cart_item_id)} // Call the delete function with the item's ID
                   >
                     Delete
                   </button>
