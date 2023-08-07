@@ -33,7 +33,8 @@ const getOrderHistory = function (customerID) {
   JOIN
     restaurants ON orders.restaurants_id = restaurants.id
   WHERE
-    orders.customers_id = $1;
+    orders.customers_id = $1
+  ORDER BY orders.id;
   `;
 
   const values = [customerID];
