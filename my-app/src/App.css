@@ -6,7 +6,9 @@
   --border: #2d2d2d;
   --selected: #8888fc;
   --tile-spacing: 10px;
-  --box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  /* --box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  --box-shadow: 0px -10px 10px var(--shadow-color);
+  --shadow-color: aliceblue;
   --padding: 20px;
 }
 
@@ -35,6 +37,7 @@ li {
   align-items: center;
   flex-direction: column;
   max-width: 600px;
+  /* background-color: aliceblue; */
 }
 
 .btn {
@@ -50,20 +53,21 @@ li {
   color: var(--black);
 }
 
-.restaurant-container,
+.list-container,
 .restaurant-foods-container {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 80px;
   margin-bottom: 60px;
-  width: 100%;
+  width: 95%;
   /* height: 550px; */
   /* border-top: 3px dotted var(--black);
   border-right: 3px dotted var(--black);
   border-left: 3px dotted var(--black); */
   text-align: center;
   max-width: 600px; /* Set a maximum width for larger screens */
+  /* background-color: pink; */
 }
 
 .login-item {
@@ -136,7 +140,8 @@ li {
 .scroll-item {
   margin-right: 10px; /* Add some spacing between items */
   margin-bottom: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  box-shadow: var(--box-shadow);
   border-radius: 20px;
 }
 
@@ -146,6 +151,8 @@ li {
   flex-direction: column;
   margin-bottom: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: var(--box-shadow); */
+
   border-radius: 20px;
   width: 95%;
 }
@@ -156,7 +163,8 @@ li {
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: var(--box-shadow);
 }
 .back-button {
   border: none;
