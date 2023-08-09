@@ -21,6 +21,8 @@ export default function RestaurantListItem(props) {
             <img src={props.picture} alt={props.name} />
             <div className="restaurant-desc">
               <h1 className="restaurant-name">{props.name}</h1>
+              <p>{props.address}</p>
+              <p>{props.postalCode}</p>
               <p>Delivery Fee: $3.99</p>
             </div>
           </div>
