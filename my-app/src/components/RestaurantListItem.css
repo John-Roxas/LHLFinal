@@ -27,14 +27,15 @@
   width: 100%;
 }
 
-.restaurant-desc h1 {
+.restaurant-desc {
   display: flex;
-  justify-content: flex-start;
-  /* background-color: #eeeeee; */
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
 }
 
-.restaurant-desc p {
-  display: flex;
-  justify-content: flex-start;
-  /* background-color: #eeeeee; */
+.restaurant-desc h1 {
+  white-space: normal;
+  text-align: right;
+  width: 250px;
 }
