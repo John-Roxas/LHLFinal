@@ -6,7 +6,7 @@ export default function RestaurantList(props) {
     const address = `${restaurant.restaurant_street_address} ${restaurant.city}`;
     const postalCode = restaurant.postal_code;
     return (
-      <div className="list-container">
+      <div>
         <RestaurantListItem
           key={restaurant.id}
           id={restaurant.id}
@@ -20,5 +20,5 @@ export default function RestaurantList(props) {
     );
   });
 
-  return <div className="restaurant-container">{restaurants}</div>;
+  return <div className="food-list-container">{restaurants}</div>;
 }
