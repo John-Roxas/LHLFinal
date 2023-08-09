@@ -25,7 +25,7 @@ export default function Routing(props) {
       },
     }).addTo(map);
 
-    routingControl.hide(); // hides the minimap direction
+    // routingControl.hide(); // hides the minimap direction
 
     return () => map.removeControl(routingControl);
   }, [map]);
