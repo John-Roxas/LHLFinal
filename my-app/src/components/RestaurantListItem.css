@@ -8,6 +8,7 @@
   height: 100%;
   /* background-color: aliceblue; */
   justify-content: space-between;
+  overflow: auto;
 }
 
 .tile-item img {

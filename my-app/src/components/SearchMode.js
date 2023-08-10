@@ -8,15 +8,24 @@ function SearchMode(props) {
 
   return (
     <div className="searchmode-container">
-      Search By:
-      <div>
-        <button onClick={() => props.setMode("restauraunt")}>
+      Search for Restaurants By:
+      <div className="horizontal-container">
+        <button 
+          className="btn"
+          onClick={() => props.setMode("restauraunt")}
+        >
           Restaurant Name
         </button>
-        <button onClick={() => props.setMode("category")}>
+        <button 
+          className="btn"
+          onClick={() => props.setMode("category")}
+        >
           Category
         </button>
-        <button onClick={() => props.setMode("name")}>
+        <button
+          className="btn" 
+          onClick={() => props.setMode("name")}
+        >
           Food
         </button>
       </div>
