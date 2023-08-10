@@ -60,37 +60,41 @@ function Profile(props) {
   return (
     <div className="App">
       <div className="profile-container">
-        <div className="tile-item">
+        <div className="tile-item img">
           <img src={customer_avatar} alt="Avatar" />
         </div>
-        <div className="tile-item">Name: {customer_name}</div>
-        <div className="tile-item">Email: {customer_email}</div>
+        <h1 className="tile-item">{customer_name}</h1>
+        <div className="tile-item">{customer_email}</div>
         <div className="tile-item">
           Address: {`${customer_street_address}, ${city}, ${postal_code}`}
         </div>
-        <div className="tile-item">Phone Number: {phone}</div>
-        <div className="tile-item">This is the {id}</div>
-
-        <div className="tile-item">{getSessionData()}</div>
-        <div className="tile-item">
-          <h2>Order History</h2>
-          <ul>
-            {orderHistory.map((order, index) => (
-              <li key={index} className="item-list">
-                <p>Order ID: {order.order_id}</p>
-                <p>Restaurant: {order.restaurant_name}</p>
-                <p>Order Total: {order.total_amount}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="tile-item">
-          <button className="login-button" onClick={handleLogout}>
+        <div className="tile-item">{phone}</div>
+        <button className="login-button" onClick={handleLogout}>
             Logout
-          </button>
-        </div>
+        </button>
       </div>
 
+      <div className="tile-item">{getSessionData()}</div>
+
+      <div>
+        <ul className="order-container">
+          <h2>Order History</h2>
+            {orderHistory.map((order, index) => (
+              <li key={index} className="order-info">
+                <div className="vert-align">
+                  <p>Order Number: {order.order_id}</p>
+                  <p>Restaurant: {order.restaurant_name}</p>
+                  <p>Order Total: {order.total_amount}</p>
+                </div>
+                <img
+                          src={order.restaurant_picture}
+                          alt={order.restaurant_name}
+                          className="restaurant-picture crop"
+                />
+              </li>
+            ))}
+        </ul>
+      </div>
       <NavigationBar />
     </div>
   );

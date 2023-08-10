@@ -101,6 +101,21 @@ a {
   width: 100%;
 }
 
+.profile-container {
+  margin-bottom: var(--padding);
+  margin-top: var(--padding);
+  width: 90vw;
+  display: flex;
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  padding: var(--padding);
+}
+
+.profile-container img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .search-padding {
   margin-top: 80px;
 }
@@ -199,4 +214,32 @@ a {
 
 .back-button:hover {
   cursor: pointer;
+}
+
+.order-info {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  width: 100%;
+  margin-bottom: var(--tile-spacing);
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  padding: var(--padding);
+  margin-top: var(--padding);
+}
+
+.order-container {
+  margin-top: var(--padding);
+  margin-bottom: 60px;
+  width: 90vw;
+}
+
+.order-container h2{
+  padding: var(--padding);
+}
+
+.crop {
+  height: 75px;
+  object-fit: scale-down;
 }
