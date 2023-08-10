@@ -21,7 +21,13 @@
   width: 100%;
 }
 
-.pay-button {
-  /* Styles for the "Pay with Card" button */
-  /* ... */
+.custom-pay-button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 250px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }

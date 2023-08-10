@@ -5,6 +5,8 @@ import "./StripeCheckoutModal.css";
 import StripePaymentForm from "./StripePaymentForm";
 import StripeCheckout from "react-stripe-checkout";
 import useEmail from "../hooks/useEmail";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const ShoppingCart = (props) => {
   const [customerData, setCustomerData] = useState(null);
@@ -118,11 +120,11 @@ const ShoppingCart = (props) => {
       </div>
 
       <div className="cart-item">
-        <p>{customer_street_address}</p>
+        <p>Your address: <b>{customer_street_address}</b></p>
       </div>
 
       <div className="cart-item">
-        <p>{restaurantName}</p>
+        <p>Ordering from: <b>{restaurantName}</b></p>
       </div>
 
       {cartData.length === 0 ? ( // Check if the cart is empty
@@ -142,8 +144,7 @@ const ShoppingCart = (props) => {
                 </div>
                 <div className="cart-list-item-right">
                   <p className="cart-list-item-right-total">
-                    $
-                    {(item.food_items_price * item.food_items_quantity).toFixed(
+                    $ {(item.food_items_price * item.food_items_quantity).toFixed(
                       2
                     )}
                   </p>
@@ -151,7 +152,7 @@ const ShoppingCart = (props) => {
                     className="delete-button"
                     onClick={() => handleDeleteCartItem(item.cart_item_id)} // Call the delete function with the item's ID
                   >
-                    Delete
+                    <FontAwesomeIcon icon={faTimes} style={{ color: 'red' }} />
                   </button>
                 </div>
               </li>
@@ -168,7 +169,7 @@ const ShoppingCart = (props) => {
                 <p>Subtotal:</p>
               </div>
               <div className="cart-cost-right">
-                <p>${subtotal.toFixed(2)}</p>
+                <p>$ {subtotal.toFixed(2)}</p>
               </div>
             </div>
             <div className="cart-cost-line">
@@ -176,7 +177,7 @@ const ShoppingCart = (props) => {
                 <p>Tax:</p>
               </div>
               <div className="cart-cost-right">
-                <p>${tax.toFixed(2)}</p>
+                <p>$ {tax.toFixed(2)}</p>
               </div>
             </div>
             <div className="cart-cost-line">
@@ -184,15 +185,15 @@ const ShoppingCart = (props) => {
                 <p>Delivery Fee:</p>
               </div>
               <div className="cart-cost-right">
-                <p>${deliveryFee.toFixed(2)}</p>
+                <p>$ {deliveryFee.toFixed(2)}</p>
               </div>
             </div>
             <div className="cart-cost-line">
               <div className="cart-cost-left">
-                <p>Order Total:</p>
+                <p><b>Order Total:</b></p>
               </div>
               <div className="cart-cost-right">
-                <p>${totalAmount.toFixed(2)}</p>
+                <p><b>$ {totalAmount.toFixed(2)}</b></p>
               </div>
             </div>
           </div>
