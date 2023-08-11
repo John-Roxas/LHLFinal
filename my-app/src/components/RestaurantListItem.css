@@ -39,3 +39,9 @@
   text-align: right;
   width: 250px;
 }
+
+.restaurant-desc p {
+  white-space: normal;
+  text-align: right;
+  width: 160px;
+}
