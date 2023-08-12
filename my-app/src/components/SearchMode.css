@@ -1,0 +1,38 @@
+.searchmode-container {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: var(--padding);
+}
+
+.searchmode-container .btn {
+    width: 120px;
+    height: 40px;
+    background-color: var(--theme);
+    color: var(--white);
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    /* margin-left: 5px; */
+}
+
+.searchmode-container .btn:focus{
+  color: var(--theme);
+  background-color: var(--white);
+  outline: solid; 
+  outline-width: 1px;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}

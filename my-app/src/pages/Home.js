@@ -71,6 +71,7 @@ function Index(props) {
         </Link>
         <Login loginData={loginInfo} />
       </div>
+      <div className="search-padding"></div>
       {renderLoginItem()}
       <RestaurantList restaurants={props.restaurants} foods={props.foods} />
       <NavigationBar />
