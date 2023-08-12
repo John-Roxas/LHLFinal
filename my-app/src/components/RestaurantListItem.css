@@ -1,0 +1,48 @@
+.tile-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: row;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  /* background-color: aliceblue; */
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.tile-item img {
+  width: 500px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-desc {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* background-color: #eeeeee; */
+  width: 100%;
+}
+
+.restaurant-desc {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.restaurant-desc h1 {
+  white-space: normal;
+  text-align: right;
+  width: 300px;
+}
+
+.restaurant-desc p {
+  white-space: normal;
+  text-align: right;
+  width: 200px;
+}

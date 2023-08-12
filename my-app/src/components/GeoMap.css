@@ -1,0 +1,59 @@
+
+/* using leaflet there is a class automatically called leaflet-container */
+.leaflet-container { 
+  height: 100vh;
+  z-index: 1;
+}
+
+.map-loading-message {
+  margin-top: 45vh;
+  display: flex;
+  justify-content: center;
+}
+
+.map-back-button,
+.delivery-address-container {
+  position: absolute;
+  z-index: 2;
+}
+
+.map-back-button {
+  width: 75px;
+  height: 75px;
+  padding: 10px;
+  background-color: rgb(96 133 240);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.delivery-address-container {
+  border: 1px solid black;
+  background-color: #fff;
+  width: 100%;
+  height: 30%;
+  top: 70%;
+  border: none;
+  padding-top: 1%;
+  position: absolute;
+}
+
+.delivery-address-container .user-info,
+.delivery-address-container .delivery-info,
+.delivery-address-container .distance-info {
+  display: flex;
+  margin: 5% 0 5% 5%;
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+}
+
+.user-info p,
+.delivery-info p,
+.distance-info p {
+  margin-left: 6%;
+}
+
+.delivery-address-container hr {
+  max-width: 85%;
+  margin-right: 0;
+}

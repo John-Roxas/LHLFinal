@@ -1,38 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans&display=swap");
+:root {
+  --white: #fffffffc;
+  --black: #000;
+  --theme: #b2b2ff;
+  --border: #2d2d2d;
+  --selected: #8888fc;
+  --tile-spacing: 10px;
+  /* --box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  --box-shadow: 0px -10px 10px var(--shadow-color);
+  /* --shadow-color: aliceblue; */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --padding: 20px;
+  --max-width: 670px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-ferif;
+}
+
+a {
+  text-decoration: none;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* width: 100%; */
+  height: 100%;
+  /* border: 1px solid var(--border); */
   display: flex;
-  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column;
+
+  /* background-color: aliceblue; */
+}
+
+.btn {
+  min-width: 110px;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: var(--theme);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:hover {
+  background: var(--white);
+  color: var(--black);
+}
+/* We can delete this, i dont think we are using this anywhere */
+.list-container,
+.restaurant-foods-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  width: 95%;
+  /* height: 550px; */
+  /* border-top: 3px dotted var(--black);
+  border-right: 3px dotted var(--black);
+  border-left: 3px dotted var(--black); */
+  text-align: center;
+  max-width: var(--max-width); /* Set a maximum width for larger screens */
+  /* background-color: pink; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  /* height: 550px; */
+  /* border-top: 3px dotted var(--black);
+  border-right: 3px dotted var(--black);
+  border-left: 3px dotted var(--black); */
+  text-align: center;
+}
+
+.cart-container,
+.profile-container {
+  /* width: 100%;
+  text-align: center; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.profile-container {
+  margin-bottom: var(--padding);
+  margin-top: var(--padding);
+  width: 90vw;
+  display: flex;
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  padding: var(--padding);
+}
+
+.profile-container img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-padding {
+  margin-top: 80px;
+}
+
+.side-scroller {
+  overflow-x: auto;
+  /* Hide the default scroll bar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide the scrollbar in Webkit browsers (e.g., Chrome, Safari) */
+.side-scroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Add custom styles to the scrollbar track and thumb if needed */
+.side-scroller::-webkit-scrollbar-track {
+  background: transparent; /* Set the track color */
+}
+
+.side-scroller::-webkit-scrollbar-thumb {
+  background: var(--border); /* Set the thumb color */
+  border-radius: 10px; /* Round the edges of the thumb */
+}
+
+/* Flex container for scrollable items */
+.scroll-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+  padding: 20px; /* Add some padding to the container */
+  width: 100%; /* Adjust the width as needed */
+  max-width: 550px; /* Set a maximum width for larger screens */
+}
+
+/* Individual scrollable items */
+.scroll-items {
+  display: flex;
+  list-style: none; /* Remove default list styles */
+  padding: 0;
+  margin: 0;
+  white-space: nowrap; /* Prevent items from wrapping */
+}
+
+/* Styling for each item */
+.scroll-item {
+  margin-right: 10px; /* Add some spacing between items */
+  margin-bottom: 10px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+}
+
+.item-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  width: 95%;
+  height: 200px;
+}
+
+.item-list img {
+  width: 150px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: var(--box-shadow);
+}
+
+.login-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+  /* height: 550px; */
+  /* border-top: 3px dotted var(--black);
+  border-right: 3px dotted var(--black);
+  border-left: 3px dotted var(--black); */
+  text-align: center;
+}
+.back-button {
+  border: none;
+  background-color: #fff;
+  font-size: 35px;
+  margin-top: 4vh;
+  margin-left: 4vh;
+}
+
+.back-button:hover {
+  cursor: pointer;
+}
+
+.order-info {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  width: 100%;
+  margin-bottom: var(--tile-spacing);
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  padding: var(--padding);
+  margin-top: var(--padding);
+}
+
+.order-container {
+  margin-top: var(--padding);
+  margin-bottom: 60px;
+  width: 90vw;
+}
+
+.order-container h2{
+  padding: var(--padding);
+}
+
+.crop {
+  height: 75px;
+  object-fit: scale-down;
 }

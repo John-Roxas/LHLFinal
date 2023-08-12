@@ -1,0 +1,135 @@
+.article {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.3rem;
+}
+
+.TOP {
+  top: 0px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.cart-item img {
+  width: 150px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-desc {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* background-color: #eeeeee; */
+  width: 100%;
+}
+
+.cart-desc h1 {
+  display: flex;
+  justify-content: flex-start;
+  /* background-color: #eeeeee; */
+}
+
+.cart-desc p {
+  display: flex;
+  justify-content: flex-start;
+  /* background-color: #eeeeee; */
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  list-style: none;
+  width:100%;
+  height:40vh;
+}
+
+.cart-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+  margin-top: 10px;
+}
+
+
+.cart-list-item-left {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+}
+
+.cart-list-item-left-name {
+  margin-left: 20px;
+}
+
+.cart-list-item-right {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.cart-cost-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:100%;
+  /* align-items: center; */
+}
+
+.cart-cost-line {
+  display:flex;
+  width:100%;
+  justify-content: space-between;
+}
+
+.cart-cost-left {
+  margin-left: 20px;
+}
+
+.cart-cost-right {
+  margin-right: 20px;
+}
+
+.btn {
+  width:100%;
+  height:60px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 1.2rem;
+  padding: 0;
+
+  margin-left:10px;
+}
