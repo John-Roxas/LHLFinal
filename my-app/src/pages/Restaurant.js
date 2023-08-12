@@ -49,12 +49,13 @@ function Restaurant(props) {
 
   return (
     <div className="App">
-      <SearchField />
-      <div className="restaurant-foods-container">
-        <div>
+      <div className="search-container">
+        <SearchField />
+      </div>
+        <div className="search-padding"></div>
+        <div className="restaurant-banner">
           <img src={state.restaurantPicture} alt={state.restaurantName} className="restaurant-picture" />
-        </div>
-        <Link
+          <Link
           to={"/map"}
           // these are passed to pages/Map.js
           state={{
@@ -66,12 +67,12 @@ function Restaurant(props) {
           <h2>{state.restaurantName}</h2>
           <p>{state.restaurantAddress}</p>
         </Link>
+        </div>
         <FoodList
           restaurantId={restaurantId}
           foods={state.foodList}
           restaurantName={state.restaurantName}
         />
-      </div>
       <NavigationBar />
     </div>
   );

@@ -35,8 +35,9 @@ function Search(props) {
       <div className="App">
         <div className="search-container">
           <SearchField search={state.search} setSearch={setSearch} />
-          <SearchMode setMode={setMode} />
         </div>
+        <div className="search-padding"></div>
+        <SearchMode setMode={setMode} />
         <FoodList
           foods={state.results}
         />
@@ -48,8 +49,9 @@ function Search(props) {
       <div className="App">
         <div className="search-container">
           <SearchField search={state.search} setSearch={setSearch} />
-          <SearchMode setMode={setMode} />
         </div>
+        <div className="search-padding"></div>
+        <SearchMode setMode={setMode} />
         <RestaurantList restaurants={state.results} />
         <NavigationBar />
       </div>

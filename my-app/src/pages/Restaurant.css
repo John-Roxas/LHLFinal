@@ -1,3 +1,7 @@
 .restaurant-picture {
   width: 150px;
 }
+
+.restaurant-banner {
+  margin-bottom: var(--padding);
+}

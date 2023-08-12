@@ -38,7 +38,9 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
         billingAddress={true}
         shippingAddress={true}
         disabled={!stripe || isLoading}
-      />
+        >
+        <button className="custom-pay-button">Pay with Card</button>
+        </StripeCheckout>
     </>
   );
 };

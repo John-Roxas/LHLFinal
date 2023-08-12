@@ -8,11 +8,12 @@
   height: 100%;
   /* background-color: aliceblue; */
   justify-content: space-between;
+  overflow: auto;
 }
 
 .tile-item img {
-  width: 150px;
-  height: 75px;
+  width: 500px;
+  height: 130px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -27,14 +28,21 @@
   width: 100%;
 }
 
-.restaurant-desc h1 {
+.restaurant-desc {
   display: flex;
-  justify-content: flex-start;
-  /* background-color: #eeeeee; */
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.restaurant-desc h1 {
+  white-space: normal;
+  text-align: right;
+  width: 300px;
 }
 
 .restaurant-desc p {
-  display: flex;
-  justify-content: flex-start;
-  /* background-color: #eeeeee; */
+  white-space: normal;
+  text-align: right;
+  width: 200px;
 }

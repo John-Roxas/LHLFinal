@@ -27,7 +27,13 @@ export default function Routing(props) {
 
     // routingControl.hide(); // hides the minimap direction
 
-    return () => map.removeControl(routingControl);
+    return () => {
+      // removeControl tries to remove a layer before it even exists
+      // set a delay such that whatever is being removed has a chance to load
+      setTimeout(() => {
+        map.removeControl(routingControl);
+      }, 1000);
+    };
   }, [map]);
 
   return null;
