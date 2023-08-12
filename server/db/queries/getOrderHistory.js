@@ -34,7 +34,7 @@ const getOrderHistory = function (customerID) {
     restaurants ON orders.restaurants_id = restaurants.id
   WHERE
     orders.customers_id = $1
-  ORDER BY orders.id;
+  ORDER BY orders.id DESC;
   `;
 
   const values = [customerID];
