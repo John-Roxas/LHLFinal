@@ -50,7 +50,7 @@ function GeoMap(props) {
   if (starting.length === 0 || ending.length === 0) {
     return (
       <div className="map-loading-message">
-        <p>Loading Map...</p>
+        <h1>Loading Map...</h1>
       </div>
     ); // You can add a loading indicator or any other content here while waiting for the data.
   }
@@ -70,12 +70,14 @@ function GeoMap(props) {
             {props.restaurantAddress} {props.restaurantPostalCode}
           </p>
         </div>
+        <hr></hr>
         <div className="user-info">
           <FontAwesomeIcon icon={faHouseUser} />
           <p>
             {props.customerAddress} {props.customerPostalCode}
           </p>
         </div>
+        <hr></hr>
         <div className="distance-info">
           <FontAwesomeIcon icon={faRoad} />
           {distance()}
