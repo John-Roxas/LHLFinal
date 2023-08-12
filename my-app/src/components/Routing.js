@@ -33,7 +33,7 @@ export default function Routing(props) {
       setTimeout(() => {
         map.removeControl(routingControl);
       }, 1000);
-    }
+    };
   }, [map]);
 
   return null;
