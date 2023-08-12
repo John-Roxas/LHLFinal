@@ -34,7 +34,7 @@ const StripePaymentForm = ({ totalAmount, onPaymentSuccess }) => {
         name="DashDine"
         amount={totalAmount * 100}
         currency="CAD"
-        image="https://your-company-logo-url.png"
+        // image="https://your-company-logo-url.png"
         billingAddress={true}
         shippingAddress={true}
         disabled={!stripe || isLoading}
