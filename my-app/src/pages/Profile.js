@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/NavigationBar";
+import useOrderHistory from "../hooks/useOrderHistory";
 
 function Profile(props) {
   const { orderHistory } = props;
@@ -8,9 +9,22 @@ function Profile(props) {
     sessionStorage.getItem("session")
   );
 
+  //Destructure useOrderHistory hook
+  const { getOrderHistoryData } = useOrderHistory();
+
   useEffect(() => {
     const sessionData = sessionStorage.getItem("session");
     setIsLoggedIn(sessionData);
+    if (isLoggedIn) {
+      getOrderHistoryData(props.customerInfo.id)
+        .then((data) => {
+          console.log("from useEffect data orderHistory", data);
+          props.setOrderHistory(data); // Update the order history state
+        })
+        .catch((error) => {
+          console.log("Error fetching order history:", error);
+        });
+    }
   }, []);
 
   function getSessionData() {
@@ -70,7 +84,7 @@ function Profile(props) {
         </div>
         <div className="tile-item">{phone}</div>
         <button className="login-button" onClick={handleLogout}>
-            Logout
+          Logout
         </button>
       </div>
 
@@ -79,20 +93,20 @@ function Profile(props) {
       <div>
         <ul className="order-container">
           <h2>Order History</h2>
-            {orderHistory.map((order, index) => (
-              <li key={index} className="order-info">
-                <div className="vert-align">
-                  <p>Order Number: {order.order_id}</p>
-                  <p>Restaurant: {order.restaurant_name}</p>
-                  <p>Order Total: {order.total_amount}</p>
-                </div>
-                <img
-                          src={order.restaurant_picture}
-                          alt={order.restaurant_name}
-                          className="restaurant-picture crop"
-                />
-              </li>
-            ))}
+          {orderHistory.map((order, index) => (
+            <li key={index} className="order-info">
+              <div className="vert-align">
+                <p>Order Number: {order.order_id}</p>
+                <p>Restaurant: {order.restaurant_name}</p>
+                <p>Order Total: {order.total_amount}</p>
+              </div>
+              <img
+                src={order.restaurant_picture}
+                alt={order.restaurant_name}
+                className="restaurant-picture crop"
+              />
+            </li>
+          ))}
         </ul>
       </div>
       <NavigationBar />
