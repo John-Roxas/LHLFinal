@@ -5,11 +5,10 @@ import SearchField from "../components/SearchField";
 import NavigationBar from "../components/NavigationBar";
 import FoodList from "../components/FoodList";
 import "./Restaurant.css";
-import { useParams } from 'react-router';
-
+import { useParams } from "react-router";
 
 function Restaurant(props) {
-  const params = useParams()
+  const params = useParams();
 
   const restaurantId = params.id;
   // These two take information passed from /src/components/RestaurantListItem
@@ -18,7 +17,7 @@ function Restaurant(props) {
 
   const [state, setState] = useState({
     foodList: [],
-    restaurantInfo: null
+    restaurantInfo: null,
   });
 
   useEffect(() => {
@@ -42,21 +41,24 @@ function Restaurant(props) {
           restaurantAddress: response.restaurant_street_address,
           restaurantPostalCode: response.postal_code,
           restaurantPicture: response.restaurant_picture,
-          restaurantCity: response.city
+          restaurantCity: response.city,
         }));
-      })
+      });
   }, []);
-
 
   return (
     <div className="App">
       <div className="search-container">
         <SearchField />
       </div>
-        <div className="search-padding"></div>
-        <div className="restaurant-banner">
-          <img src={state.restaurantPicture} alt={state.restaurantName} className="restaurant-picture" />
-          <Link
+      <div className="search-padding"></div>
+      <div className="restaurant-banner">
+        <img
+          src={state.restaurantPicture}
+          alt={state.restaurantName}
+          className="restaurant-picture"
+        />
+        <Link
           to={"/map"}
           // these are passed to pages/Map.js
           state={{
@@ -68,12 +70,12 @@ function Restaurant(props) {
           <h2>{state.restaurantName}</h2>
           <p>{state.restaurantAddress}</p>
         </Link>
-        </div>
-        <FoodList
-          restaurantId={restaurantId}
-          foods={state.foodList}
-          restaurantName={state.restaurantName}
-        />
+      </div>
+      <FoodList
+        restaurantId={restaurantId}
+        foods={state.foodList}
+        restaurantName={state.restaurantName}
+      />
       <NavigationBar />
     </div>
   );
