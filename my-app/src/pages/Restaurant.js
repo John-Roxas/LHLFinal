@@ -41,7 +41,8 @@ function Restaurant(props) {
           restaurantName: response.restaurant_name,
           restaurantAddress: response.restaurant_street_address,
           restaurantPostalCode: response.postal_code,
-          restaurantPicture: response.restaurant_picture
+          restaurantPicture: response.restaurant_picture,
+          restaurantCity: response.city
         }));
       })
   }, []);
@@ -59,7 +60,7 @@ function Restaurant(props) {
           to={"/map"}
           // these are passed to pages/Map.js
           state={{
-            restaurantAddress: state.restaurantAddress,
+            restaurantAddress: state.restaurantAddress + state.restaurantCity,
             restaurantPostalCode: state.restaurantPostalCode,
           }}
           style={{ textDecoration: "none" }}

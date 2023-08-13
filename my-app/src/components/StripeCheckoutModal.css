@@ -22,12 +22,17 @@
 }
 
 .custom-pay-button {
-  background-color: #000;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  width: 250px;
-  font-size: 1.3rem;
-  margin-bottom: 20px;
+    width: 120px;
+    height: 40px;
+    background-color: var(--theme);
+    color: var(--white);
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
 }
