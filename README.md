@@ -1,7 +1,9 @@
 # DASH DINE
-DASH DINE is the user-side clone of Uber Eats, where users can agonise over all the possible food options in the city before settling on what they are comfortable with! Currently only for GVRD region. 
+
+DASH DINE is the user-side clone of Uber Eats, where users can agonise over all the possible food options in the city before settling on what they are comfortable with! Currently only for GVRD region.
 
 ## Getting Started
+
 1. Clone this repo: `git clone git@github.com:John-Roxas/LHLFinal.git`.
 2. This app uses PostgreSQL - please refer to [PostgreSQL Setup](###PostgreSQL-Setup).
 3. Open the server directory `cd server`.
@@ -17,39 +19,42 @@ DASH DINE is the user-side clone of Uber Eats, where users can agonise over all 
 13. The app should launch automatically in your default browser. The app can also be accessed directly at `localhost:[PORT]`. The default port is `3000`.
 
 ### PostGreSQL Setup
+
 1. You will require PostgreSQL to use this application; please ensure that it is installed. If not, you can download PostgreSQL [here](https://www.postgresql.org/about/).
 2. Start PostgreSQL: `psql` - please note that if you are on WSL, you will need to use the following command first: `startposgresql`.
 
 ## Features
 
 1. Multipage breakdown of main app features!
-    1. Home page
-         1. Shows a list of all restautants for not-logged-in users
-         2. Shows an additional side-scrolling carousel of restaurants previously ordered from
-         3. A login button, because how else are you supposed to order food?
-    2. Search page
-         1. Search by restaurant name
-         2. Search by food category (e.g., drinks, fast food)
-         3. Search by food name, which returns specific menu items
-    3. Restaurant-specific pages
-         1. Shows a full list of offerings from a restaurant
-         2. View the restaurant location relative to your address using Leaflet, a Google Maps alternative
-    4. Shopping cart page
-         1. Displays a list of all items added to the cart
-         2. Allows users to delete previously added items - we're allowed to change our minds!
-         3. Checkout using Stripe, a popular and well-supported payment API
-    5. Profile page
-         1. View your user details
-         2. View your recent orders
-         3. A logout button, because nobody wants to trap their users in a perpetually logged-in state!
+   1. Home page
+      1. Shows a list of all restautants for not-logged-in users
+      2. Shows an additional side-scrolling carousel of restaurants previously ordered from
+      3. A login button, because how else are you supposed to order food?
+   2. Search page
+      1. Search by restaurant name
+      2. Search by food category (e.g., drinks, fast food)
+      3. Search by food name, which returns specific menu items
+   3. Restaurant-specific pages
+      1. Shows a full list of offerings from a restaurant
+      2. View the restaurant location relative to your address using Leaflet, a Google Maps alternative
+   4. Shopping cart page
+      1. Displays a list of all items added to the cart
+      2. Allows users to delete previously added items - we're allowed to change our minds!
+      3. Checkout using Stripe, a popular and well-supported payment API
+   5. Profile page
+      1. View your user details
+      2. View your recent orders
+      3. A logout button, because nobody wants to trap their users in a perpetually logged-in state!
 2. Restaurant database - insert restaurants directly using SQL queries. Worry not - we're working on a restaurant entry page.
 
-
 ## Environment
+
 - Node V12.22.xx or higher
 
 ## Dependencies
+
 ### Application
+
 - Font Awesome: v6.4.0
 - Stripe: v12.16.0
 - Axios: v1.4.0
@@ -59,6 +64,7 @@ DASH DINE is the user-side clone of Uber Eats, where users can agonise over all 
 - React: v18.2.0
 
 ### Server
+
 - Body parser: v1.20.2
 - Chalk: v2.4.2
 - Cookie-session: v2.0.0
@@ -71,3 +77,47 @@ DASH DINE is the user-side clone of Uber Eats, where users can agonise over all 
 - Sass: v1.35.1
 
 ## Interface Images
+
+### Browsing Pages
+
+!["Browsing Pages"](./my-app/public/images/Browsing%20routes.gif)
+
+### Login
+
+!["Login"](./my-app/public/images/Login.gif)
+
+### Map
+
+!["Map"](./my-app/public/images/Map.gif)
+
+### Adding Items to Cart
+
+!["Adding Items to Cart"](./my-app/public/images/Adding%20items.gif)
+
+### Checkout
+
+!["Checkout"](./my-app/public/images/Checkout.gif)
+
+### Email Receipt
+
+!["Email Receipt"](./my-app/public/images/Email.png)
+
+### Order History
+
+!["Order History"](./my-app/public/images/Order%20History.gif)
+
+### Logout
+
+!["Logout"](./my-app/public/images/Logout.gif)
+
+### Search Restaurant
+
+!["Search Restaurant"](./my-app/public/images/search-restauarant.gif)
+
+### Search Category
+
+!["Search Category"](./my-app/public/images/search-category.gif)
+
+### Search Food
+
+!["Search Food"](./my-app/public/images/search-food.gif)
