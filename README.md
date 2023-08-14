@@ -2,6 +2,15 @@
 
 DASH DINE is the user-side clone of Uber Eats, where users can agonise over all the possible food options in the city before settling on what they are comfortable with! Currently only for GVRD region.
 
+# Table of Contents
+
+1. [Getting Started](#getting-started)
+2. [PostGreSQL Setup](#postgresql-setup)
+3. [Features](#features)
+4. [Environment](#environment)
+5. [Dependencies](#dependencies)
+6. [Interface Images/GIFs](#interface-imagesgifs)
+
 ## Getting Started
 
 1. Clone this repo: `git clone git@github.com:John-Roxas/LHLFinal.git`.
@@ -76,7 +85,7 @@ DASH DINE is the user-side clone of Uber Eats, where users can agonise over all 
 - Postgres: v8.5.0
 - Sass: v1.35.1
 
-## Interface Images
+## Interface Images/GIFs
 
 ### Browsing Pages
 
