@@ -50,11 +50,17 @@ router.post("/", async (req, res) => {
         totalAmount, // orderTotal from FRONT END
       ];
 
-      console.log("Inserting order for cart item with food_name:", cartItem.food_name);
+      console.log(
+        "Inserting order for cart item with food_name:",
+        cartItem.food_name
+      );
       await db.query(insertOrderQuery, values);
-      console.log("Order successfully inserted for cart item with food_name:", cartItem.food_name);
+      console.log(
+        "Order successfully inserted for cart item with food_name:",
+        cartItem.food_name
+      );
+      break;
     }
-
 
     // Update the cart status to closed
     const updateCartQuery = `
@@ -65,14 +71,23 @@ router.post("/", async (req, res) => {
 
     console.log("Updating cart status to closed for cartId:", cartId);
     await db.query(updateCartQuery, [cartId]);
-    console.log("Cart status successfully updated to closed for cartId:", cartId);
+    console.log(
+      "Cart status successfully updated to closed for cartId:",
+      cartId
+    );
 
-    res.json({ message: "Order created and cart status updated successfully!" });
+    res.json({
+      message: "Order created and cart status updated successfully!",
+    });
   } catch (error) {
     console.error("Error creating order and updating cart status:", error);
-    res.status(500).json({ error: "An error occurred while creating the order and updating cart status." });
+    res
+      .status(500)
+      .json({
+        error:
+          "An error occurred while creating the order and updating cart status.",
+      });
   }
 });
-
 
 module.exports = router;
