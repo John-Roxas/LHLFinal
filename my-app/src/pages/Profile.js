@@ -46,7 +46,9 @@ function Profile(props) {
       <>
         <div className="App">
           <div className="profile-container">
-            <div className="tile-item">Please login to view the profile.</div>
+            <div className="tile-item">
+              <p>Please login to view the profile.</p>
+            </div>
           </div>
         </div>
         <NavigationBar />
