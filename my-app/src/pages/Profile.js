@@ -82,7 +82,7 @@ function Profile(props) {
         <div className="tile-item">
           Address: {`${customer_street_address}, ${city}, ${postal_code}`}
         </div>
-        <div className="tile-item">{phone}</div>
+        <div className="tile-item">Phone number: {phone}</div>
         <button className="login-button" onClick={handleLogout}>
           Logout
         </button>
