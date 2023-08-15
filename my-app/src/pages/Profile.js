@@ -61,6 +61,7 @@ function Profile(props) {
     document.cookie =
       "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setIsLoggedIn(false);
+    window.location.href = "/";
   };
 
   const {
