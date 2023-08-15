@@ -77,7 +77,7 @@ function Profile(props) {
         <div className="tile-item img">
           <img src={customer_avatar} alt="Avatar" />
         </div>
-        <h1 className="tile-item">Name: {customer_name}</h1>
+        <h1 className="tile-item">{customer_name}</h1>
         <div className="tile-item">Email: {customer_email}</div>
         <div className="tile-item">
           Address: {`${customer_street_address}, ${city}, ${postal_code}`}
