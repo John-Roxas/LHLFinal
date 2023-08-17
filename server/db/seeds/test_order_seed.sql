@@ -17,8 +17,8 @@ INSERT INTO cart_items (cart_id, food_item_id, quantity, food_item_price, food_n
 
 INSERT INTO orders (cart_id, date, customers_id, drivers_id, restaurants_id, status, total_amount) VALUES
 (1, '2023-07-03 12:30:00', 2, 1, 1, 'Delivered', 28.46),
-(1, '2023-07-02 18:45:00', 2, NULL, 2, 'Completed', 36.45),
-(1, '2023-07-02 18:45:00', 2, NULL, 3, 'Completed', 36.45),
-(1, '2023-07-02 18:45:00', 2, NULL, 4, 'Completed', 36.45);
+(1, '2023-07-02 18:45:00', 2, NULL, 2, 'Completed', 27.06),
+(1, '2023-07-02 18:45:00', 2, NULL, 3, 'Completed', 14.31),
+(1, '2023-07-02 18:45:00', 2, NULL, 4, 'Completed', 30.91);
 
 
