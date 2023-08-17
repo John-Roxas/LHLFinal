@@ -28,6 +28,15 @@
   width: 100%;
 }
 
+.form-field-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #eeeeee;
+  margin-right: 5px;
+  width: 100%;
+}
 .search-bar {
   flex: 1;
   width: 100%;

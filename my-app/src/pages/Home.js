@@ -66,7 +66,7 @@ function Index(props) {
   return (
     <div className="App">
       <div className="search-container">
-        <Link to="/Search" className="form-field">
+        <Link to="/Search" className="form-field-link">
           <SearchField />
         </Link>
         <Login loginData={loginInfo} />
