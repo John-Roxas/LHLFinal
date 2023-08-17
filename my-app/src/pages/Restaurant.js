@@ -62,7 +62,8 @@ function Restaurant(props) {
           to={"/map"}
           // these are passed to pages/Map.js
           state={{
-            restaurantAddress: state.restaurantAddress + state.restaurantCity,
+            restaurantAddress:
+              state.restaurantAddress + " " + state.restaurantCity,
             restaurantPostalCode: state.restaurantPostalCode,
           }}
           style={{ textDecoration: "none" }}
