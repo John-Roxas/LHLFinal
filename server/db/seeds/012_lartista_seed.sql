@@ -1,7 +1,7 @@
 -- -- Antons Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ("L'Artista", 'lartista@telus.net', '3891 E Hastings St', 'Burnaby, BC', 'V5C 2H7', '604299', 'Italian Pasta western', 'https://lh3.googleusercontent.com/p/AF1QipOknzX9ZCwkWEn_PxPv5bbkgww7ZKtpAweil97x=w960-h960-n-o-v1');
+VALUES ('L''Artista', 'lartista@telus.net', '3891 E Hastings St', 'Burnaby, BC', 'V5C 2H7', '604299', 'Italian Pasta western', 'https://lh3.googleusercontent.com/p/AF1QipOknzX9ZCwkWEn_PxPv5bbkgww7ZKtpAweil97x=w960-h960-n-o-v1');
 
 -- -- Antons food items
 
