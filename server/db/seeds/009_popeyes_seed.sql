@@ -1,7 +1,7 @@
 -- Popeyes Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Popeyes', 'info@popeyes.com', '2170 Hawkins Street, BC', 'PoCo, BC', 'V3B 0G6', '17789413681', 'Fast Food western american fried chicken', 'https://1000logos.net/wp-content/uploads/2021/04/Popeyes-logo.png');
+VALUES ('Popeyes', 'info@popeyes.com', '2170 Hawkins Street', 'PoCo, BC', 'V3B 0G6', '17789413681', 'Fast Food western american fried chicken', 'https://1000logos.net/wp-content/uploads/2021/04/Popeyes-logo.png');
 
 -- Popeyes Food Items
 
