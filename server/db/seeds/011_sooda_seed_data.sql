@@ -1,7 +1,7 @@
 -- -- SOODA Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Sooda Korean BBQ', 'soodabrentwood@gmail.com', '4455 Lougheed Hwy', 'Burnaby, BC', 'V5C 3Z2', '6044289227', 'Korean Barbeque', 'https://static.wixstatic.com/media/c2a506_795f00ddced44f5f8a8d221a3e9abe9a~mv2.png/v1/fill/w_163,h_175,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c2a506_795f00ddced44f5f8a8d221a3e9abe9a~mv2.png');
+VALUES ('Sooda Korean BBQ', 'soodabrentwood@gmail.com', '4455 Lougheed Hwy', 'Burnaby, BC', 'V5C 3Z2', '6044289227', 'Korean Barbeque asian', 'https://static.wixstatic.com/media/c2a506_795f00ddced44f5f8a8d221a3e9abe9a~mv2.png/v1/fill/w_163,h_175,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c2a506_795f00ddced44f5f8a8d221a3e9abe9a~mv2.png');
 
 -- -- SOODA food items
 

@@ -1,7 +1,7 @@
 -- -- Shake Shack Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Shake Shack', 'shakeshack@burgers.com', '4820 Kingsway', 'Burnaby, BC', 'V5H 4P1', '6044335181', 'Fast food', 'https://tinyurl.com/2hpjfref');
+VALUES ('Shake Shack', 'shakeshack@burgers.com', '4820 Kingsway', 'Burnaby, BC', 'V5H 4P1', '6044335181', 'Fast food american western burgers', 'https://tinyurl.com/2hpjfref');
 
 -- -- Shake Shack food items
 

@@ -1,7 +1,7 @@
 -- Boston Pizza Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Boston Pizza', 'info@bostonpizza.com', '2325 Ottawa Street', 'Port Coquitlam', 'V3B 8A4', '778-285-2200', 'Pizza', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Boston_Pizza.svg/1200px-Boston_Pizza.svg.png');
+VALUES ('Boston Pizza', 'info@bostonpizza.com', '2325 Ottawa Street', 'Port Coquitlam', 'V3B 8A4', '778-285-2200', 'Pizza american western', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Boston_Pizza.svg/1200px-Boston_Pizza.svg.png');
 
 -- Boston Pizza Food Items
 

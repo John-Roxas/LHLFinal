@@ -1,7 +1,7 @@
 -- -- Five Guys Info --
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Five Guys', 'fiveguys@foods.ca', '2206 Kingsway', 'Vancouver, BC', 'V5N 2T7', '6043369388', 'Fast food', 'https://upload.wikimedia.org/wikipedia/commons/8/80/Five_Guys_logo.svg');
+VALUES ('Five Guys', 'fiveguys@foods.ca', '2206 Kingsway', 'Vancouver, BC', 'V5N 2T7', '6043369388', 'Fast food american western burgers', 'https://upload.wikimedia.org/wikipedia/commons/8/80/Five_Guys_logo.svg');
 
 -- -- Five Guys food items
 

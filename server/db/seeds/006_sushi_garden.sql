@@ -1,7 +1,7 @@
 -- -- A&W Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('Sushi Garden', 'contact@sushiG.com', '6611 Kingsway ', 'Burnaby, BC', 'V5E 1E2', '6047181035', 'Japanese', 'https://d1ralsognjng37.cloudfront.net/5d6d9e02-ef50-4274-803c-19186ec180f0.jpeg');
+VALUES ('Sushi Garden', 'contact@sushiG.com', '6611 Kingsway ', 'Burnaby, BC', 'V5E 1E2', '6047181035', 'Japanese Sushi asian', 'https://d1ralsognjng37.cloudfront.net/5d6d9e02-ef50-4274-803c-19186ec180f0.jpeg');
 
 -- -- Sushi Garden food items
 

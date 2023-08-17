@@ -1,7 +1,7 @@
 -- -- A&W Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('McDonalds', 'contact@mcdonalds.com', '7229 Kingsway ', 'Burnaby, BC', 'V5E 1G5', '6047181035', 'Fast food', 'https://blog.logomyway.com/wp-content/uploads/2017/01/mcdonalds-logo-1.jpg');
+VALUES ('McDonalds', 'contact@mcdonalds.com', '7229 Kingsway ', 'Burnaby, BC', 'V5E 1G5', '6047181035', 'Fast food western american burgers', 'https://blog.logomyway.com/wp-content/uploads/2017/01/mcdonalds-logo-1.jpg');
 
 -- -- Mcdonalds food items
 

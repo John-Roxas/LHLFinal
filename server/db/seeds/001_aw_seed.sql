@@ -1,7 +1,7 @@
 -- -- A&W Restaurant Info
 
 INSERT INTO restaurants (restaurant_name, email, restaurant_street_address, city, postal_code, phone, category, restaurant_picture)
-VALUES ('A&W', 'contact@aw.com', '610 6th St ', 'New Westminster, BC', 'V3L 3C2', '6045223723', 'Fast food', 'https://logodix.com/logo/432556.png');
+VALUES ('A&W', 'contact@aw.com', '610 6th St ', 'New Westminster, BC', 'V3L 3C2', '6045223723', 'Fast food american western burgers', 'https://logodix.com/logo/432556.png');
 
 -- -- A&W food items
 
